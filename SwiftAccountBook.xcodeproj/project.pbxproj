@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B1025F41C0DB3AA00202B95 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1025F31C0DB3AA00202B95 /* TagCollectionViewCell.swift */; };
+		4B35F7621BD373540084F57C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7611BD373540084F57C /* Record.swift */; };
+		4B35F7631BD373540084F57C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7611BD373540084F57C /* Record.swift */; };
+		4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7641BD37E730084F57C /* RecordTableViewController.swift */; };
+		4B35F7671BD37E910084F57C /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */; };
 		4BED775C1BD22DD9004DD518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED775B1BD22DD9004DD518 /* AppDelegate.swift */; };
-		4BED775E1BD22DD9004DD518 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED775D1BD22DD9004DD518 /* ViewController.swift */; };
+		4BED775E1BD22DD9004DD518 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED775D1BD22DD9004DD518 /* RecordViewController.swift */; };
 		4BED77611BD22DD9004DD518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BED775F1BD22DD9004DD518 /* Main.storyboard */; };
 		4BED77631BD22DD9004DD518 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BED77621BD22DD9004DD518 /* Assets.xcassets */; };
 		4BED77661BD22DD9004DD518 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BED77641BD22DD9004DD518 /* LaunchScreen.storyboard */; };
@@ -26,9 +31,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B1025F31C0DB3AA00202B95 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
+		4B35F7611BD373540084F57C /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		4B35F7641BD37E730084F57C /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
+		4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		4BED77581BD22DD9004DD518 /* SwiftAccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftAccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BED775B1BD22DD9004DD518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4BED775D1BD22DD9004DD518 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4BED775D1BD22DD9004DD518 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		4BED77601BD22DD9004DD518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4BED77621BD22DD9004DD518 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BED77651BD22DD9004DD518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,11 +87,15 @@
 			isa = PBXGroup;
 			children = (
 				4BED775B1BD22DD9004DD518 /* AppDelegate.swift */,
-				4BED775D1BD22DD9004DD518 /* ViewController.swift */,
+				4BED775D1BD22DD9004DD518 /* RecordViewController.swift */,
 				4BED775F1BD22DD9004DD518 /* Main.storyboard */,
 				4BED77621BD22DD9004DD518 /* Assets.xcassets */,
 				4BED77641BD22DD9004DD518 /* LaunchScreen.storyboard */,
 				4BED77671BD22DD9004DD518 /* Info.plist */,
+				4B35F7611BD373540084F57C /* Record.swift */,
+				4B35F7641BD37E730084F57C /* RecordTableViewController.swift */,
+				4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */,
+				4B1025F31C0DB3AA00202B95 /* TagCollectionViewCell.swift */,
 			);
 			path = SwiftAccountBook;
 			sourceTree = "<group>";
@@ -145,6 +158,7 @@
 				TargetAttributes = {
 					4BED77571BD22DD9004DD518 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 793RUUXLDW;
 					};
 					4BED776B1BD22DD9004DD518 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -196,8 +210,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BED775E1BD22DD9004DD518 /* ViewController.swift in Sources */,
+				4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */,
+				4BED775E1BD22DD9004DD518 /* RecordViewController.swift in Sources */,
 				4BED775C1BD22DD9004DD518 /* AppDelegate.swift in Sources */,
+				4B1025F41C0DB3AA00202B95 /* TagCollectionViewCell.swift in Sources */,
+				4B35F7671BD37E910084F57C /* RecordTableViewCell.swift in Sources */,
+				4B35F7621BD373540084F57C /* Record.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B35F7631BD373540084F57C /* Record.swift in Sources */,
 				4BED77711BD22DD9004DD518 /* SwiftAccountBookTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,10 +345,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SwiftAccountBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.sen.SwiftAccountBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -337,10 +359,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SwiftAccountBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.sen.SwiftAccountBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -387,6 +412,7 @@
 				4BED77771BD22DD9004DD518 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BED77781BD22DD9004DD518 /* Build configuration list for PBXNativeTarget "SwiftAccountBookTests" */ = {
 			isa = XCConfigurationList;
@@ -395,6 +421,7 @@
 				4BED777A1BD22DD9004DD518 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
