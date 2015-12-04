@@ -13,7 +13,7 @@ class Record: NSObject, NSCoding {
     // MARK: - Properties
     
     var number: Double
-    var tag: String
+    var tags: [String]
     var date: NSDate
     var recordDescription: String?
     
@@ -26,15 +26,15 @@ class Record: NSObject, NSCoding {
     
     struct PropertyKey {
         static let numberKey = "number"
-        static let tagKey = "tag"
+        static let tagsKey = "tags"
         static let dateKey = "date"
         static let recordDescriptionKey = "recordDescription"
     }
     
     
-    init?(number: Double, tag: String, date: NSDate, recordDescription: String? = nil) {
+    init?(number: Double, tags: [String], date: NSDate, recordDescription: String? = nil) {
         self.number = number
-        self.tag = tag
+        self.tags = tags
         self.date = date
         self.recordDescription = recordDescription
         super.init()
@@ -43,8 +43,11 @@ class Record: NSObject, NSCoding {
             return nil
         }
         
-        if tag.isEmpty {
+        if tags.count == 0 {
             return nil
+        }
+        for tag in tags {
+            if tag.isEmpty { return nil }
         }
     }
     
@@ -52,16 +55,16 @@ class Record: NSObject, NSCoding {
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeDouble(number, forKey: PropertyKey.numberKey)
-        aCoder.encodeObject(tag, forKey: PropertyKey.tagKey)
+        aCoder.encodeObject(tags, forKey: PropertyKey.tagsKey)
         aCoder.encodeObject(date, forKey: PropertyKey.dateKey)
         aCoder.encodeObject(recordDescription, forKey: PropertyKey.recordDescriptionKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
         let number = aDecoder.decodeDoubleForKey(PropertyKey.numberKey)
-        let tag = aDecoder.decodeObjectForKey(PropertyKey.tagKey) as! String
+        let tags = aDecoder.decodeObjectForKey(PropertyKey.tagsKey) as! [String]
         let date = aDecoder.decodeObjectForKey(PropertyKey.dateKey) as! NSDate
         let recordDescription = aDecoder.decodeObjectForKey(PropertyKey.recordDescriptionKey) as? String
-        self.init(number: number, tag: tag, date: date, recordDescription: recordDescription)
+        self.init(number: number, tags: tags, date: date, recordDescription: recordDescription)
     }
 }

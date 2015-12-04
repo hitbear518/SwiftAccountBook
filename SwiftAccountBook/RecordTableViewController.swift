@@ -113,16 +113,16 @@ class RecordTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetail" {
-            let recordViewController = segue.destinationViewController as! RecordViewController
+            let recordViewController = segue.destinationViewController as! RecordViewController2
             let selectedRecordCell = sender as! RecordTableViewCell
             let selectedIndexPath = tableView.indexPathForCell(selectedRecordCell)!
             let selectedRecord = recordsArray[selectedIndexPath.section][selectedIndexPath.row]
-            recordViewController.record = Record(number: selectedRecord.number, tag: selectedRecord.tag, date: selectedRecord.date, recordDescription: selectedRecord.recordDescription)
+            recordViewController.record = Record(number: selectedRecord.number, tags: selectedRecord.tags, date: selectedRecord.date, recordDescription: selectedRecord.recordDescription)
         }
     }
 
     @IBAction func unwindToRecordList(sender: UIStoryboardSegue) {
-        guard let sourceViewController = sender.sourceViewController as? RecordViewController, record = sourceViewController.record else { return }
+        guard let sourceViewController = sender.sourceViewController as? RecordViewController2, record = sourceViewController.record else { return }
         
         tableView.beginUpdates()
         if let selectedIndexPath = tableView.indexPathForSelectedRow {

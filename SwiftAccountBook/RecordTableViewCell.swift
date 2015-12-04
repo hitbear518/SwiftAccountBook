@@ -18,7 +18,12 @@ class RecordTableViewCell: UITableViewCell {
     
 
     func configCell(record: Record) {
-        tagLabel.text = record.tag ?? "Invalid Tag"
+        var tagsText = ""
+        for tag in record.tags {
+            tagsText += "\(tag), "
+        }
+        tagsText = tagsText.substringWithRange(tagsText.startIndex..<tagsText.endIndex.advancedBy(-2))
+        tagLabel.text = tagsText
         numberLabel.text = String(record.number) ?? "Invalid Number"
         recordDescriptionLabel.text = record.recordDescription
     }

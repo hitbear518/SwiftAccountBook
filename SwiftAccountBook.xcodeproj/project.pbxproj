@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B1025F41C0DB3AA00202B95 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1025F31C0DB3AA00202B95 /* TagCollectionViewCell.swift */; };
+		4B1026861C0EECD800202B95 /* RecordViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1026851C0EECD800202B95 /* RecordViewController2.swift */; };
+		4B1026881C0EF5EF00202B95 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1026871C0EF5EF00202B95 /* TagCollectionViewCell.swift */; };
+		4B10268A1C0EF88F00202B95 /* CustomCellBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1026891C0EF88F00202B95 /* CustomCellBackground.swift */; };
+		4B10268C1C0EFC7C00202B95 /* RecordViewControllerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10268B1C0EFC7C00202B95 /* RecordViewControllerHeader.swift */; };
+		4B10268E1C0EFC9500202B95 /* RecordViewControllerFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10268D1C0EFC9500202B95 /* RecordViewControllerFooter.swift */; };
+		4B1026BC1C1067B300202B95 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1026BB1C1067B300202B95 /* Constants.swift */; };
+		4B1026BE1C118B5F00202B95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B1026BD1C118B5F00202B95 /* Assets.xcassets */; };
 		4B35F7621BD373540084F57C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7611BD373540084F57C /* Record.swift */; };
 		4B35F7631BD373540084F57C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7611BD373540084F57C /* Record.swift */; };
 		4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7641BD37E730084F57C /* RecordTableViewController.swift */; };
 		4B35F7671BD37E910084F57C /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */; };
 		4BED775C1BD22DD9004DD518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED775B1BD22DD9004DD518 /* AppDelegate.swift */; };
-		4BED775E1BD22DD9004DD518 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED775D1BD22DD9004DD518 /* RecordViewController.swift */; };
 		4BED77611BD22DD9004DD518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BED775F1BD22DD9004DD518 /* Main.storyboard */; };
-		4BED77631BD22DD9004DD518 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BED77621BD22DD9004DD518 /* Assets.xcassets */; };
 		4BED77661BD22DD9004DD518 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BED77641BD22DD9004DD518 /* LaunchScreen.storyboard */; };
 		4BED77711BD22DD9004DD518 /* SwiftAccountBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED77701BD22DD9004DD518 /* SwiftAccountBookTests.swift */; };
 /* End PBXBuildFile section */
@@ -31,15 +35,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4B1025F31C0DB3AA00202B95 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
+		4B1026851C0EECD800202B95 /* RecordViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewController2.swift; sourceTree = "<group>"; };
+		4B1026871C0EF5EF00202B95 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
+		4B1026891C0EF88F00202B95 /* CustomCellBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellBackground.swift; sourceTree = "<group>"; };
+		4B10268B1C0EFC7C00202B95 /* RecordViewControllerHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewControllerHeader.swift; sourceTree = "<group>"; };
+		4B10268D1C0EFC9500202B95 /* RecordViewControllerFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewControllerFooter.swift; sourceTree = "<group>"; };
+		4B1026BB1C1067B300202B95 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4B1026BD1C118B5F00202B95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B35F7611BD373540084F57C /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		4B35F7641BD37E730084F57C /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		4BED77581BD22DD9004DD518 /* SwiftAccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftAccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BED775B1BD22DD9004DD518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4BED775D1BD22DD9004DD518 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		4BED77601BD22DD9004DD518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4BED77621BD22DD9004DD518 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BED77651BD22DD9004DD518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4BED77671BD22DD9004DD518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BED776C1BD22DD9004DD518 /* SwiftAccountBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftAccountBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,16 +94,20 @@
 		4BED775A1BD22DD9004DD518 /* SwiftAccountBook */ = {
 			isa = PBXGroup;
 			children = (
+				4B1026BD1C118B5F00202B95 /* Assets.xcassets */,
+				4B1026891C0EF88F00202B95 /* CustomCellBackground.swift */,
 				4BED775B1BD22DD9004DD518 /* AppDelegate.swift */,
-				4BED775D1BD22DD9004DD518 /* RecordViewController.swift */,
 				4BED775F1BD22DD9004DD518 /* Main.storyboard */,
-				4BED77621BD22DD9004DD518 /* Assets.xcassets */,
 				4BED77641BD22DD9004DD518 /* LaunchScreen.storyboard */,
 				4BED77671BD22DD9004DD518 /* Info.plist */,
 				4B35F7611BD373540084F57C /* Record.swift */,
 				4B35F7641BD37E730084F57C /* RecordTableViewController.swift */,
 				4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */,
-				4B1025F31C0DB3AA00202B95 /* TagCollectionViewCell.swift */,
+				4B1026851C0EECD800202B95 /* RecordViewController2.swift */,
+				4B1026871C0EF5EF00202B95 /* TagCollectionViewCell.swift */,
+				4B10268B1C0EFC7C00202B95 /* RecordViewControllerHeader.swift */,
+				4B10268D1C0EFC9500202B95 /* RecordViewControllerFooter.swift */,
+				4B1026BB1C1067B300202B95 /* Constants.swift */,
 			);
 			path = SwiftAccountBook;
 			sourceTree = "<group>";
@@ -191,7 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BED77661BD22DD9004DD518 /* LaunchScreen.storyboard in Resources */,
-				4BED77631BD22DD9004DD518 /* Assets.xcassets in Resources */,
+				4B1026BE1C118B5F00202B95 /* Assets.xcassets in Resources */,
 				4BED77611BD22DD9004DD518 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,10 +222,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B10268A1C0EF88F00202B95 /* CustomCellBackground.swift in Sources */,
+				4B1026BC1C1067B300202B95 /* Constants.swift in Sources */,
+				4B10268C1C0EFC7C00202B95 /* RecordViewControllerHeader.swift in Sources */,
 				4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */,
-				4BED775E1BD22DD9004DD518 /* RecordViewController.swift in Sources */,
+				4B10268E1C0EFC9500202B95 /* RecordViewControllerFooter.swift in Sources */,
 				4BED775C1BD22DD9004DD518 /* AppDelegate.swift in Sources */,
-				4B1025F41C0DB3AA00202B95 /* TagCollectionViewCell.swift in Sources */,
+				4B1026881C0EF5EF00202B95 /* TagCollectionViewCell.swift in Sources */,
+				4B1026861C0EECD800202B95 /* RecordViewController2.swift in Sources */,
 				4B35F7671BD37E910084F57C /* RecordTableViewCell.swift in Sources */,
 				4B35F7621BD373540084F57C /* Record.swift in Sources */,
 			);
