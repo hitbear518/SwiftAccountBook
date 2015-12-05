@@ -80,6 +80,7 @@ class RecordTableViewController: UITableViewController {
                 tableView.deleteSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
             } else {
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .None)
             }
             
             saveRecords()
@@ -167,23 +168,16 @@ class RecordTableViewController: UITableViewController {
         
         let calendar = NSCalendar.currentCalendar()
         
-        // If record date is newest
-        let firstDate = dateRecordsTuples.map { $0.date }.first!
-        if comingRecord.date.timeIntervalSinceDate(firstDate) > 0 {
-            dateRecordsTuples.insert((comingRecord.date, [comingRecord]), atIndex: 0)
-            tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: .None)
-            return
-        }
-        
         // Iterate table
         for (section, tuple) in dateRecordsTuples.enumerate() {
             if calendar.isDate(comingRecord.date, inSameDayAsDate: tuple.date) {
                 // If find matching section
                 dateRecordsTuples[section].records.insert(comingRecord, atIndex: 0)
                 tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: section)], withRowAnimation: .None)
+                tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
                 return
             } else if comingRecord.date.timeIntervalSinceDate(tuple.date) > 0 {
-                // If find older date
+                // Not matching section, but find older date
                 dateRecordsTuples.insert((comingRecord.date, [comingRecord]), atIndex: section)
                 tableView.insertSections(NSIndexSet(index: section), withRowAnimation: .None)
                 return
