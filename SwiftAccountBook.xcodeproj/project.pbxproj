@@ -18,6 +18,8 @@
 		4B35F7631BD373540084F57C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7611BD373540084F57C /* Record.swift */; };
 		4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7641BD37E730084F57C /* RecordTableViewController.swift */; };
 		4B35F7671BD37E910084F57C /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */; };
+		4BB199CF1C11ADF900533CA5 /* StatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB199CE1C11ADF900533CA5 /* StatisticsTableViewCell.swift */; };
+		4BB199D11C11B0F200533CA5 /* StatisticsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB199D01C11B0F200533CA5 /* StatisticsTableViewController.swift */; };
 		4BED775C1BD22DD9004DD518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED775B1BD22DD9004DD518 /* AppDelegate.swift */; };
 		4BED77611BD22DD9004DD518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BED775F1BD22DD9004DD518 /* Main.storyboard */; };
 		4BED77661BD22DD9004DD518 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BED77641BD22DD9004DD518 /* LaunchScreen.storyboard */; };
@@ -45,6 +47,8 @@
 		4B35F7611BD373540084F57C /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		4B35F7641BD37E730084F57C /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		4BB199CE1C11ADF900533CA5 /* StatisticsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewCell.swift; sourceTree = "<group>"; };
+		4BB199D01C11B0F200533CA5 /* StatisticsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatisticsTableViewController.swift; path = ../StatisticsTableViewController.swift; sourceTree = "<group>"; };
 		4BED77581BD22DD9004DD518 /* SwiftAccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftAccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BED775B1BD22DD9004DD518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BED77601BD22DD9004DD518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -94,10 +98,12 @@
 		4BED775A1BD22DD9004DD518 /* SwiftAccountBook */ = {
 			isa = PBXGroup;
 			children = (
+				4BB199D01C11B0F200533CA5 /* StatisticsTableViewController.swift */,
 				4B1026BD1C118B5F00202B95 /* Assets.xcassets */,
 				4B1026891C0EF88F00202B95 /* CustomCellBackground.swift */,
 				4BED775B1BD22DD9004DD518 /* AppDelegate.swift */,
 				4BED775F1BD22DD9004DD518 /* Main.storyboard */,
+				4BB199CE1C11ADF900533CA5 /* StatisticsTableViewCell.swift */,
 				4BED77641BD22DD9004DD518 /* LaunchScreen.storyboard */,
 				4BED77671BD22DD9004DD518 /* Info.plist */,
 				4B35F7611BD373540084F57C /* Record.swift */,
@@ -227,8 +233,10 @@
 				4B10268C1C0EFC7C00202B95 /* RecordViewControllerHeader.swift in Sources */,
 				4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */,
 				4B10268E1C0EFC9500202B95 /* RecordViewControllerFooter.swift in Sources */,
+				4BB199CF1C11ADF900533CA5 /* StatisticsTableViewCell.swift in Sources */,
 				4BED775C1BD22DD9004DD518 /* AppDelegate.swift in Sources */,
 				4B1026881C0EF5EF00202B95 /* TagCollectionViewCell.swift in Sources */,
+				4BB199D11C11B0F200533CA5 /* StatisticsTableViewController.swift in Sources */,
 				4B1026861C0EECD800202B95 /* RecordViewController2.swift in Sources */,
 				4B35F7671BD37E910084F57C /* RecordTableViewCell.swift in Sources */,
 				4B35F7621BD373540084F57C /* Record.swift in Sources */,

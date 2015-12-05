@@ -11,7 +11,7 @@ import UIKit
 class RecordTableViewController: UITableViewController {
     
     // MARK: Properties
-    
+    var dateRecordTuples = [(date: NSDate, record: Record)]()
     var recordsArray = [[Record]]()
     let calendar = NSCalendar.init(identifier: NSCalendarIdentifierGregorian)!
 
