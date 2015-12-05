@@ -27,20 +27,27 @@ class StatisticsTableViewController: UITableViewController {
         }
         
         if let tags = loadTags() {
-            for tag in tags {
-                tagSumTuples.append((tag, 0.0))
-            }
+            tags.forEach({ tag in tagSumTuples.append((tag, 0.0))})
         }
         
-        for var i = 0; i < tagSumTuples.count; i++ {
-            for records in recordsArray {
-                for record in records {
-                    if record.tags.contains(tagSumTuples[i].tag) {
-                        tagSumTuples[i].sum += record.number
-                    }
+        let allRecords = recordsArray.flatten()
+        for (index, tuple) in tagSumTuples.enumerate() {
+            allRecords.forEach({ record in
+                if record.tags.contains(tuple.tag) {
+                    tagSumTuples[index].sum += record.number
                 }
-            }
+            })
         }
+        
+//        for var i = 0; i < tagSumTuples.count; i++ {
+//            for records in recordsArray {
+//                for record in records {
+//                    if record.tags.contains(tagSumTuples[i].tag) {
+//                        tagSumTuples[i].sum += record.number
+//                    }
+//                }
+//            }
+//        }
     }
     
     func loadRecords() -> [[Record]]? {

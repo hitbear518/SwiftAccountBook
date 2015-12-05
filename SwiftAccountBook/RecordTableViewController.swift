@@ -11,8 +11,7 @@ import UIKit
 class RecordTableViewController: UITableViewController {
     
     // MARK: Properties
-    var dateRecordTuples = [(date: NSDate, record: Record)]()
-    var recordsArray = [[Record]]()
+    var dateRecordsTuples = [(date: NSDate, records: [Record])]()
     let calendar = NSCalendar.init(identifier: NSCalendarIdentifierGregorian)!
 
     override func viewDidLoad() {
@@ -24,24 +23,23 @@ class RecordTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
-        if let recordsArray = loadRecords() {
-            self.recordsArray = recordsArray
+        loadRecords()?.enumerate().forEach { index, records in
+            dateRecordsTuples.append((records[0].date, records))
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func sumCostOf(records: [Record]) -> Double {
+        return records.reduce(0.0) { cost, record in cost + record.number }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return recordsArray.count
+        return dateRecordsTuples.count
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let date = recordsArray[section][0].date
+        let (date, records) = dateRecordsTuples[section]
         let dateString: String
         if calendar.isDateInYesterday(date) {
             dateString = "Yestoday"
@@ -50,21 +48,18 @@ class RecordTableViewController: UITableViewController {
         } else {
             dateString = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .NoStyle)
         }
-        var dayCost = 0.0
-        for record in recordsArray[section] {
-            dayCost += record.number
-        }
+        let dayCost = sumCostOf(records)
         return "\(dateString) --- \(dayCost)"
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recordsArray[section].count
+        return dateRecordsTuples[section].records.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("RecordTableViewCell", forIndexPath: indexPath) as! RecordTableViewCell
 
-        let record = recordsArray[indexPath.section][indexPath.row]
+        let record = dateRecordsTuples[indexPath.section].records[indexPath.row]
         cell.configCell(record)
     
         return cell
@@ -79,9 +74,9 @@ class RecordTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            recordsArray[indexPath.section].removeAtIndex(indexPath.row)
-            if (recordsArray[indexPath.section]).isEmpty {
-                recordsArray.removeAtIndex(indexPath.section)
+            dateRecordsTuples[indexPath.section].records.removeAtIndex(indexPath.row)
+            if (dateRecordsTuples[indexPath.section].records).isEmpty {
+                dateRecordsTuples.removeAtIndex(indexPath.section)
                 tableView.deleteSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
             } else {
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -116,70 +111,95 @@ class RecordTableViewController: UITableViewController {
             let recordViewController = segue.destinationViewController as! RecordViewController2
             let selectedRecordCell = sender as! RecordTableViewCell
             let selectedIndexPath = tableView.indexPathForCell(selectedRecordCell)!
-            let selectedRecord = recordsArray[selectedIndexPath.section][selectedIndexPath.row]
+            
+            let selectedTuple = dateRecordsTuples[selectedIndexPath.section]
+            let selectedRecord = selectedTuple.records[selectedIndexPath.row]
+            
             recordViewController.record = Record(number: selectedRecord.number, tags: selectedRecord.tags, date: selectedRecord.date, recordDescription: selectedRecord.recordDescription)
         }
     }
-
+    
     @IBAction func unwindToRecordList(sender: UIStoryboardSegue) {
-        guard let sourceViewController = sender.sourceViewController as? RecordViewController2, record = sourceViewController.record else { return }
+        guard let sourceViewController = sender.sourceViewController as? RecordViewController2, comingRecord = sourceViewController.record else { return }
         
         tableView.beginUpdates()
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            let originalRecord = recordsArray[selectedIndexPath.section][selectedIndexPath.row]
-            if (originalRecord.date == record.date) {
-                recordsArray[selectedIndexPath.section][selectedIndexPath.row] = sourceViewController.record!
+            // Coming From record changing
+            
+            let selectedTuple = dateRecordsTuples[selectedIndexPath.section]
+            let originalRecord = selectedTuple.records[selectedIndexPath.row]
+            if (originalRecord.date == comingRecord.date) {
+                // Date didn't change
+                
+                dateRecordsTuples[selectedIndexPath.section].records[selectedIndexPath.row] = comingRecord
                 tableView.reloadSections(NSIndexSet(index: selectedIndexPath.section), withRowAnimation: .None)
-                
-                
             } else {
-                recordsArray[selectedIndexPath.section].removeAtIndex(selectedIndexPath.row)
-                if recordsArray[selectedIndexPath.section].isEmpty {
-                    recordsArray.removeAtIndex(selectedIndexPath.section)
-                }
-                tableView.reloadSections(NSIndexSet(index: selectedIndexPath.section), withRowAnimation: .Left)
+                // Date changed
                 
-                insertRecord(record)
+                // Delete old record and insert new one
+                dateRecordsTuples[selectedIndexPath.section].records.removeAtIndex(selectedIndexPath.row)
+                if dateRecordsTuples[selectedIndexPath.section].records.isEmpty {
+                    // This day now has no records, delete the section
+                    dateRecordsTuples.removeAtIndex(selectedIndexPath.section)
+                    tableView.deleteSections(NSIndexSet(index: selectedIndexPath.section), withRowAnimation: .None)
+                } else {
+                    // TODO: Check this path
+                    tableView.reloadSections(NSIndexSet(index: selectedIndexPath.section), withRowAnimation: .Left)
+                }
+                insertRecord(comingRecord)
             }
         } else {
-            insertRecord(record)
+            // Coming From new record
+            insertRecord(comingRecord)
         }
         tableView.endUpdates()
         
         saveRecords()
     }
     
-    func insertRecord(record: Record) {
-            if recordsArray.isEmpty {
-                recordsArray.append([Record]())
-                recordsArray[0].append(record)
-                tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: .Right)
+    func insertRecord(comingRecord: Record) {
+        // If no data at all
+        if dateRecordsTuples.isEmpty {
+            dateRecordsTuples.append((comingRecord.date, [comingRecord]))
+            tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: .Right)
+            return
+        }
+        
+        let calendar = NSCalendar.currentCalendar()
+        
+        // If record date is newest
+        let firstDate = dateRecordsTuples.map { $0.date }.first!
+        if comingRecord.date.timeIntervalSinceDate(firstDate) > 0 {
+            dateRecordsTuples.insert((comingRecord.date, [comingRecord]), atIndex: 0)
+            tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: .None)
+            return
+        }
+        
+        // Iterate table
+        for (section, tuple) in dateRecordsTuples.enumerate() {
+            if calendar.isDate(comingRecord.date, inSameDayAsDate: tuple.date) {
+                // If find matching section
+                dateRecordsTuples[section].records.insert(comingRecord, atIndex: 0)
+                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: section)], withRowAnimation: .None)
+                return
+            } else if comingRecord.date.timeIntervalSinceDate(tuple.date) > 0 {
+                // If find older date
+                dateRecordsTuples.insert((comingRecord.date, [comingRecord]), atIndex: section)
+                tableView.insertSections(NSIndexSet(index: section), withRowAnimation: .None)
                 return
             }
             
-            let calendar = NSCalendar.currentCalendar()
-            for i in 0..<recordsArray.count {
-                if calendar.isDate(record.date, inSameDayAsDate: recordsArray[i][0].date) {
-                    recordsArray[i].insert(record, atIndex: 0)
-                    let newIndexPath = NSIndexPath(forRow: 0, inSection: i)
-                    tableView.reloadSections(NSIndexSet(index: newIndexPath.section), withRowAnimation: .None)
-                    break
-                } else if record.date.timeIntervalSinceDate(recordsArray[i][0].date) > 0 {
-                    recordsArray.insert([Record](), atIndex: i)
-                    recordsArray[i].append(record)
-                    tableView.insertSections(NSIndexSet(index: i), withRowAnimation: .Right)
-                    break
-                } else if i == recordsArray.count - 1 {
-                    recordsArray.append([Record]())
-                    recordsArray[i + 1].append(record)
-                    tableView.insertSections(NSIndexSet(index: i + 1), withRowAnimation: .Right)
-                }
-            }
+        }
+        
+        // If no matching, then record date is oldest
+        dateRecordsTuples.append((comingRecord.date, [comingRecord]))
+        tableView.insertSections(NSIndexSet(index: dateRecordsTuples.count - 1), withRowAnimation: .None)
     }
     
    // MARK: - NSCoding
     
     func saveRecords() {
+        let recordsArray = dateRecordsTuples.map { _, records -> [Record] in records }
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(recordsArray, toFile: Record.ArchiveURL.path!)
         if !isSuccessfulSave {
             print("Failed to save records")
