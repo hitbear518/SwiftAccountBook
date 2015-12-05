@@ -26,28 +26,19 @@ class StatisticsTableViewController: UITableViewController {
             self.recordsArray = recordsArray
         }
         
-        if let tags = loadTags() {
-            tags.forEach({ tag in tagSumTuples.append((tag, 0.0))})
-        }
-        
+        // tuples with empty cost
+        loadTags()?.forEach{ tag in tagSumTuples.append((tag, 0.0)) }
+        // all records
         let allRecords = recordsArray.flatten()
-        for (index, tuple) in tagSumTuples.enumerate() {
-            allRecords.forEach({ record in
-                if record.tags.contains(tuple.tag) {
-                    tagSumTuples[index].sum += record.number
-                }
-            })
-        }
         
-//        for var i = 0; i < tagSumTuples.count; i++ {
-//            for records in recordsArray {
-//                for record in records {
-//                    if record.tags.contains(tagSumTuples[i].tag) {
-//                        tagSumTuples[i].sum += record.number
-//                    }
-//                }
-//            }
-//        }
+        for (index, tuple) in tagSumTuples.enumerate() {
+            tagSumTuples[index].sum = allRecords.filter { record in record.tags.contains(tuple.tag) }.reduce(0.0) { cost, record in cost + record.number }
+        }
+        tagSumTuples = tagSumTuples.filter { _, sum in sum > 0 }
+    }
+    
+    func sumCostOf(records: [Record]) -> Double {
+        return records.reduce(0.0) { cost, record in cost + record.number }
     }
     
     func loadRecords() -> [[Record]]? {
