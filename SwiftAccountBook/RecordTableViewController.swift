@@ -23,6 +23,17 @@ class RecordTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
+//        loadRecords()?.sort{ left, right in
+//            left.date.timeIntervalSince1970 > right.date.timeIntervalSince1970
+//        }.forEach {
+//            record in
+//            let matchingIndex = dateRecordsTuples.indexOf { date, _ in date == record.date }
+//            if  let matchingIndex = matchingIndex {
+//                dateRecordsTuples[matchingIndex].records.append
+//            }
+//        }
+        
+
         loadRecords()?.enumerate().forEach { index, records in
             dateRecordsTuples.append((records[0].date, records))
         }
@@ -193,7 +204,7 @@ class RecordTableViewController: UITableViewController {
    // MARK: - NSCoding
     
     func saveRecords() {
-        let recordsArray = dateRecordsTuples.map { _, records -> [Record] in records }
+        let recordsArray = dateRecordsTuples.map { $1 }
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(recordsArray, toFile: Record.ArchiveURL.path!)
         if !isSuccessfulSave {
             print("Failed to save records")

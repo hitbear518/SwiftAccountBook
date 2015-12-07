@@ -1,76 +1,47 @@
 //
-//  StatisticsTableViewController.swift
+//  SettingsTableViewController.swift
 //  SwiftAccountBook
 //
-//  Created by 王森 on 15/12/4.
+//  Created by 王森 on 15/12/5.
 //  Copyright © 2015年 王森. All rights reserved.
 //
 
 import UIKit
 
-class StatisticsTableViewController: UITableViewController {
-    
-    var recordsArray: [[Record]] = [[Record]]()
-    var tagSumTuples: [(tag: String, sum: Double)] = [(tag: String, sum: Double)]()
+class SettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
-//         self.clearsSelectionOnViewWillAppear = false
+        // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        if let recordsArray = loadRecords() {
-            self.recordsArray = recordsArray
-        }
-        
-        // tuples with empty cost
-        loadTags()?.forEach{ tag in tagSumTuples.append((tag, 0.0)) }
-        // all records
-        let allRecords = recordsArray.flatMap { $0 }
-        
-        for (index, tuple) in tagSumTuples.enumerate() {
-            tagSumTuples[index].sum = allRecords.filter { record in record.tags.contains(tuple.tag) }.reduce(0.0) { cost, record in cost + record.number }
-        }
-        tagSumTuples = tagSumTuples.filter { _, sum in sum > 0 }
-    }
-    
-    func sumCostOf(records: [Record]) -> Double {
-        return records.reduce(0.0) { cost, record in cost + record.number }
-    }
-    
-    func loadRecords() -> [[Record]]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Record.ArchiveURL.path!) as? [[Record]]
-    }
-    
-    func loadTags() -> [String]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Constants.TagArchiveURL.path!) as? [String]
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tagSumTuples.count
+        return 0
     }
 
+    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("StatisticsTableViewCell", forIndexPath: indexPath) as! StatisticsTableViewCell
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+
         // Configure the cell...
-        let (tag, sum) = tagSumTuples[indexPath.row]
-        cell.tagLabel.text = tag
-        cell.sumLabel.text = String(sum)
 
         return cell
     }
+    */
 
     /*
     // Override to support conditional editing of the table view.

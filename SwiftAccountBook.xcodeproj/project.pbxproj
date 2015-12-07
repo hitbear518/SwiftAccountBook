@@ -14,6 +14,7 @@
 		4B10268E1C0EFC9500202B95 /* RecordViewControllerFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10268D1C0EFC9500202B95 /* RecordViewControllerFooter.swift */; };
 		4B1026BC1C1067B300202B95 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1026BB1C1067B300202B95 /* Constants.swift */; };
 		4B1026BE1C118B5F00202B95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B1026BD1C118B5F00202B95 /* Assets.xcassets */; };
+		4B21099B1C1319BD001ED0C2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B21099A1C1319BD001ED0C2 /* SettingsTableViewController.swift */; };
 		4B35F7621BD373540084F57C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7611BD373540084F57C /* Record.swift */; };
 		4B35F7631BD373540084F57C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7611BD373540084F57C /* Record.swift */; };
 		4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7641BD37E730084F57C /* RecordTableViewController.swift */; };
@@ -44,6 +45,7 @@
 		4B10268D1C0EFC9500202B95 /* RecordViewControllerFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewControllerFooter.swift; sourceTree = "<group>"; };
 		4B1026BB1C1067B300202B95 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4B1026BD1C118B5F00202B95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4B21099A1C1319BD001ED0C2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		4B35F7611BD373540084F57C /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		4B35F7641BD37E730084F57C /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		4BED774F1BD22DD9004DD518 = {
 			isa = PBXGroup;
 			children = (
+				4B21099A1C1319BD001ED0C2 /* SettingsTableViewController.swift */,
 				4BED775A1BD22DD9004DD518 /* SwiftAccountBook */,
 				4BED776F1BD22DD9004DD518 /* SwiftAccountBookTests */,
 				4BED77591BD22DD9004DD518 /* Products */,
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B10268A1C0EF88F00202B95 /* CustomCellBackground.swift in Sources */,
+				4B21099B1C1319BD001ED0C2 /* SettingsTableViewController.swift in Sources */,
 				4B1026BC1C1067B300202B95 /* Constants.swift in Sources */,
 				4B10268C1C0EFC7C00202B95 /* RecordViewControllerHeader.swift in Sources */,
 				4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */,
