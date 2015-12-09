@@ -61,14 +61,14 @@ class SettingsTableViewController: UITableViewController, SettingsTableViewCellD
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let (cellPlistIndex, currentCellDescriptor) = getPlistIndexAndDescriptorForCellAt(indexPath.row)
+        let (_, currentCellDescriptor) = getPlistIndexAndDescriptorForCellAt(indexPath.row)
         let cellId = currentCellDescriptor["cellId"] as! String
         let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! SettingsTableViewCell
         cell.delegate = self
 
         switch cellId {
         case "StartingDaySettingCell":
-            cell.detailTextLabel?.text = currentCellDescriptor["secondaryText"] as! String
+            cell.detailTextLabel?.text = currentCellDescriptor["secondaryText"] as? String
         default:
             break
         }
@@ -114,7 +114,7 @@ class SettingsTableViewController: UITableViewController, SettingsTableViewCellD
     // MARK: TableView delegate
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let (cellPlistIndex, cellDescriptor) = getPlistIndexAndDescriptorForCellAt(indexPath.row)
+        let (_, cellDescriptor) = getPlistIndexAndDescriptorForCellAt(indexPath.row)
         let cellId = cellDescriptor["cellId"] as! String
         switch cellId {
         case "StartingDayPickerCell":
