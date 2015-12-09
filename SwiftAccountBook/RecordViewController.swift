@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecordViewController2: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UITextViewDelegate {
+class RecordViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UITextViewDelegate {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     weak var activeView: UIView?

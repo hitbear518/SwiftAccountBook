@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>cellId</key>
+		<string>NormalSettingCell</string>
+		<key>expandable</key>
+		<false/>
+		<key>visible</key>
+		<true/>
+	</dict>
+	<dict>
+		<key>cellId</key>
+		<string>StartingDaySettingCell</string>
+		<key>secondaryText</key>
+		<string>Click to Expande</string>
+		<key>expandable</key>
+		<true/>
+		<key>expanded</key>
+		<false/>
+		<key>additionalRows</key>
+		<integer>1</integer>
+		<key>visible</key>
+		<true/>
+	</dict>
+	<dict>
+		<key>cellId</key>
+		<string>StartingDayPickerCell</string>
+		<key>expandable</key>
+		<false/>
+		<key>visible</key>
+		<false/>
+	</dict>
+</array>
+</plist>

@@ -23,20 +23,13 @@ class RecordTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
-//        loadRecords()?.sort{ left, right in
-//            left.date.timeIntervalSince1970 > right.date.timeIntervalSince1970
-//        }.forEach {
-//            record in
-//            let matchingIndex = dateRecordsTuples.indexOf { date, _ in date == record.date }
-//            if  let matchingIndex = matchingIndex {
-//                dateRecordsTuples[matchingIndex].records.append
-//            }
-//        }
-        
-
         loadRecords()?.enumerate().forEach { index, records in
             dateRecordsTuples.append((records[0].date, records))
         }
+    }
+    
+    func updateSumForTuple(inout tuple: (NSDate, [Record], Double)) {
+        
     }
     
     func sumCostOf(records: [Record]) -> Double {
@@ -120,7 +113,7 @@ class RecordTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetail" {
-            let recordViewController = segue.destinationViewController as! RecordViewController2
+            let recordViewController = segue.destinationViewController as! RecordViewController
             let selectedRecordCell = sender as! RecordTableViewCell
             let selectedIndexPath = tableView.indexPathForCell(selectedRecordCell)!
             
@@ -132,7 +125,7 @@ class RecordTableViewController: UITableViewController {
     }
     
     @IBAction func unwindToRecordList(sender: UIStoryboardSegue) {
-        guard let sourceViewController = sender.sourceViewController as? RecordViewController2, comingRecord = sourceViewController.record else { return }
+        guard let sourceViewController = sender.sourceViewController as? RecordViewController, comingRecord = sourceViewController.record else { return }
         
         tableView.beginUpdates()
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
