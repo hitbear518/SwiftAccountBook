@@ -13,6 +13,11 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var saveButton: UIBarButtonItem!
     weak var activeView: UIView?
     var record: Record?
+    var currentDate = NSDate() {
+        didSet {
+            footer.dateButton.setTitle(NSDateFormatter.localizedStringFromDate(currentDate, dateStyle: .FullStyle, timeStyle: .NoStyle), forState: .Normal)
+        }
+    }
     @IBOutlet weak var collectionView: UICollectionView!
     
     weak var header: RecordViewControllerHeader!
@@ -21,7 +26,9 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
     let secondsOneDay: NSTimeInterval = 24 * 60 * 60
     
     var savedTags = [String]()
-
+    
+    let presentDatePickerTransitioningDelegate = PresentDatePickerTransitioningDelegate()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +46,7 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
         if let savedTags = loadSavedTags() {
             self.savedTags = savedTags
         }
+        
     }
     
     func loadSavedTags() -> [String]? {
@@ -98,6 +106,17 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
                 }
             }
             saveTags()
+        }
+        
+        if let destinationViewController = segue.destinationViewController as? DatePickerViewController {
+            destinationViewController.modalPresentationStyle = .Custom
+            destinationViewController.transitioningDelegate = presentDatePickerTransitioningDelegate
+        }
+    }
+    
+    @IBAction func unwindToRecordViewController(segue: UIStoryboardSegue) {
+        if let sourceViewController = segue.sourceViewController as? DatePickerViewController {
+            currentDate = sourceViewController.datePicker.date
         }
     }
     
@@ -164,6 +183,7 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
             if let record = record {
                 footer.datePicker.date = record.date
                 footer.recordDescriptionTextView.text = record.recordDescription
+                currentDate = record.date
             }
             let calendar = NSCalendar.currentCalendar()
             if calendar.isDateInToday(footer.datePicker.date) {

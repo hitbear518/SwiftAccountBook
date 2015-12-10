@@ -14,4 +14,12 @@ class RecordViewControllerFooter: UICollectionReusableView {
     @IBOutlet weak var dateStackView: UIStackView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var recordDescriptionTextView: UITextView!
+    @IBOutlet weak var dateButton: UIButton!
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return false
+    }
+    
+    
+    
 }

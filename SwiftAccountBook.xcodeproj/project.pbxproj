@@ -20,8 +20,11 @@
 		4B35F7631BD373540084F57C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7611BD373540084F57C /* Record.swift */; };
 		4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7641BD37E730084F57C /* RecordTableViewController.swift */; };
 		4B35F7671BD37E910084F57C /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */; };
+		4B4C9F2A1C195F7100BF2ED4 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */; };
 		4B65AF511C129D8300338DB5 /* StatisticsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B65AF501C129D8300338DB5 /* StatisticsTableViewController.swift */; };
 		4BB199CF1C11ADF900533CA5 /* StatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB199CE1C11ADF900533CA5 /* StatisticsTableViewCell.swift */; };
+		4BDBBB291C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBBB281C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift */; };
+		4BDBBB2B1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBBB2A1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift */; };
 		4BED775C1BD22DD9004DD518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED775B1BD22DD9004DD518 /* AppDelegate.swift */; };
 		4BED77611BD22DD9004DD518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BED775F1BD22DD9004DD518 /* Main.storyboard */; };
 		4BED77661BD22DD9004DD518 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BED77641BD22DD9004DD518 /* LaunchScreen.storyboard */; };
@@ -51,8 +54,11 @@
 		4B35F7611BD373540084F57C /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		4B35F7641BD37E730084F57C /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		4B65AF501C129D8300338DB5 /* StatisticsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewController.swift; sourceTree = "<group>"; };
 		4BB199CE1C11ADF900533CA5 /* StatisticsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewCell.swift; sourceTree = "<group>"; };
+		4BDBBB281C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentDatePickerTransitioningDelegate.swift; sourceTree = "<group>"; };
+		4BDBBB2A1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentDatePickerPresentationController.swift; sourceTree = "<group>"; };
 		4BED77581BD22DD9004DD518 /* SwiftAccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftAccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BED775B1BD22DD9004DD518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BED77601BD22DD9004DD518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -120,6 +126,9 @@
 				4B0A999F1C17256B00E1F8E3 /* SettingsCellDescriptors.plist */,
 				4BED77671BD22DD9004DD518 /* Info.plist */,
 				4BED77641BD22DD9004DD518 /* LaunchScreen.storyboard */,
+				4BDBBB281C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift */,
+				4BDBBB2A1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift */,
+				4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */,
 			);
 			path = SwiftAccountBook;
 			sourceTree = "<group>";
@@ -238,6 +247,7 @@
 				4B1026BC1C1067B300202B95 /* Constants.swift in Sources */,
 				4B10268C1C0EFC7C00202B95 /* RecordViewControllerHeader.swift in Sources */,
 				4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */,
+				4BDBBB291C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift in Sources */,
 				4B0A999E1C1723C700E1F8E3 /* SettingsTableViewCell.swift in Sources */,
 				4B10268E1C0EFC9500202B95 /* RecordViewControllerFooter.swift in Sources */,
 				4B0A999C1C171DE600E1F8E3 /* SettingsTableViewController.swift in Sources */,
@@ -245,9 +255,11 @@
 				4BED775C1BD22DD9004DD518 /* AppDelegate.swift in Sources */,
 				4B1026881C0EF5EF00202B95 /* TagCollectionViewCell.swift in Sources */,
 				4B65AF511C129D8300338DB5 /* StatisticsTableViewController.swift in Sources */,
+				4B4C9F2A1C195F7100BF2ED4 /* DatePickerViewController.swift in Sources */,
 				4B1026861C0EECD800202B95 /* RecordViewController.swift in Sources */,
 				4B35F7671BD37E910084F57C /* RecordTableViewCell.swift in Sources */,
 				4B35F7621BD373540084F57C /* Record.swift in Sources */,
+				4BDBBB2B1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
