@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "TagCollectionViewCell.init(coder : NSCoder) -&gt; TagCollectionViewCell?:TagCollectionViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedBackgroundView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordTableViewController.unwindToRecordList(UIStoryboardSegue) -&gt; ():RecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dateRecordsCostTuples">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController2.syncSaveButtonEnabled() -&gt; ():RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "checkValidRecordNumber()">
+            </PersistentString>
+            <PersistentString
+               value = "header.tagTextField.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordTableViewController.viewDidLoad() -&gt; ():RecordTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController2.dateSegmentedValueChanged(UISegmentedControl) -&gt; ():RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.footer.dateStackView.hidden">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController2.collectionView(UICollectionView, cellForItemAtIndexPath : NSIndexPath) -&gt; UICollectionViewCell:RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cell.tagButton.titleLabel?.text">
+            </PersistentString>
+            <PersistentString
+               value = "testTags[indexPath.row]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController2.checkValidRecordNumber() -&gt; Bool:RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "header.numberTextField">
+            </PersistentString>
+            <PersistentString
+               value = "header">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController2.(dateSegmentedValueChanged(RecordViewController2) -&gt; (UISegmentedControl) -&gt; ()).(closure #1):RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.footer.contentView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Record.ArchiveURL.unsafeMutableAddressor:Record.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DocumentsDirectory.toString()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController2.collectionView(UICollectionView, didSelectItemAtIndexPath : NSIndexPath) -&gt; ():RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "savedTags">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordTableViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:RecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dateRecordsCostTuples[section].records.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordTableViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():RecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "segue.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController2.collectionView(UICollectionView, viewForSupplementaryElementOfKind : String, atIndexPath : NSIndexPath) -&gt; UICollectionReusableView:RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "header.numberTextField.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController.textViewDidBeginEditing(UITextView) -&gt; ():RecordViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "activeView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TestViewController.keyboardWasShown(NSNotification) -&gt; ():TestViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "textView.contentInset.bottom">
+            </PersistentString>
+            <PersistentString
+               value = "self.view.frame">
+            </PersistentString>
+            <PersistentString
+               value = "kbSize.height">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController.keyboardWillShow(NSNotification) -&gt; ():RecordViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "userInfo[UIKeyboardFrameCenterUserInfoKey]!.CGRectValue">
+            </PersistentString>
+            <PersistentString
+               value = "userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PresentingDatePickerPresentationController.frameOfPresentedViewInContainerView() -&gt; CGRect:PresentingDatePickerPresentationController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "presentedView()!.superview">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController2.cancel(AnyObject) -&gt; ():RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "presentingViewController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController.dateSegmentedValueChanged(UISegmentedControl) -&gt; ():RecordViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dateStackView.hidden">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordTableViewController.saveRecords() -&gt; ():RecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "recordsArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController2.editingChanged(UITextField) -&gt; ():RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sender">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController2.keyboardDidShow(NSNotification) -&gt; ():RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "collectionView.contentInset.bottom">
+            </PersistentString>
+            <PersistentString
+               value = "userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController.keyboardWasShown(NSNotification) -&gt; ():RecordViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.view.frame.size.height-kbSize.height">
+            </PersistentString>
+            <PersistentString
+               value = "scrollView.contentInset.bottom">
+            </PersistentString>
+            <PersistentString
+               value = "activeView.frame.origin">
+            </PersistentString>
+            <PersistentString
+               value = "bottomLayoutGuide.length">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordTableViewController.tableView(UITableView, titleForHeaderInSection : Int) -&gt; String?:RecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "records">
+            </PersistentString>
+            <PersistentString
+               value = "dateRecordsTuples">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController.viewDidLoad() -&gt; ():RecordViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navigationController?.navigationItem.rightBarButtonItem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordTableViewController.insertRecord(Record) -&gt; ():RecordTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "RecordTableViewController.numberOfSectionsInTableView(UITableView) -&gt; Int:RecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dateRecordsCostTuples.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordTableViewController.(insertRecord(RecordTableViewController) -&gt; (Record) -&gt; ()).(closure #2):RecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tuple">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController2.keyboardWillShow(NSNotification) -&gt; ():RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "visibleRectInCollectionView">
+            </PersistentString>
+            <PersistentString
+               value = "activeViewFrameInCollectionView">
+            </PersistentString>
+            <PersistentString
+               value = "activeViewBottomPoint">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
