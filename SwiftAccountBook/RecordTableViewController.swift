@@ -11,7 +11,8 @@ import UIKit
 class RecordTableViewController: UITableViewController {
     
     // MARK: Properties
-    var dateRecordsTuples = [(date: NSDate, records: [Record])]()
+    var dateRecordsSumTuples = [(date: NSDate, records: [Record], sum: Double)]()
+    var rows = [AnyObject]()
     let calendar = NSCalendar.init(identifier: NSCalendarIdentifierGregorian)!
 
     override func viewDidLoad() {
@@ -24,12 +25,13 @@ class RecordTableViewController: UITableViewController {
          self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
         loadRecords()?.enumerate().forEach { index, records in
-            dateRecordsTuples.append((records[0].date, records))
+            dateRecordsSumTuples.append((records[0].date, records, 0.0))
+            updateSumForTuple(&dateRecordsSumTuples[index])
         }
     }
     
-    func updateSumForTuple(inout tuple: (NSDate, [Record], Double)) {
-        
+    func updateSumForTuple(inout tuple: (date: NSDate, records: [Record], sum: Double)) {
+        tuple.sum = tuple.records.reduce(0.0) { sum, record in sum + record.number }
     }
     
     func sumCostOf(records: [Record]) -> Double {
@@ -39,11 +41,11 @@ class RecordTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return dateRecordsTuples.count
+        return dateRecordsSumTuples.count
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let (date, records) = dateRecordsTuples[section]
+        let (date, _, sum) = dateRecordsSumTuples[section]
         let dateString: String
         if calendar.isDateInYesterday(date) {
             dateString = "Yestoday"
@@ -52,18 +54,17 @@ class RecordTableViewController: UITableViewController {
         } else {
             dateString = NSDateFormatter.localizedStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .NoStyle)
         }
-        let dayCost = sumCostOf(records)
-        return "\(dateString) --- \(dayCost)"
+        return "\(dateString) --- \(sum)"
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dateRecordsTuples[section].records.count
+        return dateRecordsSumTuples[section].records.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("RecordTableViewCell", forIndexPath: indexPath) as! RecordTableViewCell
 
-        let record = dateRecordsTuples[indexPath.section].records[indexPath.row]
+        let record = dateRecordsSumTuples[indexPath.section].records[indexPath.row]
         cell.configCell(record)
     
         return cell
@@ -78,11 +79,12 @@ class RecordTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            dateRecordsTuples[indexPath.section].records.removeAtIndex(indexPath.row)
-            if (dateRecordsTuples[indexPath.section].records).isEmpty {
-                dateRecordsTuples.removeAtIndex(indexPath.section)
+            dateRecordsSumTuples[indexPath.section].records.removeAtIndex(indexPath.row)
+            if (dateRecordsSumTuples[indexPath.section].records).isEmpty {
+                dateRecordsSumTuples.removeAtIndex(indexPath.section)
                 tableView.deleteSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
             } else {
+                updateSumForTuple(&dateRecordsSumTuples[indexPath.section])
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .None)
             }
@@ -117,7 +119,7 @@ class RecordTableViewController: UITableViewController {
             let selectedRecordCell = sender as! RecordTableViewCell
             let selectedIndexPath = tableView.indexPathForCell(selectedRecordCell)!
             
-            let selectedTuple = dateRecordsTuples[selectedIndexPath.section]
+            let selectedTuple = dateRecordsSumTuples[selectedIndexPath.section]
             let selectedRecord = selectedTuple.records[selectedIndexPath.row]
             
             recordViewController.record = Record(number: selectedRecord.number, tags: selectedRecord.tags, date: selectedRecord.date, recordDescription: selectedRecord.recordDescription)
@@ -131,25 +133,26 @@ class RecordTableViewController: UITableViewController {
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             // Coming From record changing
             
-            let selectedTuple = dateRecordsTuples[selectedIndexPath.section]
+            let selectedTuple = dateRecordsSumTuples[selectedIndexPath.section]
             let originalRecord = selectedTuple.records[selectedIndexPath.row]
             if (originalRecord.date == comingRecord.date) {
                 // Date didn't change
                 
-                dateRecordsTuples[selectedIndexPath.section].records[selectedIndexPath.row] = comingRecord
-                tableView.reloadSections(NSIndexSet(index: selectedIndexPath.section), withRowAnimation: .None)
+                dateRecordsSumTuples[selectedIndexPath.section].records[selectedIndexPath.row] = comingRecord
+                updateSumForTuple(&dateRecordsSumTuples[selectedIndexPath.section])
+                tableView.reloadSections(NSIndexSet(index: selectedIndexPath.section), withRowAnimation: .Fade)
             } else {
                 // Date changed
                 
                 // Delete old record and insert new one
-                dateRecordsTuples[selectedIndexPath.section].records.removeAtIndex(selectedIndexPath.row)
-                if dateRecordsTuples[selectedIndexPath.section].records.isEmpty {
+                dateRecordsSumTuples[selectedIndexPath.section].records.removeAtIndex(selectedIndexPath.row)
+                if dateRecordsSumTuples[selectedIndexPath.section].records.isEmpty {
                     // This day now has no records, delete the section
-                    dateRecordsTuples.removeAtIndex(selectedIndexPath.section)
-                    tableView.deleteSections(NSIndexSet(index: selectedIndexPath.section), withRowAnimation: .None)
+                    dateRecordsSumTuples.removeAtIndex(selectedIndexPath.section)
+                    tableView.deleteSections(NSIndexSet(index: selectedIndexPath.section), withRowAnimation: .Fade)
                 } else {
-                    // TODO: Check this path
-                    tableView.reloadSections(NSIndexSet(index: selectedIndexPath.section), withRowAnimation: .Left)
+                    updateSumForTuple(&dateRecordsSumTuples[selectedIndexPath.section])
+                    tableView.reloadSections(NSIndexSet(index: selectedIndexPath.section), withRowAnimation: .Fade)
                 }
                 insertRecord(comingRecord)
             }
@@ -164,8 +167,9 @@ class RecordTableViewController: UITableViewController {
     
     func insertRecord(comingRecord: Record) {
         // If no data at all
-        if dateRecordsTuples.isEmpty {
-            dateRecordsTuples.append((comingRecord.date, [comingRecord]))
+        if dateRecordsSumTuples.isEmpty {
+            dateRecordsSumTuples.append((comingRecord.date, [comingRecord], comingRecord.number))
+            updateSumForTuple(&dateRecordsSumTuples[0])
             tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: .Right)
             return
         }
@@ -173,16 +177,18 @@ class RecordTableViewController: UITableViewController {
         let calendar = NSCalendar.currentCalendar()
         
         // Iterate table
-        for (section, tuple) in dateRecordsTuples.enumerate() {
+        for (section, tuple) in dateRecordsSumTuples.enumerate() {
             if calendar.isDate(comingRecord.date, inSameDayAsDate: tuple.date) {
                 // If find matching section
-                dateRecordsTuples[section].records.insert(comingRecord, atIndex: 0)
+                dateRecordsSumTuples[section].records.insert(comingRecord, atIndex: 0)
+                updateSumForTuple(&dateRecordsSumTuples[section])
                 tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: section)], withRowAnimation: .None)
                 tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
                 return
             } else if comingRecord.date.timeIntervalSinceDate(tuple.date) > 0 {
                 // Not matching section, but find older date
-                dateRecordsTuples.insert((comingRecord.date, [comingRecord]), atIndex: section)
+                dateRecordsSumTuples.insert((comingRecord.date, [comingRecord], comingRecord.number), atIndex: section)
+                updateSumForTuple(&dateRecordsSumTuples[section])
                 tableView.insertSections(NSIndexSet(index: section), withRowAnimation: .None)
                 return
             }
@@ -190,14 +196,15 @@ class RecordTableViewController: UITableViewController {
         }
         
         // If no matching, then record date is oldest
-        dateRecordsTuples.append((comingRecord.date, [comingRecord]))
-        tableView.insertSections(NSIndexSet(index: dateRecordsTuples.count - 1), withRowAnimation: .None)
+        dateRecordsSumTuples.append((comingRecord.date, [comingRecord], comingRecord.number))
+        updateSumForTuple(&dateRecordsSumTuples[dateRecordsSumTuples.count - 1])
+        tableView.insertSections(NSIndexSet(index: dateRecordsSumTuples.count - 1), withRowAnimation: .None)
     }
     
    // MARK: - NSCoding
     
     func saveRecords() {
-        let recordsArray = dateRecordsTuples.map { $1 }
+        let recordsArray = dateRecordsSumTuples.map { _, records, _  in records}
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(recordsArray, toFile: Record.ArchiveURL.path!)
         if !isSuccessfulSave {
             print("Failed to save records")

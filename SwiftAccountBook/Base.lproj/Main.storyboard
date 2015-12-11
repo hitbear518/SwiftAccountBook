@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gwY-RU-k17">
-                                <rect key="frame" x="20" y="20" width="560" height="580"/>
+                                <rect key="frame" x="20" y="20" width="560" height="531"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Pdp-mn-Ahq">
                                     <size key="itemSize" width="135" height="50"/>
@@ -102,7 +102,6 @@
                                             </constraints>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="ZOY-vl-0Om" secondAttribute="bottom" id="8ZE-b5-o6V"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ZOY-vl-0Om" secondAttribute="trailing" id="Oko-yF-O3o"/>
@@ -131,7 +130,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eWo-1a-7Lw">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="136"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="135.5"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="nxr-1t-G6z">
                                                     <rect key="frame" x="0.0" y="0.0" width="560" height="29"/>
@@ -152,13 +151,13 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8j-W8-1d8">
-                                                    <rect key="frame" x="0.0" y="74" width="560" height="21"/>
+                                                    <rect key="frame" x="0.0" y="74" width="560" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ddq-Lm-HlU">
-                                                    <rect key="frame" x="0.0" y="103" width="560" height="33"/>
+                                                    <rect key="frame" x="0.0" y="102" width="560" height="33"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="Y30-SE-kpp"/>
@@ -174,7 +173,6 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.2156862745" green="0.72941176470000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="eWo-1a-7Lw" secondAttribute="trailing" id="SCF-6R-Ru2"/>
                                         <constraint firstItem="eWo-1a-7Lw" firstAttribute="leading" secondItem="y0F-0d-YYj" secondAttribute="leading" id="Vq5-Bu-QPo"/>
@@ -293,8 +291,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordTableViewCell" rowHeight="67" id="VbM-iK-bfJ" customClass="RecordTableViewCell" customModule="SwiftAccountBook" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateCostCell" textLabel="rFz-Gj-x0K" detailTextLabel="0di-Ts-iZc" style="IBUITableViewCellStyleValue1" id="cES-7L-Dok">
                                 <rect key="frame" x="0.0" y="113.5" width="600" height="67"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cES-7L-Dok" id="FJF-ZQ-GHG">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="66.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rFz-Gj-x0K">
+                                            <rect key="frame" x="15" y="24" width="31.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0di-Ts-iZc">
+                                            <rect key="frame" x="543.5" y="24" width="41.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordTableViewCell" rowHeight="67" id="VbM-iK-bfJ" customClass="RecordTableViewCell" customModule="SwiftAccountBook" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="180.5" width="600" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VbM-iK-bfJ" id="gYv-aX-1qM">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="66.5"/>
@@ -605,6 +627,6 @@
         <image name="tag_setting_icon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PbQ-JK-HSj"/>
+        <segue reference="mMb-R7-Dc0"/>
     </inferredMetricsTieBreakers>
 </document>
