@@ -63,6 +63,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "RecordViewControllerFooter.preferredLayoutAttributesFittingAttributes(UICollectionViewLayoutAttributes) -&gt; UICollectionViewLayoutAttributes:RecordViewControllerFooter.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "newFrame">
+            </PersistentString>
+            <PersistentString
+               value = "attr.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "RecordViewController2.(dateSegmentedValueChanged(RecordViewController2) -&gt; (UISegmentedControl) -&gt; ()).(closure #1):RecordViewController2.swift">
          <PersistentStrings>
             <PersistentString
@@ -133,21 +144,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RecordViewController.keyboardWillShow(NSNotification) -&gt; ():RecordViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "userInfo[UIKeyboardFrameCenterUserInfoKey]!.CGRectValue">
-            </PersistentString>
-            <PersistentString
-               value = "userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "PresentingDatePickerPresentationController.frameOfPresentedViewInContainerView() -&gt; CGRect:PresentingDatePickerPresentationController.swift">
          <PersistentStrings>
             <PersistentString
                value = "presentedView()!.superview">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController.keyboardWillShow(NSNotification) -&gt; ():RecordViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "activeViewFrameInCollectionView">
+            </PersistentString>
+            <PersistentString
+               value = "activeViewBottomPoint">
+            </PersistentString>
+            <PersistentString
+               value = "visibleRectOfCollectionView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -17,4 +17,5 @@ class TagCollectionViewCell: UICollectionViewCell {
         backgroundView = UIImageView(image: UIImage(named: "tag_bg_normal"))
         selectedBackgroundView = UIImageView(image: UIImage(named: "tag_bg_selected"))
     }
+    
 }

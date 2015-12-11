@@ -25,6 +25,8 @@ class SettingsTableViewController: UITableViewController, SettingsTableViewCellD
         loadCellDescriptors()
         getVisibleCellIndices()
         tableView.reloadData()
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     func loadCellDescriptors() {
@@ -113,16 +115,16 @@ class SettingsTableViewController: UITableViewController, SettingsTableViewCellD
     
     // MARK: TableView delegate
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let (_, cellDescriptor) = getPlistIndexAndDescriptorForCellAt(indexPath.row)
-        let cellId = cellDescriptor["cellId"] as! String
-        switch cellId {
-        case "StartingDayPickerCell":
-            return 216.0
-        default:
-            return 44.0
-        }
-    }
+//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        let (_, cellDescriptor) = getPlistIndexAndDescriptorForCellAt(indexPath.row)
+//        let cellId = cellDescriptor["cellId"] as! String
+//        switch cellId {
+//        case "StartingDayPickerCell":
+//            return 216.0
+//        default:
+//            return 44.0
+//        }
+//    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

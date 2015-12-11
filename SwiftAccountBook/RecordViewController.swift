@@ -47,6 +47,7 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
             self.savedTags = savedTags
         }
         
+        
     }
     
     func loadSavedTags() -> [String]? {
@@ -65,17 +66,16 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
         let userInfo = aNotification.userInfo!
         let kbSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
         
-        if collectionView.contentInset.bottom == bottomLayoutGuide.length {
-            self.collectionView.contentInset.bottom += kbSize.height
-            self.collectionView.scrollIndicatorInsets.bottom += kbSize.height
-        }
-        
-        var visibleRectInCollectionView = collectionView.frame
-        visibleRectInCollectionView.size.height -= kbSize.height
-        let activeViewFrameInCollectionView = activeView.convertRect(activeView.bounds, toView: collectionView)
+        var visibleRectOfCollectionView = collectionView.bounds
+        visibleRectOfCollectionView.size.height -= kbSize.height
+        visibleRectOfCollectionView.size.height -= visibleRectOfCollectionView.origin.y
+        let activeViewFrameInCollectionView = activeView.superview!.convertRect(activeView.frame, toView: collectionView)
         var activeViewBottomPoint = activeViewFrameInCollectionView.origin
         activeViewBottomPoint.y += activeViewFrameInCollectionView.height
-        if !CGRectContainsPoint(visibleRectInCollectionView, activeViewBottomPoint) {
+        
+        if collectionView.contentInset.bottom == bottomLayoutGuide.length && !CGRectContainsPoint(visibleRectOfCollectionView, activeViewBottomPoint){
+            self.collectionView.contentInset.bottom += kbSize.height
+            self.collectionView.scrollIndicatorInsets.bottom += kbSize.height
             collectionView.scrollRectToVisible(activeViewFrameInCollectionView, animated: true)
         }
     }
@@ -99,7 +99,7 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
         // Pass the selected object to the new view controller.
         if sender === saveButton {
             let tagsFromText = getTagsFromText()
-            record = Record(number: Double(header.numberTextField.text!)!, tags: tagsFromText, date: footer.datePicker.date, recordDescription: footer.recordDescriptionTextView.text)
+            record = Record(number: Double(header.numberTextField.text!)!, tags: tagsFromText, date: currentDate, recordDescription: footer.recordDescriptionTextView.text)
             for tag in tagsFromText {
                 if !savedTags.contains(tag) {
                     savedTags.append(tag)
@@ -181,20 +181,19 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
             footer.recordDescriptionTextView.delegate = self
             footer.recordDescriptionTextView.inputAccessoryView = inputAccessoryView
             if let record = record {
-                footer.datePicker.date = record.date
                 footer.recordDescriptionTextView.text = record.recordDescription
                 currentDate = record.date
             }
             let calendar = NSCalendar.currentCalendar()
-            if calendar.isDateInToday(footer.datePicker.date) {
+            if calendar.isDateInToday(currentDate) {
                 footer.dateSegmentedControl.selectedSegmentIndex = 1
-                footer.dateStackView.hidden = true
-            } else if calendar.isDateInYesterday(footer.datePicker.date) {
+                footer.dateButton.hidden = true
+            } else if calendar.isDateInYesterday(currentDate) {
                 footer.dateSegmentedControl.selectedSegmentIndex = 0
-                footer.dateStackView.hidden = true
+                footer.dateButton.hidden = true
             } else {
                 footer.dateSegmentedControl.selectedSegmentIndex = 2
-                footer.dateStackView.hidden = false
+                footer.dateButton.hidden = false
             }
             footer.dateSegmentedControl.addTarget(self, action: "dateSegmentedValueChanged:", forControlEvents: .ValueChanged)
             return footer
@@ -294,31 +293,19 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
     func dateSegmentedValueChanged(sender: UISegmentedControl) {
         
         let selectedIndex = footer.dateSegmentedControl.selectedSegmentIndex
-        print("before: \(self.footer.dateStackView.hidden)")
         switch selectedIndex {
         case 0:
             let yestoday = NSDate(timeIntervalSinceNow: -secondsOneDay)
-            footer.datePicker.date = yestoday
-            if footer.dateStackView.hidden == false {
-                UIView.transitionWithView(footer.dateStackView, duration: 0.3, options: .TransitionCrossDissolve, animations: {
-                    self.footer.dateStackView.alpha = 0.0
-                    self.footer.dateStackView.hidden = true
-                    }, completion: nil)
-            }
+            currentDate = yestoday
+            footer.dateButton.hidden = true
         case 1:
             let today = NSDate()
-            footer.datePicker.date = today
-            if footer.dateStackView.hidden == false {
-                UIView.transitionWithView(footer.dateStackView, duration: 0.3, options: .TransitionCrossDissolve, animations: {
-                    self.footer.dateStackView.hidden = true
-                    self.footer.dateStackView.alpha = 0.0
-                    }, completion: nil)
-            }
+            currentDate = today
+            footer.dateButton.hidden = true
         default:
-            UIView.transitionWithView(footer.dateStackView, duration: 0.3, options: .TransitionCrossDissolve, animations: {
-                self.footer.dateStackView.hidden = false
-                self.footer.dateStackView.alpha = 1.0
-                }, completion: nil)
+            footer.dateButton.hidden = false
+            performSegueWithIdentifier("PresentDatePicker", sender: self)
+            
         }
     }
     
@@ -334,7 +321,7 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         var size = CGSizeZero
         size.width = view.frame.width
-        size.height = 450
+        size.height = 140
         return size
     }
     

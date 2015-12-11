@@ -102,6 +102,7 @@
                                             </constraints>
                                         </stackView>
                                     </subviews>
+                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="ZOY-vl-0Om" secondAttribute="bottom" id="8ZE-b5-o6V"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ZOY-vl-0Om" secondAttribute="trailing" id="Oko-yF-O3o"/>
@@ -142,22 +143,14 @@
                                                 </segmentedControl>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5c-A8-dPO">
                                                     <rect key="frame" x="0.0" y="36" width="560" height="30"/>
-                                                    <state key="normal" title="Date"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Date">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
                                                     <connections>
                                                         <segue destination="E5D-wD-xVl" kind="presentation" identifier="PresentDatePicker" id="fbU-EW-6SA"/>
                                                     </connections>
                                                 </button>
-                                                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pOf-tQ-6dT">
-                                                    <rect key="frame" x="0.0" y="70" width="560" height="0.0"/>
-                                                    <subviews>
-                                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5vf-Rj-J4v">
-                                                            <rect key="frame" x="120" y="0.0" width="320" height="0.0"/>
-                                                            <date key="date" timeIntervalSinceReferenceDate="470754117.773233">
-                                                                <!--2015-12-02 13:01:57 +0000-->
-                                                            </date>
-                                                        </datePicker>
-                                                    </subviews>
-                                                </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8j-W8-1d8">
                                                     <rect key="frame" x="0.0" y="74" width="560" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -181,6 +174,7 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.2156862745" green="0.72941176470000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="eWo-1a-7Lw" secondAttribute="trailing" id="SCF-6R-Ru2"/>
                                         <constraint firstItem="eWo-1a-7Lw" firstAttribute="leading" secondItem="y0F-0d-YYj" secondAttribute="leading" id="Vq5-Bu-QPo"/>
@@ -189,9 +183,7 @@
                                     <connections>
                                         <outlet property="contentView" destination="eWo-1a-7Lw" id="AZh-vB-4KF"/>
                                         <outlet property="dateButton" destination="a5c-A8-dPO" id="zNL-Og-Udf"/>
-                                        <outlet property="datePicker" destination="5vf-Rj-J4v" id="Ppu-9b-OjB"/>
                                         <outlet property="dateSegmentedControl" destination="nxr-1t-G6z" id="kxD-3I-QHt"/>
-                                        <outlet property="dateStackView" destination="pOf-tQ-6dT" id="r1t-3j-tPQ"/>
                                         <outlet property="recordDescriptionTextView" destination="Ddq-Lm-HlU" id="VMn-CQ-gdy"/>
                                     </connections>
                                 </collectionReusableView>

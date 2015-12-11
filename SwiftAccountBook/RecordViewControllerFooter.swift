@@ -9,17 +9,17 @@
 import UIKit
 
 class RecordViewControllerFooter: UICollectionReusableView {
+    
     @IBOutlet weak var contentView: UIStackView!
     @IBOutlet weak var dateSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var dateStackView: UIStackView!
-    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var recordDescriptionTextView: UITextView!
     @IBOutlet weak var dateButton: UIButton!
-    
-    override func canBecomeFirstResponder() -> Bool {
-        return false
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        dateButton.setTitle(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .FullStyle, timeStyle: .NoStyle), forState: .Normal)
+        dateButton.layer.cornerRadius = 5
+        dateButton.clipsToBounds = true
     }
-    
-    
-    
 }
