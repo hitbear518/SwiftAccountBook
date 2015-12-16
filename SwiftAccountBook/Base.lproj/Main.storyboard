@@ -291,7 +291,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateCostCell" textLabel="rFz-Gj-x0K" detailTextLabel="0di-Ts-iZc" style="IBUITableViewCellStyleValue1" id="cES-7L-Dok">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateSumCell" textLabel="rFz-Gj-x0K" detailTextLabel="0di-Ts-iZc" style="IBUITableViewCellStyleValue1" id="cES-7L-Dok">
                                 <rect key="frame" x="0.0" y="113.5" width="600" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cES-7L-Dok" id="FJF-ZQ-GHG">
@@ -302,7 +302,7 @@
                                             <rect key="frame" x="15" y="24" width="31.5" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0di-Ts-iZc">
@@ -515,6 +515,9 @@
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="hdO-or-JG3" kind="show" identifier="" id="oae-Yp-4pi"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StartingDaySettingCell" textLabel="GPy-oD-G5s" detailTextLabel="hq3-5K-AEn" imageView="5FU-YP-OaP" style="IBUITableViewCellStyleValue1" id="hC4-Hc-Qt5" customClass="SettingsTableViewCell" customModule="SwiftAccountBook" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
@@ -544,7 +547,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StartingDayPickerCell" rowHeight="216" id="nqk-3o-vSJ" customClass="SettingsTableViewCell" customModule="SwiftAccountBook" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PickerViewTableViewCell" rowHeight="216" id="nqk-3o-vSJ" customClass="PickerViewTableViewCell" customModule="SwiftAccountBook" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="201.5" width="600" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nqk-3o-vSJ" id="RNV-lw-bw1">
@@ -563,7 +566,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="pickerView" destination="RmJ-QI-8LB" id="Od4-bl-7sg"/>
+                                    <outlet property="pickerView" destination="RmJ-QI-8LB" id="w7z-cJ-8Cw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -578,6 +581,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ges-kq-hqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-478" y="1769"/>
+        </scene>
+        <!--Edit Tag Table View Controller-->
+        <scene sceneID="GTG-g3-igT">
+            <objects>
+                <tableViewController id="hdO-or-JG3" customClass="EditTagTableViewController" customModule="SwiftAccountBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nbf-uc-GzX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditTagCell" id="tDb-cE-APY" customClass="EditTagTableViewCell" customModule="SwiftAccountBook" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tDb-cE-APY" id="M40-C1-8bY">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4En-Fp-5YI">
+                                            <rect key="frame" x="8" y="8" width="584" height="28"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Dvj-KS-WqK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="534" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewj-cd-57L">
+                                                    <rect key="frame" x="542" y="0.0" width="42" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="3SI-A2-uMv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4En-Fp-5YI" firstAttribute="leading" secondItem="M40-C1-8bY" secondAttribute="leadingMargin" id="3tY-Er-HjS"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="4En-Fp-5YI" secondAttribute="bottom" id="6Os-UZ-N8p"/>
+                                        <constraint firstItem="4En-Fp-5YI" firstAttribute="top" secondItem="M40-C1-8bY" secondAttribute="topMargin" id="HMD-ck-PjZ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="4En-Fp-5YI" secondAttribute="trailing" id="PWU-tF-qKf"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="ewj-cd-57L" id="Qma-Un-CBC"/>
+                                    <outlet property="textField" destination="Dvj-KS-WqK" id="PZb-hK-zyx"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hdO-or-JG3" id="Jbt-Qk-U16"/>
+                            <outlet property="delegate" destination="hdO-or-JG3" id="24C-Yx-x0d"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Mc-vb-hsz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="293" y="1769"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="1Px-Wi-vOl">

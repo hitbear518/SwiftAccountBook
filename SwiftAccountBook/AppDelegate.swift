@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        var appDefaults = [String : AnyObject]()
+        appDefaults["StartingDay"] = 1
+        NSUserDefaults.standardUserDefaults().registerDefaults(appDefaults)
         return true
     }
 

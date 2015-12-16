@@ -22,6 +22,8 @@ class DatePickerViewController: UIViewController {
         datePicker.layer.masksToBounds = true
         okButton.layer.cornerRadius = 12
         okButton.layer.masksToBounds = true
+        
+        NSUserDefaults.standardUserDefaults()
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController, SettingsTableViewCellDelegate {
+class SettingsTableViewController: UITableViewController, PickerViewTableViewCellDelegate {
     
     var cellDescriptors: NSMutableArray!
     var visibleCellIndices = [Int]()
@@ -65,17 +65,32 @@ class SettingsTableViewController: UITableViewController, SettingsTableViewCellD
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let (_, currentCellDescriptor) = getPlistIndexAndDescriptorForCellAt(indexPath.row)
         let cellId = currentCellDescriptor["cellId"] as! String
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! SettingsTableViewCell
-        cell.delegate = self
-
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath)
         switch cellId {
         case "StartingDaySettingCell":
-            cell.detailTextLabel?.text = currentCellDescriptor["secondaryText"] as? String
+            let startingDay = NSUserDefaults.standardUserDefaults().integerForKey("StartingDay")
+            let startingDayString = getStartingDayString(startingDay)
+            cell.detailTextLabel?.text = startingDayString
+        case "PickerViewTableViewCell":
+            let pickerViewCell = cell as! PickerViewTableViewCell
+            pickerViewCell.delegate = self
+            break
         default:
             break
         }
 
         return cell
+    }
+    
+    func getStartingDayString(startingDay: Int) -> String {
+        switch startingDay {
+        case 1:
+            return "1st Day"
+        case 2:
+            return "2nd Day"
+        default:
+            return "\(startingDay)th Day"
+        }
     }
 
     /*
@@ -129,41 +144,39 @@ class SettingsTableViewController: UITableViewController, SettingsTableViewCellD
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
+        let (_, selectedCellDescriptor) = getPlistIndexAndDescriptorForCellAt(indexPath.row)
+        let cellId = selectedCellDescriptor["cellId"] as! String
+        if cellId == "StartingDaySettingCell" {
+            let expanded = !(selectedCellDescriptor["expanded"] as! Bool)
+            setExpanded(expanded, forRowAtIndexPath: indexPath)
+        }
+    }
+    
+    func setExpanded(expanded: Bool, forRowAtIndexPath indexPath: NSIndexPath) {
         let (cellPlistIndex, selectedCellDescriptor) = getPlistIndexAndDescriptorForCellAt(indexPath.row)
-        let expandable = selectedCellDescriptor["expandable"] as! Bool
-        if expandable {
-            var expanded = selectedCellDescriptor["expanded"] as! Bool
-            expanded = !expanded
-            selectedCellDescriptor.setValue(expanded, forKey: "expanded")
         
-            let additionalRows = selectedCellDescriptor["additionalRows"] as! Int
-            var additionalRowIndexPaths = [NSIndexPath]()
-            for offset in 1...additionalRows  {
-                cellDescriptors[cellPlistIndex + offset].setValue(expanded, forKey: "visible")
-                additionalRowIndexPaths.append(NSIndexPath(forRow: indexPath.row + offset, inSection: 0))
-            }
-            getVisibleCellIndices()
-            if expanded {
-                tableView.insertRowsAtIndexPaths(additionalRowIndexPaths, withRowAnimation: .Fade)
-            } else {
-                tableView.deleteRowsAtIndexPaths(additionalRowIndexPaths, withRowAnimation: .Fade)
-            }
+        var expanded = selectedCellDescriptor["expanded"] as! Bool
+        expanded = !expanded
+        selectedCellDescriptor.setValue(expanded, forKey: "expanded")
+        
+        let additionalRows = selectedCellDescriptor["additionalRows"] as! Int
+        var additionalRowIndexPaths = [NSIndexPath]()
+        for offset in 1...additionalRows  {
+            cellDescriptors[cellPlistIndex + offset].setValue(expanded, forKey: "visible")
+            additionalRowIndexPaths.append(NSIndexPath(forRow: indexPath.row + offset, inSection: 0))
+        }
+        getVisibleCellIndices()
+        if expanded {
+            tableView.insertRowsAtIndexPaths(additionalRowIndexPaths, withRowAnimation: .Fade)
+        } else {
+            tableView.deleteRowsAtIndexPaths(additionalRowIndexPaths, withRowAnimation: .Fade)
         }
     }
     
     // MARK SettingsTableViewCellDelegate
     
     func pickerViewDidSelect(day: Int) {
-        var startingDayString: String
-        switch day {
-        case 1:
-            startingDayString = "1st Day"
-        case 2:
-            startingDayString = "2nd Day"
-        default:
-            startingDayString = "\(day)th Day"
-        }
-        cellDescriptors[1].setValue(startingDayString, forKey: "secondaryText")
+        NSUserDefaults.standardUserDefaults().setInteger(day, forKey: "StartingDay")
         tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Fade)
     }
 
