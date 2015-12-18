@@ -3,18 +3,18 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "RecordViewController2.(dateSegmentedValueChanged(RecordViewController2) -&gt; (UISegmentedControl) -&gt; ()).(closure #1):RecordViewController2.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.footer.contentView">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "EditTagTableViewController.saveTags() -&gt; ():EditTagTableViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "tags">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController2.(dateSegmentedValueChanged(RecordViewController2) -&gt; (UISegmentedControl) -&gt; ()).(closure #1):RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.footer.contentView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -79,17 +79,6 @@
          contextName = "RecordTableViewController.viewDidLoad() -&gt; ():RecordTableViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "RecordViewController2.collectionView(UICollectionView, cellForItemAtIndexPath : NSIndexPath) -&gt; UICollectionViewCell:RecordViewController2.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "cell.tagButton.titleLabel?.text">
-            </PersistentString>
-            <PersistentString
-               value = "testTags[indexPath.row]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "EditTagTableViewController.viewDidLoad() -&gt; ():EditTagTableViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -104,10 +93,32 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "RecordViewController2.collectionView(UICollectionView, cellForItemAtIndexPath : NSIndexPath) -&gt; UICollectionViewCell:RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cell.tagButton.titleLabel?.text">
+            </PersistentString>
+            <PersistentString
+               value = "testTags[indexPath.row]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "RecordTableViewController.setExpaned(Bool, atSection : Int) -&gt; ():RecordTableViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "indexPaths[1].row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StatisticsTableViewController.isDateThisMonth(NSDate) -&gt; Bool:StatisticsTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "            NSDateFormatter.localizedStringFromDate(date, dateStyle: .ShortStyle, timeStyle: .FullStyle)">
+            </PersistentString>
+            <PersistentString
+               value = "dateInSec &lt; (startDateInSec + extends)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -150,10 +161,38 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "StatisticsTableViewController.updateDateInfo() -&gt; ():StatisticsTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "startingDate">
+            </PersistentString>
+            <PersistentString
+               value = "NSDateFormatter.localizedStringFromDate(endingDate, dateStyle: .ShortStyle, timeStyle: .FullStyle)">
+            </PersistentString>
+            <PersistentString
+               value = "diff.month">
+            </PersistentString>
+            <PersistentString
+               value = "diff.day">
+            </PersistentString>
+            <PersistentString
+               value = "NSDateFormatter.localizedStringFromDate(match, dateStyle: .ShortStyle, timeStyle: .FullStyle)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "RecordTableViewController.(insertRecord(RecordTableViewController) -&gt; (Record) -&gt; ()).(closure #2):RecordTableViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "tuple">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StatisticsTableViewController.endingDate.didset:StatisticsTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "endingDate">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

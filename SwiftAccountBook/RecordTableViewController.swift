@@ -23,7 +23,6 @@ class RecordTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.leftBarButtonItem = self.editButtonItem()
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -231,8 +230,6 @@ class RecordTableViewController: UITableViewController {
             return
         }
         
-        let calendar = NSCalendar.currentCalendar()
-        
         // Iterate table
         for (section, tuple) in dateRecordsSumExpandedTuples.enumerate() {
             if calendar.isDate(comingRecord.date, inSameDayAsDate: tuple.date) {
@@ -245,6 +242,7 @@ class RecordTableViewController: UITableViewController {
                 tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: section)], withRowAnimation: .Fade)
                 return
             } else if comingRecord.date.timeIntervalSinceDate(tuple.date) > 0 {
+                comingRecord.date.laterDate(tuple.date)
                 // Not matching section, but find older date
                 dateRecordsSumExpandedTuples.insert((comingRecord.date, [comingRecord], comingRecord.number, false), atIndex: section)
                 updateSumForTuple(&dateRecordsSumExpandedTuples[section])

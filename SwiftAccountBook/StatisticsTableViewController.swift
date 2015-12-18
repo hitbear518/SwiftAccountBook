@@ -8,8 +8,27 @@
 
 import UIKit
 
-class StatisticsTableViewController: UITableViewController {
+class StatisticsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var intervalLabel: UILabel!
+    @IBOutlet weak var nextButton: UIButton!
+    
+    var startingDate: NSDate!
+    var endingDate: NSDate!
+    var calendar = NSCalendar.currentCalendar()
+    var startingDay: Int! {
+        didSet {
+            if oldValue != nil && oldValue != startingDay {
+                startingDate = nil
+                endingDate = now
+            }
+        }
+    }
+    var now: NSDate {
+        return NSDate()
+    }
     var recordsArray = [[Record]]()
     var tagSumTuples = [(tag: String, sum: Double)]()
 
@@ -21,6 +40,15 @@ class StatisticsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        let nextImage = UIImage(named: "forward_button_image")
+        nextButton.imageEdgeInsets = UIEdgeInsetsMake(0.0, nextButton.frame.width - nextImage!.size.width, 0.0, 0.0)
+        nextButton.titleEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, nextImage!.size.width)
+        
+        endingDate = now
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -42,6 +70,67 @@ class StatisticsTableViewController: UITableViewController {
         }
         tagSumTuples = tagSumTuples.filter { _, sum in sum > 0 }
         tableView.reloadData()
+        
+        startingDay = NSUserDefaults.standardUserDefaults().integerForKey("StartingDay")
+        updateDateInfo()
+    }
+    
+    func updateDateInfo() {
+        if startingDate == nil {
+            if let match = calendar.nextDateAfterDate(endingDate, matchingUnit: .Day, value: startingDay, options: [.SearchBackwards, .MatchPreviousTimePreservingSmallerUnits]) {
+                startingDate = match
+            } else {
+                fatalError("find matching startingDate failed")
+            }
+        } else {
+            if let match = calendar.nextDateAfterDate(startingDate, matchingUnit: .Day, value: startingDay, options: [.MatchPreviousTimePreservingSmallerUnits]) {
+                endingDate = calendar.dateByAddingUnit(.Day, value: -1, toDate: match, options: [])
+                if isDateThisMonth(endingDate) {
+                    endingDate = now
+                }
+            } else {
+                fatalError("Find matching endingDate falied")
+            }
+        }
+        
+        
+        let startingDateStr = NSDateFormatter.localizedStringFromDate(startingDate, dateStyle: .ShortStyle, timeStyle: .NoStyle)
+        var endingDateStr: String
+        if calendar.isDate(endingDate, inSameDayAsDate: now) {
+            endingDateStr = "Today"
+            nextButton.enabled = false
+        } else {
+            endingDateStr = NSDateFormatter.localizedStringFromDate(endingDate, dateStyle: .ShortStyle, timeStyle: .NoStyle)
+            nextButton.enabled = true
+        }
+        intervalLabel.text = "\(startingDateStr) - \(endingDateStr)"
+    }
+    
+    func isDateThisMonth(date: NSDate) -> Bool {
+        var start: NSDate?
+        var extends: NSTimeInterval = 0
+        let success = calendar.rangeOfUnit(.Month, startDate: &start, interval: &extends, forDate: NSDate())
+        if !success { return false }
+        let startDateInSec = start!.timeIntervalSince1970
+        let dateInSec = date.timeIntervalSince1970
+        if dateInSec > startDateInSec && dateInSec < (startDateInSec + extends) {
+
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    @IBAction func previousButtonDidTap(sender: AnyObject) {
+        endingDate = calendar.dateByAddingUnit(.Day, value: -1, toDate: startingDate, options: [])
+        startingDate = nil
+        updateDateInfo()
+    }
+    
+    @IBAction func nextButtonDidTap(sender: AnyObject) {
+        startingDate = calendar.dateByAddingUnit(.Day, value: 1, toDate: endingDate, options: [])
+        endingDate = nil
+        updateDateInfo()
     }
     
     func sumCostOf(records: [Record]) -> Double {
@@ -58,17 +147,17 @@ class StatisticsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return tagSumTuples.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("StatisticsTableViewCell", forIndexPath: indexPath) as! StatisticsTableViewCell
         
         // Configure the cell...
