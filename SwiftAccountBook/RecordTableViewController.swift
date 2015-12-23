@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
-class RecordTableViewController: UITableViewController {
+class RecordTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     // MARK: Properties
     
+    let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     var dateRecordsSumExpandedTuples = [(date: NSDate, records: [Record], sum: Double, expanded: Bool)]()
     let calendar = NSCalendar.init(identifier: NSCalendarIdentifierGregorian)!
+    
+    var fetchedResultsController: NSFetchedResultsController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,57 +27,49 @@ class RecordTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.leftBarButtonItem = self.editButtonItem()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
         
-        dateRecordsSumExpandedTuples.removeAll()
-        loadRecords()?.enumerate().forEach { index, records in
-            dateRecordsSumExpandedTuples.append((records[0].date, records, 0.0, false))
-            updateSumForTuple(&dateRecordsSumExpandedTuples[index])
-        }
+        initializeFetchedResultsController()
+    }
+    
+    func initializeFetchedResultsController() {
+        let request = NSFetchRequest(entityName: "DayCost")
+        let dateSortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        request.sortDescriptors = [dateSortDescriptor]
         
-        if !dateRecordsSumExpandedTuples.isEmpty {
-            dateRecordsSumExpandedTuples[0].expanded = true
-            tableView.reloadData()
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.moc, sectionNameKeyPath: "date", cacheName: "rootCache")
+        fetchedResultsController.delegate = self
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Failed to fetched day costs: \(error)")
         }
     }
     
-    func updateSumForTuple(inout tuple: (date: NSDate, records: [Record], sum: Double, expanded: Bool)) {
-        tuple.sum = tuple.records.reduce(0.0) { sum, record in sum + record.number }
-    }
-    
-    func sumCostOf(records: [Record]) -> Double {
-        return records.reduce(0.0) { cost, record in cost + record.number }
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return dateRecordsSumExpandedTuples.count
+        return fetchedResultsController.sections!.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if dateRecordsSumExpandedTuples[section].expanded {
-            return dateRecordsSumExpandedTuples[section].records.count + 1
-        } else {
-            return 1
-        }
+        let dayCost = fetchedResultsController.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: section)) as! DayCost
+        
+        return dayCost.records.count + 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("DateSumCell", forIndexPath: indexPath)
-            let (date, _, sum, _) = dateRecordsSumExpandedTuples[indexPath.section]
-            if calendar.isDateInToday(date) {
+            let dayCost = fetchedResultsController.objectAtIndexPath(indexPath) as! DayCost
+            
+            if calendar.isDateInToday(dayCost.date) {
                 cell.textLabel?.text = "Today"
-            } else if calendar.isDateInYesterday(date) {
+            } else if calendar.isDateInYesterday(dayCost.date) {
                 cell.textLabel?.text = "Yestoday"
             } else {
-                cell.textLabel?.text = NSDateFormatter.localizedStringFromDate(date, dateStyle: .LongStyle, timeStyle: .NoStyle)
+                cell.textLabel?.text = NSDateFormatter.localizedStringFromDate(dayCost.date, dateStyle: .LongStyle, timeStyle: .NoStyle)
             }
-            cell .detailTextLabel?.text = String(sum)
+            cell .detailTextLabel?.text = String(dayCost.cost)
             return cell
         } else {
            let cell = tableView.dequeueReusableCellWithIdentifier("RecordTableViewCell", forIndexPath: indexPath) as! RecordTableViewCell

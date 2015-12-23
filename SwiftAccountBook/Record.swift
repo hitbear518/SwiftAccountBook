@@ -7,64 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
-class Record: NSObject, NSCoding {
+class Record: NSManagedObject {
     
-    // MARK: - Properties
+    @NSManaged var number: Double
+    @NSManaged var date: NSDate
+    @NSManaged var tags: [Tag]?
     
-    var number: Double
-    var tags: [String]
-    var date: NSDate
-    var recordDescription: String?
-    
-    // MARK: Archiving Paths
-    
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("records")
-    
-    // MARK: Property Keys
-    
-    struct PropertyKey {
-        static let numberKey = "number"
-        static let tagsKey = "tags"
-        static let dateKey = "date"
-        static let recordDescriptionKey = "recordDescription"
+    var dayInEra: Int {
+        let calendar = NSCalendar.currentCalendar()
+        let day = calendar.ordinalityOfUnit(.Day, inUnit: .Era, forDate: date)
+        return day
     }
     
-    
-    init?(number: Double, tags: [String], date: NSDate, recordDescription: String? = nil) {
-        self.number = number
-        self.tags = tags
-        self.date = date
-        self.recordDescription = recordDescription
-        super.init()
-        
-        if number == 0.0 {
-            return nil
-        }
-        
-        if tags.count == 0 {
-            return nil
-        }
-        for tag in tags {
-            if tag.isEmpty { return nil }
-        }
-    }
-    
-    // MARK: NSCoding
-    
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeDouble(number, forKey: PropertyKey.numberKey)
-        aCoder.encodeObject(tags, forKey: PropertyKey.tagsKey)
-        aCoder.encodeObject(date, forKey: PropertyKey.dateKey)
-        aCoder.encodeObject(recordDescription, forKey: PropertyKey.recordDescriptionKey)
-    }
-    
-    required convenience init?(coder aDecoder: NSCoder) {
-        let number = aDecoder.decodeDoubleForKey(PropertyKey.numberKey)
-        let tags = aDecoder.decodeObjectForKey(PropertyKey.tagsKey) as! [String]
-        let date = aDecoder.decodeObjectForKey(PropertyKey.dateKey) as! NSDate
-        let recordDescription = aDecoder.decodeObjectForKey(PropertyKey.recordDescriptionKey) as? String
-        self.init(number: number, tags: tags, date: date, recordDescription: recordDescription)
-    }
 }
