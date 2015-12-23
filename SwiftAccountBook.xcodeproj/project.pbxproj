@@ -25,6 +25,7 @@
 		4B4C9F2A1C195F7100BF2ED4 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */; };
 		4B65AF511C129D8300338DB5 /* StatisticsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B65AF501C129D8300338DB5 /* StatisticsTableViewController.swift */; };
 		4BB199CF1C11ADF900533CA5 /* StatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB199CE1C11ADF900533CA5 /* StatisticsTableViewCell.swift */; };
+		4BDAC2941C2580CC0065A0D1 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAC2921C2580CC0065A0D1 /* DataModel.xcdatamodeld */; };
 		4BDBBB291C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBBB281C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift */; };
 		4BDBBB2B1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBBB2A1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift */; };
 		4BE72E901C1C0D1700F46779 /* PickerViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE72E8F1C1C0D1700F46779 /* PickerViewTableViewCell.swift */; };
@@ -62,6 +63,7 @@
 		4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		4B65AF501C129D8300338DB5 /* StatisticsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewController.swift; sourceTree = "<group>"; };
 		4BB199CE1C11ADF900533CA5 /* StatisticsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewCell.swift; sourceTree = "<group>"; };
+		4BDAC2931C2580CC0065A0D1 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		4BDBBB281C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentDatePickerTransitioningDelegate.swift; sourceTree = "<group>"; };
 		4BDBBB2A1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentDatePickerPresentationController.swift; sourceTree = "<group>"; };
 		4BE72E8F1C1C0D1700F46779 /* PickerViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */,
 				4B14D34B1C1EB938002FE7D0 /* EditTagTableViewCell.swift */,
 				4B14D34D1C1EB951002FE7D0 /* EditTagTableViewController.swift */,
+				4BDAC2921C2580CC0065A0D1 /* DataModel.xcdatamodeld */,
 			);
 			path = SwiftAccountBook;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				4BDBBB291C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift in Sources */,
 				4B0A999E1C1723C700E1F8E3 /* SettingsTableViewCell.swift in Sources */,
 				4B10268E1C0EFC9500202B95 /* RecordViewControllerFooter.swift in Sources */,
+				4BDAC2941C2580CC0065A0D1 /* DataModel.xcdatamodeld in Sources */,
 				4B0A999C1C171DE600E1F8E3 /* SettingsTableViewController.swift in Sources */,
 				4BB199CF1C11ADF900533CA5 /* StatisticsTableViewCell.swift in Sources */,
 				4BED775C1BD22DD9004DD518 /* AppDelegate.swift in Sources */,
@@ -480,6 +484,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4BDAC2921C2580CC0065A0D1 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4BDAC2931C2580CC0065A0D1 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 4BDAC2931C2580CC0065A0D1 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4BED77501BD22DD9004DD518 /* Project object */;
 }

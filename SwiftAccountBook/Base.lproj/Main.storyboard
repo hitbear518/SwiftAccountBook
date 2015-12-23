@@ -315,7 +315,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordTableViewCell" rowHeight="67" id="VbM-iK-bfJ" customClass="RecordTableViewCell" customModule="SwiftAccountBook" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordTableViewCell" id="VbM-iK-bfJ" customClass="RecordTableViewCell" customModule="SwiftAccountBook" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="180.5" width="600" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VbM-iK-bfJ" id="gYv-aX-1qM">
