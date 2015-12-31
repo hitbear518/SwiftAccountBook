@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class RecordViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UITextViewDelegate {
     
+    let appDelegate = (UIApplication.sharedApplication().delegate) as! AppDelegate
+    var moc: NSManagedObjectContext {
+        return appDelegate.managedObjectContext
+    }
+    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     weak var activeView: UIView?
-    var record: Record?
+    weak var record: Record!
     var currentDate = NSDate() {
         didSet {
             footer.dateButton.setTitle(NSDateFormatter.localizedStringFromDate(currentDate, dateStyle: .FullStyle, timeStyle: .NoStyle), forState: .Normal)
@@ -25,7 +31,10 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     let secondsOneDay: NSTimeInterval = 24 * 60 * 60
     
-    var savedTags = [String]()
+    var savedTags: [Tag]!
+    var savedTagNames: [String] {
+        return savedTags.map { $0.name }
+    }
     
     let presentDatePickerTransitioningDelegate = PresentDatePickerTransitioningDelegate()
     
@@ -42,16 +51,17 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
         collectionView.collectionViewLayout = UICollectionViewFlowLayout()
         
         registerForKeyboardNotification()
-        
-        if let savedTags = loadSavedTags() {
-            self.savedTags = savedTags
-        }
-        
+        loadTags()
         
     }
     
-    func loadSavedTags() -> [String]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Constants.TagArchiveURL.path!) as? [String]
+    func loadTags() {
+        let request = NSFetchRequest(entityName: "Tag")
+        do {
+            self.savedTags = try moc.executeFetchRequest(request) as! [Tag]
+        } catch {
+            fatalError("Failed to load tags: \(error)")
+        }
     }
     
     func registerForKeyboardNotification() {
@@ -93,19 +103,28 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
         if sender === saveButton {
-            let tagsFromText = getTagsFromText()
-            record = Record(number: Double(header.numberTextField.text!)!, tags: tagsFromText, date: currentDate, recordDescription: footer.recordDescriptionTextView.text)
-            for tag in tagsFromText {
-                if !savedTags.contains(tag) {
-                    savedTags.append(tag)
+            let tagNamesFromText = getTagNamesFromText()
+            var recordTags = Set<Tag>()
+            tagNamesFromText.forEach { tagName in
+                if let index = savedTags.indexOf({ $0.name == tagName }) {
+                    recordTags.insert(savedTags[index])
+                } else {
+                    let newTag = NSEntityDescription.insertNewObjectForEntityForName("Tag", inManagedObjectContext: moc) as! Tag
+                    newTag.name = tagName
+                    recordTags.insert(newTag)
                 }
             }
-            saveTags()
+            if (record == nil) {
+                record = NSEntityDescription.insertNewObjectForEntityForName("Record", inManagedObjectContext: moc) as! Record
+            }
+            record.tags = recordTags
+            record.number = Double(self.header.numberTextField.text!)!
+            record.date = self.currentDate
+            let calendar = NSCalendar.currentCalendar()
+            record.dayInEra = calendar.ordinalityOfUnit(.Day, inUnit: .Era, forDate: record.date)
+            record.detail = self.footer.detailTextView.text
         }
         
         if let destinationViewController = segue.destinationViewController as? DatePickerViewController {
@@ -139,6 +158,7 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
+        
         return savedTags.count
     }
 
@@ -146,7 +166,7 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TagCollectionViewCell", forIndexPath: indexPath) as! TagCollectionViewCell
     
         // Configure the cell
-        cell.tagNameLabel.text = savedTags[indexPath.row]
+        cell.tagNameLabel.text = savedTags[indexPath.row].name
         return cell
     }
     
@@ -167,21 +187,23 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
             if let record = record {
                 header.numberTextField.text = String(record.number)
                 var tagsText = ""
-                for tag in record.tags {
-                    tagsText += "\(tag), "
+                record.tags?.forEach { tag in
+                    tagsText += "\(tag.name), "
                 }
                 header.tagTextField.text = tagsText
                 
-                syncCollectionViewSelectionFromInUseTags(record.tags)
+                if let tagNames = record.tags?.map({ tag -> String in tag.name }) {
+                    syncCollectionViewSelectionFromInUseTagNames(tagNames)
+                }
             }
             syncSaveButtonEnabled()
             return header
         } else {
             footer = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, withReuseIdentifier: "RecordViewControllerFooter", forIndexPath: indexPath) as! RecordViewControllerFooter
-            footer.recordDescriptionTextView.delegate = self
-            footer.recordDescriptionTextView.inputAccessoryView = inputAccessoryView
+            footer.detailTextView.delegate = self
+            footer.detailTextView.inputAccessoryView = inputAccessoryView
             if let record = record {
-                footer.recordDescriptionTextView.text = record.recordDescription
+                footer.detailTextView.text = record.detail
                 currentDate = record.date
             }
             let calendar = NSCalendar.currentCalendar()
@@ -209,16 +231,16 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
     func editingChanged(sender: UITextField) {
         syncSaveButtonEnabled()
         guard sender === header.tagTextField else { return }
-        let tagsFromText = getTagsFromText()
-        syncCollectionViewSelectionFromInUseTags(tagsFromText)
+        let tagNamesFromText = getTagNamesFromText()
+        syncCollectionViewSelectionFromInUseTagNames(tagNamesFromText)
     }
     
-    func syncCollectionViewSelectionFromInUseTags(inUseTags: [String]) {
+    func syncCollectionViewSelectionFromInUseTagNames(inUseTagNames: [String]) {
         for var row = 0; row < collectionView.numberOfItemsInSection(0); row++ {
             let indexPath = NSIndexPath(forRow: row, inSection: 0)
             let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
-            let cellTag = cell.tagNameLabel.text!
-            if inUseTags.contains(cellTag) {
+            let cellTagName = cell.tagNameLabel.text!
+            if inUseTagNames.contains(cellTagName) {
                 collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: .None)
                 cell.tagNameLabel.textColor = UIColor.whiteColor()
             } else {
@@ -228,12 +250,12 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
-    func getTagsFromText() -> [String] {
+    func getTagNamesFromText() -> [String] {
         let usedTagsText = header.tagTextField.text!
-        let usedTags = usedTagsText.characters.split{$0 == ","}.map(String.init)
+        let usedTagNames = usedTagsText.characters.split{$0 == ","}.map(String.init)
             .map { $0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())}
             .filter {!$0.isEmpty}
-        return usedTags
+        return usedTagNames
     }
 
     // MARK: UITextFieldDelegate
@@ -331,7 +353,7 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let label = UILabel()
-        label.text = savedTags[indexPath.row]
+        label.text = savedTags[indexPath.row].name
         label.sizeToFit()
         label.frame.size.height += 16
         label.frame.size.width += 16
@@ -372,7 +394,7 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
         cell.tagNameLabel.textColor = UIColor(red: 0.0, green: 118.0 / 255.0, blue: 1.0, alpha: 1)
         
-        let tagsFromText = getTagsFromText()
+        let tagsFromText = getTagNamesFromText()
         let remainingTags = tagsFromText.filter {!($0 == cell.tagNameLabel.text!)}
         
         var remainingTagsText = String()

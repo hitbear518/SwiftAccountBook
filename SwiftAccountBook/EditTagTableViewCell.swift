@@ -8,18 +8,13 @@
 
 import UIKit
 
-protocol EditTagTableViewCellDelegate {
-    func tagDidEndEditing(before: String, after: String)
-}
-
 class EditTagTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var label: UILabel!
     
-    var delegate: EditTagTableViewCellDelegate?
-    var recordsArray = [[Record]]()
-    var originalTag: String!
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var recordTag: Tag!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,10 +22,10 @@ class EditTagTableViewCell: UITableViewCell, UITextFieldDelegate {
         textField.delegate = self
     }
     
-    func configCell(tuple: (tag: String, recordsCount: Int)) {
-        textField.text = tuple.tag
-        originalTag = tuple.tag
-        label.text = String(tuple.recordsCount)
+    func configCell(tag: Tag) {
+        textField.text = tag.name
+        label.text = String(tag.records.count)
+        self.recordTag = tag
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -47,8 +42,7 @@ class EditTagTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        if originalTag != textField.text! {
-            delegate?.tagDidEndEditing(originalTag, after: textField.text!)
-        }
+        self.recordTag.name = textField.text!
+        appDelegate.saveContext()
     }
 }

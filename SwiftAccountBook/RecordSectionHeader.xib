@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="3PJ-81-wzC" customClass="RecordSectionHeader" customModule="SwiftAccountBook" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXM-ys-WcW">
+                    <rect key="frame" x="35" y="13" width="44.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8l-3q-wKZ">
+                    <rect key="frame" x="270" y="13.5" width="42" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wF-Yl-bNR">
+                    <rect key="frame" x="0.0" y="6" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="2wF-Yl-bNR" secondAttribute="height" multiplier="1:1" id="QNp-sW-gBU"/>
+                        <constraint firstAttribute="height" constant="35" id="Vbq-mz-iZZ"/>
+                    </constraints>
+                    <state key="normal" image="disclosure-open">
+                        <color key="titleColor" red="0.15140289068222046" green="0.37005352973937988" blue="0.83617323637008667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="selected" image="disclosure-close"/>
+                </button>
+            </subviews>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="n8l-3q-wKZ" firstAttribute="centerY" secondItem="3PJ-81-wzC" secondAttribute="centerY" id="LLf-PF-zTj"/>
+                <constraint firstItem="2wF-Yl-bNR" firstAttribute="leading" secondItem="3PJ-81-wzC" secondAttribute="leading" id="LZt-vq-3te"/>
+                <constraint firstItem="2wF-Yl-bNR" firstAttribute="centerY" secondItem="3PJ-81-wzC" secondAttribute="centerY" id="Ldq-kV-j9d"/>
+                <constraint firstAttribute="trailing" secondItem="n8l-3q-wKZ" secondAttribute="trailing" constant="8" id="dL4-lW-jub"/>
+                <constraint firstItem="NXM-ys-WcW" firstAttribute="leading" secondItem="2wF-Yl-bNR" secondAttribute="trailing" id="s6n-z9-QwV"/>
+                <constraint firstItem="NXM-ys-WcW" firstAttribute="centerY" secondItem="3PJ-81-wzC" secondAttribute="centerY" id="wvK-OR-vo7"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dateLabel" destination="NXM-ys-WcW" id="Fkv-KO-DSf"/>
+                <outlet property="disclosureButton" destination="2wF-Yl-bNR" id="POE-9d-Fzn"/>
+                <outlet property="sumLabel" destination="n8l-3q-wKZ" id="PzI-J3-AmN"/>
+            </connections>
+            <point key="canvasLocation" x="283" y="-270"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="disclosure-close" width="12" height="6"/>
+        <image name="disclosure-open" width="6" height="12"/>
+    </resources>
+</document>

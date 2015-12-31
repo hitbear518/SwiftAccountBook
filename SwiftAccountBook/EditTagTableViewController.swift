@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
-class EditTagTableViewController: UITableViewController, EditTagTableViewCellDelegate {
-    var recordsArray = [[Record]]()
-    var tags = [String]()
-    var tagRecordsCountTuples = [(tag: String, recordsCount: Int)]()
+class EditTagTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+    
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var moc: NSManagedObjectContext {
+        return appDelegate.managedObjectContext
+    }
+    var fetchedResultsController: NSFetchedResultsController!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,88 +27,46 @@ class EditTagTableViewController: UITableViewController, EditTagTableViewCellDel
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         navigationItem.rightBarButtonItem = editButtonItem()
         
-        
-        if let recordsArray = loadRecords() {
-            self.recordsArray = recordsArray
-        }
-        
-        if let tags = loadTags() {
-            self.tags = tags
-            tags.forEach { tag in tagRecordsCountTuples.append((tag, 0))}
-        }
-        
-        let allRecords = recordsArray.flatMap { $0 }
-        for (index, tuple) in tagRecordsCountTuples.enumerate() {
-            let recordsCountForTag = allRecords.filter({ $0.tags.contains(tuple.tag) }).count
-            tagRecordsCountTuples[index].recordsCount = recordsCountForTag
-        }
+        initializeFetchedResultsController()
     }
     
-    func loadRecords() -> [[Record]]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Record.ArchiveURL.path!) as? [[Record]]
-    }
-    
-    func loadTags() -> [String]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Constants.TagArchiveURL.path!) as? [String]
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func initializeFetchedResultsController() {
+        let request = NSFetchRequest(entityName: "Tag")
+        let sortDescriptoer = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [sortDescriptoer]
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+        self.fetchedResultsController.delegate = self
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Failed to load tags: \(error)")
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        if self.fetchedResultsController == nil { return 0 }
+        return self.fetchedResultsController.sections!.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tagRecordsCountTuples.count
+        if self.fetchedResultsController == nil { return 0 }
+        return fetchedResultsController.sections![section].numberOfObjects
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("EditTagCell", forIndexPath: indexPath) as! EditTagTableViewCell
-        let tuple = tagRecordsCountTuples[indexPath.row]
+
         // Configure the cell...
-        cell.configCell(tuple)
-        cell.delegate = self
+        let tag = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tag
+        cell.configCell(tag)
 
         return cell
     }
     
-    // MARK: EditTagTableViewCellDelegate
-    func tagDidEndEditing(before: String, after: String) {
-        for (section, records) in recordsArray.enumerate() {
-            for (row, record) in records.enumerate() {
-                for (tagIndex, tag) in record.tags.enumerate() {
-                    if tag == before {
-                        recordsArray[section][row].tags[tagIndex] = after
-                    }
-                }
-            }
-        }
-        
-        for (index, tag) in tags.enumerate() {
-            if tag == before {
-                tags[index] = after
-            }
-        }
-        
-        saveRecords()
-        saveTags()
-    }
-    
-    func saveRecords() {
-        NSKeyedArchiver.archiveRootObject(recordsArray, toFile: Record.ArchiveURL.path!)
-    }
-    
-    func saveTags() {
-        NSKeyedArchiver.archiveRootObject(tags, toFile: Constants.TagArchiveURL.path!)
-    }
-
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
@@ -114,28 +77,49 @@ class EditTagTableViewController: UITableViewController, EditTagTableViewCellDel
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            deleteTag(tagRecordsCountTuples[indexPath.row].tag)
-            tagRecordsCountTuples.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            let tagToDelete = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tag
+            self.moc.deleteObject(tagToDelete)
+            self.appDelegate.saveContext()
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
     
-    func deleteTag(tag: String) {
-        for (section, records) in recordsArray.enumerate() {
-            for (row, record) in records.enumerate() {
-                recordsArray[section][row].tags = record.tags.filter { $0 != tag }
-            }
-            recordsArray[section] = records.filter { !$0.tags.isEmpty }
-        }
-        recordsArray = recordsArray.filter { !$0.isEmpty }
-        saveRecords()
-        
-        tags = tags.filter { $0 != tag }
-        saveTags()
+    // MARK: NSFetchedResultsControllerDelegate
+    
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.beginUpdates()
     }
-
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        switch type {
+        case .Delete:
+            self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Insert:
+            self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        default:
+            break
+        }
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Delete:
+            self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Update:
+            self.tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Move:
+            self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            self.tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        }
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.endUpdates()
+    }
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {

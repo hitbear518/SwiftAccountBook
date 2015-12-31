@@ -9,13 +9,17 @@
 import UIKit
 import CoreData
 
-class RecordTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class RecordTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, RecordSectionHeaderDelegate {
     
     // MARK: Properties
     
-    let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var moc: NSManagedObjectContext {
+        return appDelegate.managedObjectContext
+    }
     var dateRecordsSumExpandedTuples = [(date: NSDate, records: [Record], sum: Double, expanded: Bool)]()
     let calendar = NSCalendar.init(identifier: NSCalendarIdentifierGregorian)!
+    var sectionOpened: Int?
     
     var fetchedResultsController: NSFetchedResultsController!
 
@@ -26,20 +30,21 @@ class RecordTableViewController: UITableViewController, NSFetchedResultsControll
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
+        self.tableView.registerNib(UINib(nibName: "RecordSectionHeader", bundle: NSBundle.mainBundle()), forHeaderFooterViewReuseIdentifier: "RecordSectionHeader")
         initializeFetchedResultsController()
     }
     
     func initializeFetchedResultsController() {
-        let request = NSFetchRequest(entityName: "DayCost")
-        let dateSortDescriptor = NSSortDescriptor(key: "date", ascending: false)
-        request.sortDescriptors = [dateSortDescriptor]
+        let recordRequest = NSFetchRequest(entityName: "Record")
+        let dayInEraSortDescriptor = NSSortDescriptor(key: "dayInEra", ascending: false)
         
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.moc, sectionNameKeyPath: "date", cacheName: "rootCache")
-        fetchedResultsController.delegate = self
+        recordRequest.sortDescriptors = [dayInEraSortDescriptor]
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: recordRequest, managedObjectContext: self.moc, sectionNameKeyPath: "dayInEra", cacheName: nil)
+        self.fetchedResultsController.delegate = self
         do {
-            try fetchedResultsController.performFetch()
+            try self.fetchedResultsController.performFetch()
         } catch {
             fatalError("Failed to fetched day costs: \(error)")
         }
@@ -52,94 +57,229 @@ class RecordTableViewController: UITableViewController, NSFetchedResultsControll
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let dayCost = fetchedResultsController.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: section)) as! DayCost
-        
-        return dayCost.records.count + 1
+        if let sectionOpened = self.sectionOpened where sectionOpened == section {
+//            print("section \(section) opened, \(fetchedResultsController.sections![section].numberOfObjects) rows")
+            return fetchedResultsController.sections![section].numberOfObjects
+        } else  {
+//            print("section\(section) closed, 0 rows")
+            return 0
+        }
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("DateSumCell", forIndexPath: indexPath)
-            let dayCost = fetchedResultsController.objectAtIndexPath(indexPath) as! DayCost
-            
-            if calendar.isDateInToday(dayCost.date) {
-                cell.textLabel?.text = "Today"
-            } else if calendar.isDateInYesterday(dayCost.date) {
-                cell.textLabel?.text = "Yestoday"
-            } else {
-                cell.textLabel?.text = NSDateFormatter.localizedStringFromDate(dayCost.date, dateStyle: .LongStyle, timeStyle: .NoStyle)
-            }
-            cell .detailTextLabel?.text = String(dayCost.cost)
-            return cell
-        } else {
-           let cell = tableView.dequeueReusableCellWithIdentifier("RecordTableViewCell", forIndexPath: indexPath) as! RecordTableViewCell
-            let record = dateRecordsSumExpandedTuples[indexPath.section].records[indexPath.row - 1]
-            cell.configCell(record)
-            return cell
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let dayRecords = self.fetchedResultsController.sections![section].objects as! [Record]
+        let date = dayRecords[0].date
+        let dayCost = dayRecords.reduce(0.0) { sum, record in
+            sum + record.number
         }
+        let header = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier("RecordSectionHeader") as! RecordSectionHeader
+        if calendar.isDateInToday(date) {
+            header.dateLabel?.text = "Today"
+        } else if calendar.isDateInYesterday(date) {
+            header.dateLabel?.text = "Yestoday"
+        } else {
+            header.dateLabel?.text = NSDateFormatter.localizedStringFromDate(date, dateStyle: .FullStyle, timeStyle: .NoStyle)
+        }
+        header.sumLabel?.text = String(dayCost)
+        
+        header.delegate = self
+        header.section = section
+        return header
+        
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44.0
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("RecordTableViewCell", forIndexPath: indexPath) as! RecordTableViewCell
+        let record = fetchedResultsController.objectAtIndexPath(indexPath) as! Record
+        cell.configCell(record)
+        return cell
     }
 
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return indexPath.row > 0
+        return true
     }
 
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            tableView.beginUpdates()
-            dateRecordsSumExpandedTuples[indexPath.section].records.removeAtIndex(indexPath.row - 1)
-            if (dateRecordsSumExpandedTuples[indexPath.section].records).isEmpty {
-                dateRecordsSumExpandedTuples.removeAtIndex(indexPath.section)
-                tableView.deleteSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
-                if !dateRecordsSumExpandedTuples.isEmpty {
-                    setExpaned(true, atSection: 0)
-                }
-            } else {
-                updateSumForTuple(&dateRecordsSumExpandedTuples[indexPath.section])
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Fade)
-            }
-            tableView.endUpdates()
+            let recordToDelete = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Record
+            moc.deleteObject(recordToDelete)
             
-            saveRecords()
+            appDelegate.saveContext()
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
     
-    // MARK: UITableViewDelegate
-    
+    // MARK UITableViewDelegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0 {
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            tableView.beginUpdates()
-            dateRecordsSumExpandedTuples.enumerate().filter({ $0.index != indexPath.section }).forEach {
-                section, tuple in
-                if (tuple.expanded) {
-                    setExpaned(false, atSection: section) }
-                }
-            let expanded = !dateRecordsSumExpandedTuples[indexPath.section].expanded
-            setExpaned(expanded, atSection: indexPath.section)
-            tableView.endUpdates()
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44.0
+    }
+    
+    // MARK: NSFetchedResultsControllerDelegate
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        switch type {
+        case .Insert:
+            if let sectionOpened = self.sectionOpened where sectionOpened >= sectionIndex {
+                self.sectionOpened! += 1
+            }
+            for section in sectionIndex..<self.tableView.numberOfSections {
+                let header = self.tableView.headerViewForSection(section) as! RecordSectionHeader
+                header.section = header.section + 1
+            }
+            self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Delete:
+            if let sectionOpened = self.sectionOpened where sectionOpened == sectionIndex {
+                self.sectionOpened = nil
+            }
+            for section in (sectionIndex + 1)..<self.tableView.numberOfSections {
+                let header = self.tableView.headerViewForSection(section) as! RecordSectionHeader
+                header.section = header.section - 1
+            }
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        default:
+            break
         }
     }
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            if self.sectionOpened == newIndexPath!.section {
+                self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+            }
+            if self.tableView.numberOfSections == self.fetchedResultsController.sections!.count {
+                updateSumAtSection(newIndexPath!.section)
+            }
+        case .Delete:
+            self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            if self.tableView.numberOfRowsInSection(indexPath!.section) > 1 {
+                updateSumAtSection(indexPath!.section)
+            }
+        case .Update:
+            if self.sectionOpened == indexPath!.section {
+                self.tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            }
+            updateSumAtSection(indexPath!.section)
+        case .Move:
+            if self.tableView.numberOfSections < self.fetchedResultsController.sections!.count {
+                if newIndexPath!.section <= indexPath!.section {
+                    // section inserted and is before old section
+                    let header = self.tableView.headerViewForSection(indexPath!.section) as! RecordSectionHeader
+                    let sum = getSumAtSection(indexPath!.section + 1)
+                    header.sumLabel?.text = String(sum)
+                } else {
+                    updateSumAtSection(indexPath!.section)
+                }
+            } else if self.tableView.numberOfSections > self.fetchedResultsController.sections!.count {
+                if indexPath!.section <= newIndexPath!.section {
+                    let header = self.tableView.headerViewForSection(newIndexPath!.section + 1) as! RecordSectionHeader
+                    let sum = getSumAtSection(newIndexPath!.section)
+                    header.sumLabel?.text = String(sum)
+                } else {
+                    updateSumAtSection(newIndexPath!.section)
+                }
+            } else {
+                updateSumAtSection(indexPath!.section)
+                updateSumAtSection(newIndexPath!.section)
+            }
+            
+            self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            if  self.sectionOpened == newIndexPath!.section {
+                self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    func updateSumAtSection(section: Int) {
+        if let header = self.tableView.headerViewForSection(section) as? RecordSectionHeader {
+            let sum = getSumAtSection(section)
+            header.sumLabel?.text = String(sum)
+        }
     }
-    */
+    
+    func getSumAtSection(section: Int) -> Double {
+        let dayRecords = self.fetchedResultsController.sections![section].objects as! [Record]
+        let sum = dayRecords.reduce(0.0) { sum, record in
+            sum + record.number
+        }
+        return sum
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+    
+    func getDataIndexPathFrom(tableIndexPath: NSIndexPath) -> NSIndexPath {
+        return NSIndexPath(forRow: tableIndexPath.row - 1, inSection: tableIndexPath.section)
+    }
+    
+    func getTableIndexPathFrom(dataIndexPath: NSIndexPath) -> NSIndexPath {
+        return NSIndexPath(forRow: dataIndexPath.row + 1, inSection: dataIndexPath.section)
+    }
+    
+    // MARK: RecordSectionHeaderDelegate
+    
+    func openSection(sectionToOpen: Int) {
+        self.tableView.beginUpdates()
+        
+        let indexPathsToInsert = getIndexPathsToInsert(sectionToOpen)
+        var indexPathsToDelete = [NSIndexPath]()
+        
+        if let previousOpendedSection = self.sectionOpened {
+            indexPathsToDelete = getIndexPathsToDelete(previousOpendedSection)
+            let previousHeader = self.tableView.headerViewForSection(previousOpendedSection) as! RecordSectionHeader
+            previousHeader.disclosureButton.selected = !previousHeader.disclosureButton.selected
+        }
+        
+        self.tableView.insertRowsAtIndexPaths(indexPathsToInsert, withRowAnimation: .Fade)
+        self.tableView.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: .Fade)
+        
+        self.sectionOpened = sectionToOpen
+        self.tableView.endUpdates()
+    }
+    
+    
+    func getIndexPathsToInsert(sectionToOpen: Int) -> [NSIndexPath] {
+        var indexPathsToInsert = [NSIndexPath]()
+        for row in 0..<self.fetchedResultsController.sections![sectionToOpen].numberOfObjects {
+            indexPathsToInsert.append(NSIndexPath(forRow: row, inSection: sectionToOpen))
+        }
+        return indexPathsToInsert
+    }
+    
+    func closeSection(sectionToClose: Int) {
+        if let sectionOpened = self.sectionOpened where sectionOpened == sectionToClose {
+            self.sectionOpened = nil
+            let indexPathsToDelete = getIndexPathsToDelete(sectionOpened)
+            self.tableView.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: .Fade)
+        } else {
+            fatalError("Section \(sectionToClose) not opended")
+        }
+    }
+    
+    func getIndexPathsToDelete(sectionToClose: Int) -> [NSIndexPath] {
+        var indexPathsToDelete = [NSIndexPath]()
+        for row in 0..<self.fetchedResultsController.sections![sectionToClose].numberOfObjects {
+            indexPathsToDelete.append(NSIndexPath(forRow: row, inSection: sectionToClose))
+        }
+        return indexPathsToDelete
+    }
+    
 
     // MARK: - Navigation
 
@@ -148,123 +288,13 @@ class RecordTableViewController: UITableViewController, NSFetchedResultsControll
         if segue.identifier == "ShowDetail" {
             let recordViewController = segue.destinationViewController as! RecordViewController
             let selectedRecordCell = sender as! RecordTableViewCell
-            let selectedIndexPath = tableView.indexPathForCell(selectedRecordCell)!
-            
-            let selectedTuple = dateRecordsSumExpandedTuples[selectedIndexPath.section]
-            let selectedRecord = selectedTuple.records[selectedIndexPath.row - 1]
-            
-            recordViewController.record = Record(number: selectedRecord.number, tags: selectedRecord.tags, date: selectedRecord.date, recordDescription: selectedRecord.recordDescription)
+            let cellIndexPath = tableView.indexPathForCell(selectedRecordCell)!
+            let record = self.fetchedResultsController.objectAtIndexPath(cellIndexPath) as! Record
+            recordViewController.record = record
         }
     }
     
     @IBAction func unwindToRecordList(sender: UIStoryboardSegue) {
-        guard let sourceViewController = sender.sourceViewController as? RecordViewController, comingRecord = sourceViewController.record else { return }
-        
-        tableView.beginUpdates()
-        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            // Coming From record changing
-            
-            let selectedTuple = dateRecordsSumExpandedTuples[selectedIndexPath.section]
-            let originalRecord = selectedTuple.records[selectedIndexPath.row - 1]
-            if (originalRecord.date == comingRecord.date) {
-                // Date didn't change
-                
-                dateRecordsSumExpandedTuples[selectedIndexPath.section].records[selectedIndexPath.row - 1] = comingRecord
-                updateSumForTuple(&dateRecordsSumExpandedTuples[selectedIndexPath.section])
-                tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .Fade)
-            } else {
-                // Date changed
-                
-                // Delete old record and insert new one
-                dateRecordsSumExpandedTuples[selectedIndexPath.section].records.removeAtIndex(selectedIndexPath.row - 1)
-                if dateRecordsSumExpandedTuples[selectedIndexPath.section].records.isEmpty {
-                    // This day now has no records, delete the section
-                    dateRecordsSumExpandedTuples.removeAtIndex(selectedIndexPath.section)
-                    tableView.deleteSections(NSIndexSet(index: selectedIndexPath.section), withRowAnimation: .Fade)
-                    if !dateRecordsSumExpandedTuples.isEmpty {
-                        setExpaned(true, atSection: 0)
-                    }
-                } else {
-                    updateSumForTuple(&dateRecordsSumExpandedTuples[selectedIndexPath.section])
-                    tableView.deleteRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .Fade)
-                    tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: selectedIndexPath.section)], withRowAnimation: .Fade)
-                }
-                insertRecord(comingRecord)
-            }
-        } else {
-            // Coming From new record
-            insertRecord(comingRecord)
-        }
-        tableView.endUpdates()
-        
-        saveRecords()
-    }
-    
-    func setExpaned(expanded: Bool, atSection section: Int) {
-        guard dateRecordsSumExpandedTuples[section].expanded != expanded else { return }
-        
-        dateRecordsSumExpandedTuples[section].expanded = expanded
-        
-        let records = dateRecordsSumExpandedTuples[section].records
-        var indexPaths = [NSIndexPath]()
-        for row in 1...records.count {
-            indexPaths.append(NSIndexPath(forRow: row, inSection: section))
-        }
-        if expanded {
-            tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
-        } else {
-            tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
-        }
-    }
-    
-    func insertRecord(comingRecord: Record) {
-        // If no data at all
-        if dateRecordsSumExpandedTuples.isEmpty {
-            dateRecordsSumExpandedTuples.append((comingRecord.date, [comingRecord], comingRecord.number, true))
-            updateSumForTuple(&dateRecordsSumExpandedTuples[0])
-            tableView.insertSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
-            return
-        }
-        
-        // Iterate table
-        for (section, tuple) in dateRecordsSumExpandedTuples.enumerate() {
-            if calendar.isDate(comingRecord.date, inSameDayAsDate: tuple.date) {
-                // If find matching section
-                dateRecordsSumExpandedTuples[section].records.insert(comingRecord, atIndex: 0)
-                updateSumForTuple(&dateRecordsSumExpandedTuples[section])
-                if (tuple.expanded) {
-                    tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: section)], withRowAnimation: .Fade)
-                }
-                tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: section)], withRowAnimation: .Fade)
-                return
-            } else if comingRecord.date.timeIntervalSinceDate(tuple.date) > 0 {
-                comingRecord.date.laterDate(tuple.date)
-                // Not matching section, but find older date
-                dateRecordsSumExpandedTuples.insert((comingRecord.date, [comingRecord], comingRecord.number, false), atIndex: section)
-                updateSumForTuple(&dateRecordsSumExpandedTuples[section])
-                tableView.insertSections(NSIndexSet(index: section), withRowAnimation: .Fade)
-                return
-            }
-            
-        }
-        
-        // If no matching, then record date is oldest
-        dateRecordsSumExpandedTuples.append((comingRecord.date, [comingRecord], comingRecord.number, false))
-        updateSumForTuple(&dateRecordsSumExpandedTuples[dateRecordsSumExpandedTuples.count - 1])
-        tableView.insertSections(NSIndexSet(index: dateRecordsSumExpandedTuples.count - 1), withRowAnimation: .None)
-    }
-    
-   // MARK: - NSCoding
-    
-    func saveRecords() {
-        let recordsArray = dateRecordsSumExpandedTuples.map { _, records, _, _  in records}
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(recordsArray, toFile: Record.ArchiveURL.path!)
-        if !isSuccessfulSave {
-            print("Failed to save records")
-        }
-    }
-    
-    func loadRecords() -> [[Record]]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Record.ArchiveURL.path!) as? [[Record]]
+        appDelegate.saveContext()
     }
 }

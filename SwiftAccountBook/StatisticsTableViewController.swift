@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class StatisticsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class StatisticsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,8 +30,12 @@ class StatisticsTableViewController: UIViewController, UITableViewDataSource, UI
     var now: NSDate {
         return NSDate()
     }
-    var recordsArray = [[Record]]()
-    var tagSumTuples = [(tag: String, sum: Double)]()
+    
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var moc: NSManagedObjectContext {
+        return appDelegate.managedObjectContext
+    }
+    var fetchedResultsController: NSFetchedResultsController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,27 +54,25 @@ class StatisticsTableViewController: UIViewController, UITableViewDataSource, UI
         nextButton.titleEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, nextImage!.size.width)
         
         endingDate = now
+        
+        initializeFetchedResultsController()
+    }
+    
+    func initializeFetchedResultsController() {
+        let request = NSFetchRequest(entityName: "Tag")
+        let tagNameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [tagNameSortDescriptor]
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+        self.fetchedResultsController.delegate = self
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Failed to load tags: \(error)")
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        recordsArray.removeAll()
-        if let recordsArray = loadRecords() {
-            self.recordsArray = recordsArray
-        }
-        
-        tagSumTuples.removeAll()
-        // tuples with empty cost
-        loadTags()?.forEach{ tag in tagSumTuples.append((tag, 0.0)) }
-        // all records
-        let allRecords = recordsArray.flatMap { $0 }
-        
-        for (index, tuple) in tagSumTuples.enumerate() {
-            tagSumTuples[index].sum = allRecords.filter { record in record.tags.contains(tuple.tag) }.reduce(0.0) { cost, record in cost + record.number }
-        }
-        tagSumTuples = tagSumTuples.filter { _, sum in sum > 0 }
-        tableView.reloadData()
         
         startingDay = NSUserDefaults.standardUserDefaults().integerForKey("StartingDay")
         updateDateInfo()
@@ -104,6 +107,8 @@ class StatisticsTableViewController: UIViewController, UITableViewDataSource, UI
             nextButton.enabled = true
         }
         intervalLabel.text = "\(startingDateStr) - \(endingDateStr)"
+        
+        self.tableView.reloadData()
     }
     
     func isDateThisMonth(date: NSDate) -> Bool {
@@ -137,35 +142,76 @@ class StatisticsTableViewController: UIViewController, UITableViewDataSource, UI
         return records.reduce(0.0) { cost, record in cost + record.number }
     }
     
-    func loadRecords() -> [[Record]]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Record.ArchiveURL.path!) as? [[Record]]
-    }
-    
-    func loadTags() -> [String]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Constants.TagArchiveURL.path!) as? [String]
-    }
-
     // MARK: - Table view data source
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return fetchedResultsController.sections!.count
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tagSumTuples.count
+        return fetchedResultsController.sections![section].numberOfObjects
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("StatisticsTableViewCell", forIndexPath: indexPath) as! StatisticsTableViewCell
         
         // Configure the cell...
-        let (tag, sum) = tagSumTuples[indexPath.row]
-        cell.tagLabel.text = tag
-        cell.sumLabel.text = String(sum)
+        let tag = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Tag
+        cell.tagLabel.text = tag.name
+        
+        do {
+            if startingDate != nil && endingDate != nil {
+                let recordsRequest = NSFetchRequest(entityName: "Record")
+                let startDayInEra = calendar.ordinalityOfUnit(.Day, inUnit: .Era, forDate: startingDate)
+                let endDayInEra = calendar.ordinalityOfUnit(.Day, inUnit: .Era, forDate: endingDate)
+                recordsRequest.predicate = NSPredicate(format: "(ANY tags.name == %@) && (dayInEra >= %d) && (dayInEra <= %d)", tag.name, startDayInEra, endDayInEra)
+                let records = try self.moc.executeFetchRequest(recordsRequest)
+                let sum = records.reduce(0.0) { sum, record in
+                    sum + record.number
+                }
+                cell.sumLabel.text = String(sum)
+            }
+        } catch {
+            fatalError("Fetch records failed")
+        }
 
         return cell
+    }
+    
+    // MARK: NSFetchedResultsControllerDelegate
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.beginUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        switch type {
+        case .Delete:
+            self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Insert:
+            self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        default:
+            break
+        }
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Delete:
+            self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Update:
+            self.tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Move:
+            self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            self.tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        }
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.endUpdates()
     }
 
     /*

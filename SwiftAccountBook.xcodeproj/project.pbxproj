@@ -15,21 +15,25 @@
 		4B10268C1C0EFC7C00202B95 /* RecordViewControllerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10268B1C0EFC7C00202B95 /* RecordViewControllerHeader.swift */; };
 		4B10268E1C0EFC9500202B95 /* RecordViewControllerFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10268D1C0EFC9500202B95 /* RecordViewControllerFooter.swift */; };
 		4B1026BC1C1067B300202B95 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1026BB1C1067B300202B95 /* Constants.swift */; };
+		4B1263701C2E71D900731968 /* RecordSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B12636F1C2E71D900731968 /* RecordSectionHeader.xib */; };
+		4B1263721C2E7DF000731968 /* RecordSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1263711C2E7DF000731968 /* RecordSectionHeader.swift */; };
 		4B14D34C1C1EB938002FE7D0 /* EditTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B14D34B1C1EB938002FE7D0 /* EditTagTableViewCell.swift */; };
 		4B14D34E1C1EB951002FE7D0 /* EditTagTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B14D34D1C1EB951002FE7D0 /* EditTagTableViewController.swift */; };
 		4B21099D1C155557001ED0C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B21099C1C155557001ED0C2 /* Assets.xcassets */; };
-		4B35F7621BD373540084F57C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7611BD373540084F57C /* Record.swift */; };
-		4B35F7631BD373540084F57C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7611BD373540084F57C /* Record.swift */; };
+		4B24D05E1C3527DD00E9264A /* MyDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24D05D1C3527DD00E9264A /* MyDataController.swift */; };
 		4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7641BD37E730084F57C /* RecordTableViewController.swift */; };
 		4B35F7671BD37E910084F57C /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */; };
 		4B4C9F2A1C195F7100BF2ED4 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */; };
 		4B65AF511C129D8300338DB5 /* StatisticsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B65AF501C129D8300338DB5 /* StatisticsTableViewController.swift */; };
-		4BA0F9FC1C2A690D00BBCCE7 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0F9FB1C2A690D00BBCCE7 /* Tag.swift */; };
-		4BA0F9FE1C2A836900BBCCE7 /* DayCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0F9FD1C2A836900BBCCE7 /* DayCost.swift */; };
+		4BB15C4D1C2B859E00D7BD1C /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB15C4B1C2B859E00D7BD1C /* Tag+CoreDataProperties.swift */; };
+		4BB15C4E1C2B859E00D7BD1C /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB15C4C1C2B859E00D7BD1C /* Tag.swift */; };
+		4BB15C511C2B867C00D7BD1C /* Record+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB15C4F1C2B867C00D7BD1C /* Record+CoreDataProperties.swift */; };
+		4BB15C521C2B867C00D7BD1C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB15C501C2B867C00D7BD1C /* Record.swift */; };
+		4BB15C551C2BC7FC00D7BD1C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BB15C531C2BC7FC00D7BD1C /* DataModel.xcdatamodeld */; };
 		4BB199CF1C11ADF900533CA5 /* StatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB199CE1C11ADF900533CA5 /* StatisticsTableViewCell.swift */; };
-		4BDAC2941C2580CC0065A0D1 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAC2921C2580CC0065A0D1 /* DataModel.xcdatamodeld */; };
 		4BDBBB291C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBBB281C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift */; };
 		4BDBBB2B1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBBB2A1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift */; };
+		4BE20FA21C2D70F600523D70 /* DateSumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE20FA11C2D70F600523D70 /* DateSumTableViewCell.swift */; };
 		4BE72E901C1C0D1700F46779 /* PickerViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE72E8F1C1C0D1700F46779 /* PickerViewTableViewCell.swift */; };
 		4BED775C1BD22DD9004DD518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED775B1BD22DD9004DD518 /* AppDelegate.swift */; };
 		4BED77611BD22DD9004DD518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BED775F1BD22DD9004DD518 /* Main.storyboard */; };
@@ -51,25 +55,30 @@
 		4B0A999B1C171DE600E1F8E3 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		4B0A999D1C1723C700E1F8E3 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		4B0A999F1C17256B00E1F8E3 /* SettingsCellDescriptors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingsCellDescriptors.plist; sourceTree = "<group>"; };
-		4B1026851C0EECD800202B95 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		4B1026851C0EECD800202B95 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RecordViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4B1026871C0EF5EF00202B95 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		4B10268B1C0EFC7C00202B95 /* RecordViewControllerHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewControllerHeader.swift; sourceTree = "<group>"; };
 		4B10268D1C0EFC9500202B95 /* RecordViewControllerFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewControllerFooter.swift; sourceTree = "<group>"; };
 		4B1026BB1C1067B300202B95 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4B12636F1C2E71D900731968 /* RecordSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordSectionHeader.xib; sourceTree = "<group>"; };
+		4B1263711C2E7DF000731968 /* RecordSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordSectionHeader.swift; sourceTree = "<group>"; };
 		4B14D34B1C1EB938002FE7D0 /* EditTagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTagTableViewCell.swift; sourceTree = "<group>"; };
 		4B14D34D1C1EB951002FE7D0 /* EditTagTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTagTableViewController.swift; sourceTree = "<group>"; };
 		4B21099C1C155557001ED0C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4B35F7611BD373540084F57C /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		4B24D05D1C3527DD00E9264A /* MyDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataController.swift; sourceTree = "<group>"; };
 		4B35F7641BD37E730084F57C /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		4B65AF501C129D8300338DB5 /* StatisticsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewController.swift; sourceTree = "<group>"; };
-		4BA0F9FB1C2A690D00BBCCE7 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
-		4BA0F9FD1C2A836900BBCCE7 /* DayCost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCost.swift; sourceTree = "<group>"; };
+		4BB15C4B1C2B859E00D7BD1C /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4BB15C4C1C2B859E00D7BD1C /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		4BB15C4F1C2B867C00D7BD1C /* Record+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Record+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4BB15C501C2B867C00D7BD1C /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		4BB15C541C2BC7FC00D7BD1C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		4BB199CE1C11ADF900533CA5 /* StatisticsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewCell.swift; sourceTree = "<group>"; };
-		4BDAC2931C2580CC0065A0D1 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		4BDBBB281C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentDatePickerTransitioningDelegate.swift; sourceTree = "<group>"; };
 		4BDBBB2A1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentDatePickerPresentationController.swift; sourceTree = "<group>"; };
+		4BE20FA11C2D70F600523D70 /* DateSumTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSumTableViewCell.swift; sourceTree = "<group>"; };
 		4BE72E8F1C1C0D1700F46779 /* PickerViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewTableViewCell.swift; sourceTree = "<group>"; };
 		4BED77581BD22DD9004DD518 /* SwiftAccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftAccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BED775B1BD22DD9004DD518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,10 +130,11 @@
 			isa = PBXGroup;
 			children = (
 				4BED775B1BD22DD9004DD518 /* AppDelegate.swift */,
+				4BB15C4F1C2B867C00D7BD1C /* Record+CoreDataProperties.swift */,
+				4BB15C501C2B867C00D7BD1C /* Record.swift */,
+				4BB15C4B1C2B859E00D7BD1C /* Tag+CoreDataProperties.swift */,
+				4BB15C4C1C2B859E00D7BD1C /* Tag.swift */,
 				4B21099C1C155557001ED0C2 /* Assets.xcassets */,
-				4B35F7611BD373540084F57C /* Record.swift */,
-				4BA0F9FB1C2A690D00BBCCE7 /* Tag.swift */,
-				4BA0F9FD1C2A836900BBCCE7 /* DayCost.swift */,
 				4B35F7641BD37E730084F57C /* RecordTableViewController.swift */,
 				4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */,
 				4B1026851C0EECD800202B95 /* RecordViewController.swift */,
@@ -137,7 +147,6 @@
 				4B0A999B1C171DE600E1F8E3 /* SettingsTableViewController.swift */,
 				4B0A999D1C1723C700E1F8E3 /* SettingsTableViewCell.swift */,
 				4BE72E8F1C1C0D1700F46779 /* PickerViewTableViewCell.swift */,
-				4BED775F1BD22DD9004DD518 /* Main.storyboard */,
 				4B0A999F1C17256B00E1F8E3 /* SettingsCellDescriptors.plist */,
 				4BED77671BD22DD9004DD518 /* Info.plist */,
 				4BED77641BD22DD9004DD518 /* LaunchScreen.storyboard */,
@@ -146,7 +155,12 @@
 				4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */,
 				4B14D34B1C1EB938002FE7D0 /* EditTagTableViewCell.swift */,
 				4B14D34D1C1EB951002FE7D0 /* EditTagTableViewController.swift */,
-				4BDAC2921C2580CC0065A0D1 /* DataModel.xcdatamodeld */,
+				4BED775F1BD22DD9004DD518 /* Main.storyboard */,
+				4BB15C531C2BC7FC00D7BD1C /* DataModel.xcdatamodeld */,
+				4BE20FA11C2D70F600523D70 /* DateSumTableViewCell.swift */,
+				4B12636F1C2E71D900731968 /* RecordSectionHeader.xib */,
+				4B1263711C2E7DF000731968 /* RecordSectionHeader.swift */,
+				4B24D05D1C3527DD00E9264A /* MyDataController.swift */,
 			);
 			path = SwiftAccountBook;
 			sourceTree = "<group>";
@@ -243,6 +257,7 @@
 			files = (
 				4BED77661BD22DD9004DD518 /* LaunchScreen.storyboard in Resources */,
 				4B0A99A01C17256B00E1F8E3 /* SettingsCellDescriptors.plist in Resources */,
+				4B1263701C2E71D900731968 /* RecordSectionHeader.xib in Resources */,
 				4B21099D1C155557001ED0C2 /* Assets.xcassets in Resources */,
 				4BED77611BD22DD9004DD518 /* Main.storyboard in Resources */,
 			);
@@ -265,25 +280,29 @@
 				4B1026BC1C1067B300202B95 /* Constants.swift in Sources */,
 				4B10268C1C0EFC7C00202B95 /* RecordViewControllerHeader.swift in Sources */,
 				4BE72E901C1C0D1700F46779 /* PickerViewTableViewCell.swift in Sources */,
-				4BA0F9FC1C2A690D00BBCCE7 /* Tag.swift in Sources */,
 				4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */,
 				4BDBBB291C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift in Sources */,
 				4B0A999E1C1723C700E1F8E3 /* SettingsTableViewCell.swift in Sources */,
 				4B10268E1C0EFC9500202B95 /* RecordViewControllerFooter.swift in Sources */,
-				4BDAC2941C2580CC0065A0D1 /* DataModel.xcdatamodeld in Sources */,
+				4B24D05E1C3527DD00E9264A /* MyDataController.swift in Sources */,
 				4B0A999C1C171DE600E1F8E3 /* SettingsTableViewController.swift in Sources */,
 				4BB199CF1C11ADF900533CA5 /* StatisticsTableViewCell.swift in Sources */,
+				4BB15C551C2BC7FC00D7BD1C /* DataModel.xcdatamodeld in Sources */,
 				4BED775C1BD22DD9004DD518 /* AppDelegate.swift in Sources */,
+				4BE20FA21C2D70F600523D70 /* DateSumTableViewCell.swift in Sources */,
 				4B14D34E1C1EB951002FE7D0 /* EditTagTableViewController.swift in Sources */,
-				4BA0F9FE1C2A836900BBCCE7 /* DayCost.swift in Sources */,
+				4B1263721C2E7DF000731968 /* RecordSectionHeader.swift in Sources */,
+				4BB15C4E1C2B859E00D7BD1C /* Tag.swift in Sources */,
+				4BB15C521C2B867C00D7BD1C /* Record.swift in Sources */,
 				4B14D34C1C1EB938002FE7D0 /* EditTagTableViewCell.swift in Sources */,
 				4B1026881C0EF5EF00202B95 /* TagCollectionViewCell.swift in Sources */,
 				4B65AF511C129D8300338DB5 /* StatisticsTableViewController.swift in Sources */,
 				4B4C9F2A1C195F7100BF2ED4 /* DatePickerViewController.swift in Sources */,
+				4BB15C4D1C2B859E00D7BD1C /* Tag+CoreDataProperties.swift in Sources */,
 				4B1026861C0EECD800202B95 /* RecordViewController.swift in Sources */,
 				4B35F7671BD37E910084F57C /* RecordTableViewCell.swift in Sources */,
-				4B35F7621BD373540084F57C /* Record.swift in Sources */,
 				4BDBBB2B1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift in Sources */,
+				4BB15C511C2B867C00D7BD1C /* Record+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +310,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B35F7631BD373540084F57C /* Record.swift in Sources */,
 				4BED77711BD22DD9004DD518 /* SwiftAccountBookTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,12 +512,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		4BDAC2921C2580CC0065A0D1 /* DataModel.xcdatamodeld */ = {
+		4BB15C531C2BC7FC00D7BD1C /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				4BDAC2931C2580CC0065A0D1 /* DataModel.xcdatamodel */,
+				4BB15C541C2BC7FC00D7BD1C /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 4BDAC2931C2580CC0065A0D1 /* DataModel.xcdatamodel */;
+			currentVersion = 4BB15C541C2BC7FC00D7BD1C /* DataModel.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -12,7 +12,7 @@ class RecordViewControllerFooter: UICollectionReusableView {
     
     @IBOutlet weak var contentView: UIStackView!
     @IBOutlet weak var dateSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var recordDescriptionTextView: UITextView!
+    @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var dateButton: UIButton!
 
     override func awakeFromNib() {

@@ -19,6 +19,25 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "RecordTableViewController.controller(NSFetchedResultsController, didChangeSection : NSFetchedResultsSectionInfo, atIndex : Int, forChangeType : NSFetchedResultsChangeType) -&gt; ():RecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.sectionOpened &lt;= sectionIndex">
+            </PersistentString>
+            <PersistentString
+               value = "expandedArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EditTagTableViewController.tableView(UITableView, commitEditingStyle : UITableViewCellEditingStyle, forRowAtIndexPath : NSIndexPath) -&gt; ():EditTagTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fetchedResultsController.sections![0].numberOfObjects">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "TagCollectionViewCell.init(coder : NSCoder) -&gt; TagCollectionViewCell?:TagCollectionViewCell.swift">
          <PersistentStrings>
             <PersistentString
@@ -49,10 +68,21 @@
                value = "selectedTuple.records">
             </PersistentString>
             <PersistentString
+               value = "self.fetchedResultsController.indexPathForObject(comingRecord)">
+            </PersistentString>
+            <PersistentString
                value = "dateRecordsCostTuples">
             </PersistentString>
             <PersistentString
                value = "selectedIndexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():RecordViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "record.dayInEra">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -107,7 +137,15 @@
          contextName = "RecordTableViewController.setExpaned(Bool, atSection : Int) -&gt; ():RecordTableViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "indexPaths[1].row">
+               value = "indexPaths">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordTableViewController.getIndexPathsToInsert(Int) -&gt; [NSIndexPath]:RecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.fetchedResultsController.sections![1].numberOfObjects">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -139,10 +177,32 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "RecordTableViewController.updateRecordsSumAtSection(Int) -&gt; ():RecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "section">
+            </PersistentString>
+            <PersistentString
+               value = "self.tableView.headerViewForSection(section)">
+            </PersistentString>
+            <PersistentString
+               value = "header.dateLabel?.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "EditTagTableViewCell.textFieldShouldReturn(UITextField) -&gt; Bool:EditTagTableViewCell.swift">
          <PersistentStrings>
             <PersistentString
                value = "textField.text!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EditTagTableViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:EditTagTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fetchedResultsController.sections![0].numberOfObjects">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -164,19 +224,7 @@
          contextName = "StatisticsTableViewController.updateDateInfo() -&gt; ():StatisticsTableViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "startingDate">
-            </PersistentString>
-            <PersistentString
-               value = "NSDateFormatter.localizedStringFromDate(endingDate, dateStyle: .ShortStyle, timeStyle: .FullStyle)">
-            </PersistentString>
-            <PersistentString
-               value = "diff.month">
-            </PersistentString>
-            <PersistentString
-               value = "diff.day">
-            </PersistentString>
-            <PersistentString
-               value = "NSDateFormatter.localizedStringFromDate(match, dateStyle: .ShortStyle, timeStyle: .FullStyle)">
+               value = "self.fetchedResultsController.sections![0].numberOfObjects">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -230,6 +278,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "RecordViewController.collectionView(UICollectionView, viewForSupplementaryElementOfKind : String, atIndexPath : NSIndexPath) -&gt; UICollectionReusableView:RecordViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "record.detail">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "EditTagTableViewController.tagDidEndEditing(String, after : String) -&gt; ():EditTagTableViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -248,6 +304,14 @@
          <PersistentStrings>
             <PersistentString
                value = "dateStackView.hidden">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StatisticsTableViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:StatisticsTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "startingDate">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -273,6 +337,14 @@
             </PersistentString>
             <PersistentString
                value = "bottomLayoutGuide.length">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordTableViewController.closeSection(Int) -&gt; ():RecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPathsToDelete[0].section">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -376,6 +448,17 @@
          <PersistentStrings>
             <PersistentString
                value = "tags">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordTableViewController.openSection(Int) -&gt; ():RecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPathsToInsert[0].section">
+            </PersistentString>
+            <PersistentString
+               value = "indexPathsToDelete">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
