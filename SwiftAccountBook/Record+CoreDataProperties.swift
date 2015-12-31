@@ -18,5 +18,4 @@ extension Record {
     @NSManaged var dayInEra: Int
     @NSManaged var detail: String?
     @NSManaged var tags: NSSet?
-
 }

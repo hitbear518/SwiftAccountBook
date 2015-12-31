@@ -41,6 +41,13 @@ class RecordTableViewController: UITableViewController, NSFetchedResultsControll
         let dayInEraSortDescriptor = NSSortDescriptor(key: "dayInEra", ascending: false)
         
         recordRequest.sortDescriptors = [dayInEraSortDescriptor]
+        var lastMonthFirstDay = NSDate()
+        let day = calendar.ordinalityOfUnit(.Day, inUnit: .Month, forDate: lastMonthFirstDay)
+        if day > 1 {
+            lastMonthFirstDay = calendar.nextDateAfterDate(NSDate(), matchingUnit: .Day, value: 1, options: [.SearchBackwards, .MatchNextTime])!
+        }
+        lastMonthFirstDay = calendar.dateByAddingUnit(.Month, value: -1, toDate: lastMonthFirstDay, options: [])!
+        recordRequest.predicate = NSPredicate(format: "date > %@", lastMonthFirstDay)
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: recordRequest, managedObjectContext: self.moc, sectionNameKeyPath: "dayInEra", cacheName: nil)
         self.fetchedResultsController.delegate = self
         do {
