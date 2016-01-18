@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RecordView" customModule="SwiftAccountBook" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="570" height="36"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ja5-rx-YnO">
+                    <rect key="frame" x="8" y="0.0" width="554" height="36"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSs-xI-7Hq">
+                            <rect key="frame" x="0.0" y="0.0" width="522" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="b86-bz-wos"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJN-oj-AFb">
+                            <rect key="frame" x="522" y="0.0" width="32" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Ja5-rx-YnO" secondAttribute="trailing" constant="8" id="MJh-HG-6Yk"/>
+                <constraint firstAttribute="bottom" secondItem="Ja5-rx-YnO" secondAttribute="bottom" id="OMm-Ql-adF"/>
+                <constraint firstItem="Ja5-rx-YnO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eC9-IP-eKB"/>
+                <constraint firstItem="Ja5-rx-YnO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="gNB-QF-LOZ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="numberLabel" destination="oJN-oj-AFb" id="YWi-oG-I7c"/>
+                <outlet property="tagsLabel" destination="TSs-xI-7Hq" id="cNf-Og-Z4i"/>
+            </connections>
+            <point key="canvasLocation" x="250" y="49"/>
+        </view>
+    </objects>
+</document>

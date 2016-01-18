@@ -9,25 +9,24 @@
 import UIKit
 import CoreData
 
-class RecordViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UITextViewDelegate {
-    
-    let appDelegate = (UIApplication.sharedApplication().delegate) as! AppDelegate
-    var moc: NSManagedObjectContext {
-        return appDelegate.managedObjectContext
-    }
+class EditRecordViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UITextViewDelegate {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     weak var activeView: UIView?
-    weak var record: Record!
+    
+    var record: Record!
+    var isPayment = true
+    
     var currentDate = NSDate() {
         didSet {
             footer.dateButton.setTitle(NSDateFormatter.localizedStringFromDate(currentDate, dateStyle: .FullStyle, timeStyle: .NoStyle), forState: .Normal)
         }
     }
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
-    weak var header: RecordViewControllerHeader!
-    weak var footer: RecordViewControllerFooter!
+    weak var header: EditRecordViewControllerHeader!
+    weak var footer: EditRecordViewControllerFooter!
     
     let secondsOneDay: NSTimeInterval = 24 * 60 * 60
     
@@ -53,12 +52,15 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
         registerForKeyboardNotification()
         loadTags()
         
+        if self.record == nil {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel:")
+        }
     }
     
     func loadTags() {
         let request = NSFetchRequest(entityName: "Tag")
         do {
-            self.savedTags = try moc.executeFetchRequest(request) as! [Tag]
+            self.savedTags = try MyDataController.context.executeFetchRequest(request) as! [Tag]
         } catch {
             fatalError("Failed to load tags: \(error)")
         }
@@ -104,32 +106,13 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if sender === saveButton {
-            let tagNamesFromText = getTagNamesFromText()
-            var recordTags = Set<Tag>()
-            tagNamesFromText.forEach { tagName in
-                if let index = savedTags.indexOf({ $0.name == tagName }) {
-                    recordTags.insert(savedTags[index])
-                } else {
-                    let newTag = NSEntityDescription.insertNewObjectForEntityForName("Tag", inManagedObjectContext: moc) as! Tag
-                    newTag.name = tagName
-                    recordTags.insert(newTag)
-                }
-            }
-            if (record == nil) {
-                record = NSEntityDescription.insertNewObjectForEntityForName("Record", inManagedObjectContext: moc) as! Record
-            }
-            record.tags = recordTags
-            record.number = Double(self.header.numberTextField.text!)!
-            record.date = self.currentDate
-            let calendar = NSCalendar.currentCalendar()
-            record.dayInEra = calendar.ordinalityOfUnit(.Day, inUnit: .Era, forDate: record.date)
-            record.detail = self.footer.detailTextView.text
-        }
-        
         if let destinationViewController = segue.destinationViewController as? DatePickerViewController {
             destinationViewController.modalPresentationStyle = .Custom
             destinationViewController.transitioningDelegate = presentDatePickerTransitioningDelegate
+        }
+        
+        if let _ = segue.destinationViewController as? DayRecordCollectionTableViewController {
+            saveData()
         }
     }
     
@@ -146,14 +129,81 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
-    @IBAction func cancel(sender: AnyObject) {
+    @IBAction func cancel(sender: UIBarButtonItem) {
         if let presentingViewController = presentingViewController {
             presentingViewController.dismissViewControllerAnimated(true, completion: nil)
         } else {
             navigationController!.popViewControllerAnimated(true)
         }
     }
-
+    
+    func getRecordTags() -> Set<Tag> {
+        let tagNamesFromText = getTagNamesFromText()
+        var recordTags = Set<Tag>()
+        for tagName in tagNamesFromText {
+            if let index = self.savedTags.indexOf({ $0.name == tagName}) {
+                recordTags.insert(self.savedTags[index])
+            } else {
+                let newTag = NSEntityDescription.insertNewObjectForEntityForName("Tag", inManagedObjectContext: MyDataController.context) as! Tag
+                newTag.name = tagName
+                recordTags.insert(newTag)
+            }
+        }
+        return recordTags
+    }
+    
+    func saveData() {
+        let recordTags = getRecordTags()
+        let cost = Double(self.header.costTextField.text!)!
+        let detail = self.footer.detailTextView.text
+        let date = self.currentDate
+        let dayInEra = Utils.calendar.ordinalityOfUnit(.Day, inUnit: .Era, forDate: date)
+        
+        // Clear belongedCollection info if needed
+        if self.record != nil && self.record.dayInEra != dayInEra {
+            let oldDayCollection = self.record.belongedCollection
+            oldDayCollection.records.remove(self.record)
+            if oldDayCollection.records.isEmpty {
+                MyDataController.context.deleteObject(oldDayCollection)
+            }
+        }
+        
+        if self.record == nil {
+            self.record = NSEntityDescription.insertNewObjectForEntityForName("Record", inManagedObjectContext: MyDataController.context) as! Record
+        }
+        // set record info
+        self.record.tags = recordTags
+        self.record.number = cost
+        self.record.detail = detail
+        
+        if self.record.dayInEra != dayInEra {
+            self.record.date = date
+            self.record.dayInEra = dayInEra
+            // set belongedCollection
+            var belongedCollection: DayRecordCollection!
+            let dayCostRequest = NSFetchRequest(entityName: "DayRecordCollection")
+            dayCostRequest.predicate = NSPredicate(format: "dayInEra == %d", dayInEra)
+            do {
+                let matchingDayRecordCollections = try MyDataController.context.executeFetchRequest(dayCostRequest) as! [DayRecordCollection]
+                belongedCollection = matchingDayRecordCollections.first
+            } catch {
+                fatalError("Request matching DayRecordCollection of dayInEra \(dayInEra) for record failed: \(error)")
+            }
+            if belongedCollection == nil {
+                belongedCollection = NSEntityDescription.insertNewObjectForEntityForName("DayRecordCollection", inManagedObjectContext: MyDataController.context) as! DayRecordCollection
+                belongedCollection.date = date
+                belongedCollection.dayInEra = dayInEra
+                belongedCollection.records = Set<Record>()
+            }
+            belongedCollection.records.insert(self.record)
+        } else {
+            // Trigger NSFetchedResultsController update
+            self.record.belongedCollection.dayInEra = self.record.belongedCollection.dayInEra
+        }
+        
+        MyDataController.save()
+    }
+    
     // MARK: UICollectionViewDataSource
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -177,15 +227,15 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         inputAccessoryView.setItems([flexibleSpace, doneButton], animated: false)
         if kind == UICollectionElementKindSectionHeader {
-            header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "RecordViewControllerHeader", forIndexPath: indexPath) as! RecordViewControllerHeader
-            header.numberTextField.delegate = self
-            header.numberTextField.addTarget(self, action: "editingChanged:", forControlEvents: .EditingChanged)
-            header.numberTextField.inputAccessoryView = inputAccessoryView
+            header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "EditRecordViewControllerHeader", forIndexPath: indexPath) as! EditRecordViewControllerHeader
+            header.costTextField.delegate = self
+            header.costTextField.addTarget(self, action: "editingChanged:", forControlEvents: .EditingChanged)
+            header.costTextField.inputAccessoryView = inputAccessoryView
             
             header.tagTextField.addTarget(self, action: "editingChanged:", forControlEvents: .EditingChanged)
             header.tagTextField.delegate = self
             if let record = record {
-                header.numberTextField.text = String(record.number)
+                header.costTextField.text = String(record.number)
                 var tagsText = ""
                 record.tags?.forEach { tag in
                     tagsText += "\(tag.name), "
@@ -195,11 +245,13 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
                 if let tagNames = record.tags?.map({ tag -> String in tag.name }) {
                     syncCollectionViewSelectionFromInUseTagNames(tagNames)
                 }
+            } else {
+                syncCollectionViewSelectionFromInUseTagNames([])
             }
             syncSaveButtonEnabled()
             return header
         } else {
-            footer = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, withReuseIdentifier: "RecordViewControllerFooter", forIndexPath: indexPath) as! RecordViewControllerFooter
+            footer = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, withReuseIdentifier: "EditRecordViewControllerFooter", forIndexPath: indexPath) as! EditRecordViewControllerFooter
             footer.detailTextView.delegate = self
             footer.detailTextView.inputAccessoryView = inputAccessoryView
             if let record = record {
@@ -243,9 +295,11 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
             if inUseTagNames.contains(cellTagName) {
                 collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: .None)
                 cell.tagNameLabel.textColor = UIColor.whiteColor()
+                cell.tagNameLabel.backgroundColor = Constants.defaultRedColor
             } else {
                 collectionView.deselectItemAtIndexPath(indexPath, animated: false)
-                cell.tagNameLabel.textColor = UIColor(red: 0.0, green: 118.0 / 225.0 , blue: 1.0, alpha: 1.0)
+                cell.tagNameLabel.textColor = Constants.defaultRedColor
+                cell.tagNameLabel.backgroundColor = UIColor.clearColor()
             }
         }
     }
@@ -265,7 +319,7 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if textField === header.numberTextField {
+        if textField === header.costTextField {
             
             var text = textField.text!
             let range = text.startIndex.advancedBy(range.location)..<text.startIndex.advancedBy(range.location + range.length)
@@ -297,7 +351,7 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func checkValidRecordNumber() -> Bool {
-        let number = Double(header.numberTextField.text!) ?? 0.0
+        let number = Double(header.costTextField.text!) ?? 0.0
         return number > 0.0
     }
     
@@ -331,7 +385,7 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
-    // MARK: UICoolectionViewDelegateFlowLayout
+    // MARK: UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         var size = CGSizeZero
@@ -372,6 +426,7 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
         cell.tagNameLabel.textColor = UIColor.whiteColor()
+        cell.tagNameLabel.backgroundColor = Constants.defaultRedColor
         
         var tagsText = header.tagTextField.text!
         tagsText = tagsText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -387,12 +442,24 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
         cell.tagNameLabel.textColor = UIColor.whiteColor()
+        cell.tagNameLabel.backgroundColor = Constants.defaultRedColor
         cell.alpha = 0.6
     }
     
+    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
+        if let selectedIndexPaths = self.collectionView.indexPathsForSelectedItems() where selectedIndexPaths.contains(indexPath) {
+            cell.tagNameLabel.textColor = UIColor.whiteColor()
+        } else {
+            cell.tagNameLabel.textColor = Constants.defaultRedColor
+        }
+        cell.alpha = 1.0
+    }
+
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
-        cell.tagNameLabel.textColor = UIColor(red: 0.0, green: 118.0 / 255.0, blue: 1.0, alpha: 1)
+        cell.tagNameLabel.textColor = Constants.defaultRedColor
+        cell.tagNameLabel.backgroundColor = UIColor.clearColor()
         
         let tagsFromText = getTagNamesFromText()
         let remainingTags = tagsFromText.filter {!($0 == cell.tagNameLabel.text!)}
@@ -410,12 +477,6 @@ class RecordViewController: UIViewController, UICollectionViewDataSource, UIColl
         saveButton.enabled = checkValidRecordNumber() && checkValidRecordTag()
     }
     
-    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
-        cell.tagNameLabel.textColor = UIColor(red: 0.0, green: 118.0 / 255.0, blue: 1.0, alpha: 1)
-        cell.alpha = 1.0
-    }
-
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {

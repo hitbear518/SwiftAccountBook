@@ -14,8 +14,16 @@ class TagCollectionViewCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        backgroundView = UIImageView(image: UIImage(named: "tag_bg_normal"))
-        selectedBackgroundView = UIImageView(image: UIImage(named: "tag_bg_selected"))
+//        backgroundView = UIImageView(image: UIImage(named: "tag_background_normal"))
+//        selectedBackgroundView = UIImageView(image: UIImage(named: "tag_background_selected"))
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.tagNameLabel.layer.borderWidth = 1
+        self.tagNameLabel.layer.borderColor = Constants.defaultRedColor.CGColor
+        self.tagNameLabel.layer.cornerRadius = 8
+        self.tagNameLabel.clipsToBounds = true
+    }
 }

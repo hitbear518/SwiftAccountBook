@@ -36,4 +36,16 @@ class MyDataController {
             }
         }
     }
+    
+    // MARK: Static reference
+    
+    private static var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    static var context: NSManagedObjectContext {
+        return appDelegate.managedObjectContext
+    }
+    
+    static func save() {
+        appDelegate.saveContext()
+    }
 }

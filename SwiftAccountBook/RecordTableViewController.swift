@@ -47,7 +47,7 @@ class RecordTableViewController: UITableViewController, NSFetchedResultsControll
             lastMonthFirstDay = calendar.nextDateAfterDate(NSDate(), matchingUnit: .Day, value: 1, options: [.SearchBackwards, .MatchNextTime])!
         }
         lastMonthFirstDay = calendar.dateByAddingUnit(.Month, value: -1, toDate: lastMonthFirstDay, options: [])!
-        recordRequest.predicate = NSPredicate(format: "date > %@", lastMonthFirstDay)
+        recordRequest.predicate = NSPredicate(format: "date >= %@", lastMonthFirstDay)
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: recordRequest, managedObjectContext: self.moc, sectionNameKeyPath: "dayInEra", cacheName: nil)
         self.fetchedResultsController.delegate = self
         do {
@@ -65,10 +65,8 @@ class RecordTableViewController: UITableViewController, NSFetchedResultsControll
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sectionOpened = self.sectionOpened where sectionOpened == section {
-//            print("section \(section) opened, \(fetchedResultsController.sections![section].numberOfObjects) rows")
             return fetchedResultsController.sections![section].numberOfObjects
         } else  {
-//            print("section\(section) closed, 0 rows")
             return 0
         }
     }
@@ -125,9 +123,6 @@ class RecordTableViewController: UITableViewController, NSFetchedResultsControll
     }
     
     // MARK UITableViewDelegate
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 44.0
@@ -293,15 +288,11 @@ class RecordTableViewController: UITableViewController, NSFetchedResultsControll
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowDetail" {
-            let recordViewController = segue.destinationViewController as! RecordViewController
+            let recordViewController = segue.destinationViewController as! EditRecordViewController
             let selectedRecordCell = sender as! RecordTableViewCell
             let cellIndexPath = tableView.indexPathForCell(selectedRecordCell)!
             let record = self.fetchedResultsController.objectAtIndexPath(cellIndexPath) as! Record
             recordViewController.record = record
         }
-    }
-    
-    @IBAction func unwindToRecordList(sender: UIStoryboardSegue) {
-        appDelegate.saveContext()
     }
 }

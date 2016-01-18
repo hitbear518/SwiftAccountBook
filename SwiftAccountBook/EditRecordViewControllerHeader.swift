@@ -8,8 +8,8 @@
 
 import UIKit
 
-class RecordViewControllerHeader: UICollectionReusableView {
-    @IBOutlet weak var numberTextField: UITextField!
+class EditRecordViewControllerHeader: UICollectionReusableView {
+    @IBOutlet weak var costTextField: UITextField!
         
     @IBOutlet weak var tagTextField: UITextField!
 }

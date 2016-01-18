@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecordViewControllerFooter: UICollectionReusableView {
+class EditRecordViewControllerFooter: UICollectionReusableView {
     
     @IBOutlet weak var contentView: UIStackView!
     @IBOutlet weak var dateSegmentedControl: UISegmentedControl!

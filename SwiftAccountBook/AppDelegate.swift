@@ -17,12 +17,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        var appDefaults = [String : AnyObject]()
-        appDefaults["StartingDay"] = 1
-        NSUserDefaults.standardUserDefaults().registerDefaults(appDefaults)
+        registerDefaultPrefences()
+        
+        ThemeManager.applyTheme(ThemeManager.currentTheme)
         
         self.dataController = MyDataController()
         return true
+    }
+    
+    func registerDefaultPrefences() {
+        var appDefaults = [String : AnyObject]()
+        appDefaults["StartingDay"] = 1
+        appDefaults[SelectedThemeKey] = 0
+        NSUserDefaults.standardUserDefaults().registerDefaults(appDefaults)
+    }
+    
+    func configAppearances() {
+        self.window?.tintColor = Constants.defaultRedColor
+        configButtonAppearence()
+        
+        UITableView.appearance().backgroundColor = Constants.defaultBackgroundColor
+        UICollectionView.appearance().backgroundColor = Constants.defaultBackgroundColor
+        
+        let view = UIView()
+        view.backgroundColor = Constants.defaultHighlightColor
+        UITableViewCell.appearance().selectedBackgroundView = view
+    }
+    
+    private func configButtonAppearence() {
+//        UIButton.appearance().backgroundColor = Constants.defaultRedColor
+        UIButton.appearance().layer.borderWidth = 1
+//        let appearance = UIButton.appearance()
+//        appearance.tintColor = Constants.defaultRedColor
+//        appearance.layer.cornerRadius = 15
+//        appearance.layer.borderColor = Constants.defaultRedColor.CGColor
+//        appearance.layer.borderWidth = 2
+//        appearance.layer.masksToBounds = true
+//        appearance.backgroundColor = Constants.defaultRedColor
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {

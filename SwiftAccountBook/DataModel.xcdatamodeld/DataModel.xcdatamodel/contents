@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
+    <entity name="DayRecordCollection" representedClassName=".DayRecordCollection" syncable="YES">
+        <attribute name="date" attributeType="Date" syncable="YES"/>
+        <attribute name="dayInEra" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="records" toMany="YES" deletionRule="Deny" destinationEntity="Record" inverseName="belongedCollection" inverseEntity="Record" syncable="YES"/>
+    </entity>
     <entity name="Record" representedClassName=".Record" syncable="YES">
         <attribute name="date" attributeType="Date" syncable="YES"/>
         <attribute name="dayInEra" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isPayment" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="belongedCollection" maxCount="1" deletionRule="Deny" destinationEntity="DayRecordCollection" inverseName="records" inverseEntity="DayRecordCollection" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="records" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Tag" representedClassName=".Tag" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="ofPayment" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Record" inverseName="tags" inverseEntity="Record" syncable="YES"/>
-        <fetchedProperty name="filteredRecords" optional="YES" syncable="YES">
-            <fetchRequest name="fetchedPropertyFetchRequest" entity="Tag"/>
-        </fetchedProperty>
     </entity>
     <elements>
-        <element name="Record" positionX="387" positionY="-67" width="128" height="120"/>
-        <element name="Tag" positionX="610" positionY="-64" width="128" height="104"/>
+        <element name="DayRecordCollection" positionX="495" positionY="-18" width="128" height="90"/>
+        <element name="Record" positionX="387" positionY="-67" width="128" height="150"/>
+        <element name="Tag" positionX="610" positionY="-64" width="128" height="90"/>
     </elements>
 </model>

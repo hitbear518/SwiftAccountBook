@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42CA4CEB669B8C471F75306C /* DayRecordCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CA4D4CF0E3746D427EC396 /* DayRecordCollection+CoreDataProperties.swift */; };
 		4B0A999C1C171DE600E1F8E3 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0A999B1C171DE600E1F8E3 /* SettingsTableViewController.swift */; };
 		4B0A999E1C1723C700E1F8E3 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0A999D1C1723C700E1F8E3 /* SettingsTableViewCell.swift */; };
 		4B0A99A01C17256B00E1F8E3 /* SettingsCellDescriptors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B0A999F1C17256B00E1F8E3 /* SettingsCellDescriptors.plist */; };
-		4B1026861C0EECD800202B95 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1026851C0EECD800202B95 /* RecordViewController.swift */; };
+		4B1026861C0EECD800202B95 /* EditRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1026851C0EECD800202B95 /* EditRecordViewController.swift */; };
 		4B1026881C0EF5EF00202B95 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1026871C0EF5EF00202B95 /* TagCollectionViewCell.swift */; };
-		4B10268C1C0EFC7C00202B95 /* RecordViewControllerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10268B1C0EFC7C00202B95 /* RecordViewControllerHeader.swift */; };
-		4B10268E1C0EFC9500202B95 /* RecordViewControllerFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10268D1C0EFC9500202B95 /* RecordViewControllerFooter.swift */; };
+		4B10268C1C0EFC7C00202B95 /* EditRecordViewControllerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10268B1C0EFC7C00202B95 /* EditRecordViewControllerHeader.swift */; };
+		4B10268E1C0EFC9500202B95 /* EditRecordViewControllerFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10268D1C0EFC9500202B95 /* EditRecordViewControllerFooter.swift */; };
 		4B1026BC1C1067B300202B95 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1026BB1C1067B300202B95 /* Constants.swift */; };
 		4B1263701C2E71D900731968 /* RecordSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B12636F1C2E71D900731968 /* RecordSectionHeader.xib */; };
 		4B1263721C2E7DF000731968 /* RecordSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1263711C2E7DF000731968 /* RecordSectionHeader.swift */; };
@@ -21,8 +22,13 @@
 		4B14D34E1C1EB951002FE7D0 /* EditTagTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B14D34D1C1EB951002FE7D0 /* EditTagTableViewController.swift */; };
 		4B21099D1C155557001ED0C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B21099C1C155557001ED0C2 /* Assets.xcassets */; };
 		4B24D05E1C3527DD00E9264A /* MyDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24D05D1C3527DD00E9264A /* MyDataController.swift */; };
+		4B24D0601C364B1C00E9264A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24D05F1C364B1C00E9264A /* Utils.swift */; };
+		4B24D0621C3652AC00E9264A /* DayRecordCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24D0611C3652AC00E9264A /* DayRecordCollectionTableViewController.swift */; };
+		4B24D0641C3659C200E9264A /* DayRecordCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24D0631C3659C200E9264A /* DayRecordCollectionTableViewCell.swift */; };
+		4B24D0681C36621E00E9264A /* DayRecordCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24D0661C36621E00E9264A /* DayRecordCollection.swift */; };
 		4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7641BD37E730084F57C /* RecordTableViewController.swift */; };
 		4B35F7671BD37E910084F57C /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */; };
+		4B46FCB01C4231140010EB19 /* ViewRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B46FCAF1C4231140010EB19 /* ViewRecordViewController.swift */; };
 		4B4C9F2A1C195F7100BF2ED4 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */; };
 		4B65AF511C129D8300338DB5 /* StatisticsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B65AF501C129D8300338DB5 /* StatisticsTableViewController.swift */; };
 		4BB15C4D1C2B859E00D7BD1C /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB15C4B1C2B859E00D7BD1C /* Tag+CoreDataProperties.swift */; };
@@ -31,6 +37,7 @@
 		4BB15C521C2B867C00D7BD1C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB15C501C2B867C00D7BD1C /* Record.swift */; };
 		4BB15C551C2BC7FC00D7BD1C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BB15C531C2BC7FC00D7BD1C /* DataModel.xcdatamodeld */; };
 		4BB199CF1C11ADF900533CA5 /* StatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB199CE1C11ADF900533CA5 /* StatisticsTableViewCell.swift */; };
+		4BD1000B1C44E01100CDE826 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD1000A1C44E01100CDE826 /* Theme.swift */; };
 		4BDBBB291C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBBB281C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift */; };
 		4BDBBB2B1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBBB2A1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift */; };
 		4BE20FA21C2D70F600523D70 /* DateSumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE20FA11C2D70F600523D70 /* DateSumTableViewCell.swift */; };
@@ -39,6 +46,9 @@
 		4BED77611BD22DD9004DD518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BED775F1BD22DD9004DD518 /* Main.storyboard */; };
 		4BED77661BD22DD9004DD518 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BED77641BD22DD9004DD518 /* LaunchScreen.storyboard */; };
 		4BED77711BD22DD9004DD518 /* SwiftAccountBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED77701BD22DD9004DD518 /* SwiftAccountBookTests.swift */; };
+		4BEFE4AF1C3BACAC006F5006 /* RecordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BEFE4AE1C3BACAC006F5006 /* RecordView.xib */; };
+		4BEFE4B11C3BACCA006F5006 /* Separator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BEFE4B01C3BACCA006F5006 /* Separator.xib */; };
+		4BEFE4B31C3BAE21006F5006 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE4B21C3BAE21006F5006 /* RecordView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,30 +62,37 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42CA4D4CF0E3746D427EC396 /* DayRecordCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DayRecordCollection+CoreDataProperties.swift"; path = "SwiftAccountBook/DayRecordCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4B0A999B1C171DE600E1F8E3 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		4B0A999D1C1723C700E1F8E3 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		4B0A999F1C17256B00E1F8E3 /* SettingsCellDescriptors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingsCellDescriptors.plist; sourceTree = "<group>"; };
-		4B1026851C0EECD800202B95 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RecordViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		4B1026851C0EECD800202B95 /* EditRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EditRecordViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4B1026871C0EF5EF00202B95 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
-		4B10268B1C0EFC7C00202B95 /* RecordViewControllerHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewControllerHeader.swift; sourceTree = "<group>"; };
-		4B10268D1C0EFC9500202B95 /* RecordViewControllerFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewControllerFooter.swift; sourceTree = "<group>"; };
+		4B10268B1C0EFC7C00202B95 /* EditRecordViewControllerHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRecordViewControllerHeader.swift; sourceTree = "<group>"; };
+		4B10268D1C0EFC9500202B95 /* EditRecordViewControllerFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRecordViewControllerFooter.swift; sourceTree = "<group>"; };
 		4B1026BB1C1067B300202B95 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4B12636F1C2E71D900731968 /* RecordSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordSectionHeader.xib; sourceTree = "<group>"; };
 		4B1263711C2E7DF000731968 /* RecordSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordSectionHeader.swift; sourceTree = "<group>"; };
 		4B14D34B1C1EB938002FE7D0 /* EditTagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTagTableViewCell.swift; sourceTree = "<group>"; };
 		4B14D34D1C1EB951002FE7D0 /* EditTagTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTagTableViewController.swift; sourceTree = "<group>"; };
 		4B21099C1C155557001ED0C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4B24D05D1C3527DD00E9264A /* MyDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataController.swift; sourceTree = "<group>"; };
+		4B24D05D1C3527DD00E9264A /* MyDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyDataController.swift; path = SwiftAccountBook/MyDataController.swift; sourceTree = "<group>"; };
+		4B24D05F1C364B1C00E9264A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		4B24D0611C3652AC00E9264A /* DayRecordCollectionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayRecordCollectionTableViewController.swift; sourceTree = "<group>"; };
+		4B24D0631C3659C200E9264A /* DayRecordCollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayRecordCollectionTableViewCell.swift; sourceTree = "<group>"; };
+		4B24D0661C36621E00E9264A /* DayRecordCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DayRecordCollection.swift; path = SwiftAccountBook/DayRecordCollection.swift; sourceTree = "<group>"; };
 		4B35F7641BD37E730084F57C /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		4B46FCAF1C4231140010EB19 /* ViewRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRecordViewController.swift; sourceTree = "<group>"; };
 		4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		4B65AF501C129D8300338DB5 /* StatisticsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewController.swift; sourceTree = "<group>"; };
-		4BB15C4B1C2B859E00D7BD1C /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		4BB15C4C1C2B859E00D7BD1C /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
-		4BB15C4F1C2B867C00D7BD1C /* Record+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Record+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		4BB15C501C2B867C00D7BD1C /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		4BB15C4B1C2B859E00D7BD1C /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tag+CoreDataProperties.swift"; path = "SwiftAccountBook/Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4BB15C4C1C2B859E00D7BD1C /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = SwiftAccountBook/Tag.swift; sourceTree = "<group>"; };
+		4BB15C4F1C2B867C00D7BD1C /* Record+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Record+CoreDataProperties.swift"; path = "SwiftAccountBook/Record+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4BB15C501C2B867C00D7BD1C /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Record.swift; path = SwiftAccountBook/Record.swift; sourceTree = "<group>"; };
 		4BB15C541C2BC7FC00D7BD1C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		4BB199CE1C11ADF900533CA5 /* StatisticsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTableViewCell.swift; sourceTree = "<group>"; };
+		4BD1000A1C44E01100CDE826 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		4BDBBB281C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentDatePickerTransitioningDelegate.swift; sourceTree = "<group>"; };
 		4BDBBB2A1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentDatePickerPresentationController.swift; sourceTree = "<group>"; };
 		4BE20FA11C2D70F600523D70 /* DateSumTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSumTableViewCell.swift; sourceTree = "<group>"; };
@@ -88,6 +105,9 @@
 		4BED776C1BD22DD9004DD518 /* SwiftAccountBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftAccountBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BED77701BD22DD9004DD518 /* SwiftAccountBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftAccountBookTests.swift; sourceTree = "<group>"; };
 		4BED77721BD22DD9004DD518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BEFE4AE1C3BACAC006F5006 /* RecordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordView.xib; sourceTree = "<group>"; };
+		4BEFE4B01C3BACCA006F5006 /* Separator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Separator.xib; sourceTree = "<group>"; };
+		4BEFE4B21C3BAE21006F5006 /* RecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +128,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B24D0691C36634400E9264A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B24D05D1C3527DD00E9264A /* MyDataController.swift */,
+				42CA4D4CF0E3746D427EC396 /* DayRecordCollection+CoreDataProperties.swift */,
+				4B24D0661C36621E00E9264A /* DayRecordCollection.swift */,
+				4BB15C4F1C2B867C00D7BD1C /* Record+CoreDataProperties.swift */,
+				4BB15C501C2B867C00D7BD1C /* Record.swift */,
+				4BB15C4B1C2B859E00D7BD1C /* Tag+CoreDataProperties.swift */,
+				4BB15C4C1C2B859E00D7BD1C /* Tag.swift */,
+				4BB15C531C2BC7FC00D7BD1C /* DataModel.xcdatamodeld */,
+			);
+			name = Model;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		4B24D06B1C36655A00E9264A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4B24D0611C3652AC00E9264A /* DayRecordCollectionTableViewController.swift */,
+				4B24D0631C3659C200E9264A /* DayRecordCollectionTableViewCell.swift */,
+				4B35F7641BD37E730084F57C /* RecordTableViewController.swift */,
+				4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */,
+				4B1026851C0EECD800202B95 /* EditRecordViewController.swift */,
+				4B1026871C0EF5EF00202B95 /* TagCollectionViewCell.swift */,
+				4B10268B1C0EFC7C00202B95 /* EditRecordViewControllerHeader.swift */,
+				4B10268D1C0EFC9500202B95 /* EditRecordViewControllerFooter.swift */,
+				4B65AF501C129D8300338DB5 /* StatisticsTableViewController.swift */,
+				4BB199CE1C11ADF900533CA5 /* StatisticsTableViewCell.swift */,
+				4B0A999B1C171DE600E1F8E3 /* SettingsTableViewController.swift */,
+				4B0A999D1C1723C700E1F8E3 /* SettingsTableViewCell.swift */,
+				4B0A999F1C17256B00E1F8E3 /* SettingsCellDescriptors.plist */,
+				4BE72E8F1C1C0D1700F46779 /* PickerViewTableViewCell.swift */,
+				4BDBBB281C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift */,
+				4BDBBB2A1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift */,
+				4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */,
+				4B14D34B1C1EB938002FE7D0 /* EditTagTableViewCell.swift */,
+				4B14D34D1C1EB951002FE7D0 /* EditTagTableViewController.swift */,
+				4BE20FA11C2D70F600523D70 /* DateSumTableViewCell.swift */,
+				4B46FCAF1C4231140010EB19 /* ViewRecordViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		4B24D06C1C3666BC00E9264A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4BED775F1BD22DD9004DD518 /* Main.storyboard */,
+				4B12636F1C2E71D900731968 /* RecordSectionHeader.xib */,
+				4B1263711C2E7DF000731968 /* RecordSectionHeader.swift */,
+				4BED77641BD22DD9004DD518 /* LaunchScreen.storyboard */,
+				4BEFE4AE1C3BACAC006F5006 /* RecordView.xib */,
+				4BEFE4B21C3BAE21006F5006 /* RecordView.swift */,
+				4BEFE4B01C3BACCA006F5006 /* Separator.xib */,
+				4BD1000A1C44E01100CDE826 /* Theme.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		4BED774F1BD22DD9004DD518 = {
 			isa = PBXGroup;
 			children = (
@@ -129,38 +208,14 @@
 		4BED775A1BD22DD9004DD518 /* SwiftAccountBook */ = {
 			isa = PBXGroup;
 			children = (
-				4BED775B1BD22DD9004DD518 /* AppDelegate.swift */,
-				4BB15C4F1C2B867C00D7BD1C /* Record+CoreDataProperties.swift */,
-				4BB15C501C2B867C00D7BD1C /* Record.swift */,
-				4BB15C4B1C2B859E00D7BD1C /* Tag+CoreDataProperties.swift */,
-				4BB15C4C1C2B859E00D7BD1C /* Tag.swift */,
+				4B24D06C1C3666BC00E9264A /* View */,
+				4B24D06B1C36655A00E9264A /* Controller */,
+				4B24D0691C36634400E9264A /* Model */,
 				4B21099C1C155557001ED0C2 /* Assets.xcassets */,
-				4B35F7641BD37E730084F57C /* RecordTableViewController.swift */,
-				4B35F7661BD37E910084F57C /* RecordTableViewCell.swift */,
-				4B1026851C0EECD800202B95 /* RecordViewController.swift */,
-				4B1026871C0EF5EF00202B95 /* TagCollectionViewCell.swift */,
-				4B10268B1C0EFC7C00202B95 /* RecordViewControllerHeader.swift */,
-				4B10268D1C0EFC9500202B95 /* RecordViewControllerFooter.swift */,
-				4B65AF501C129D8300338DB5 /* StatisticsTableViewController.swift */,
-				4BB199CE1C11ADF900533CA5 /* StatisticsTableViewCell.swift */,
+				4BED775B1BD22DD9004DD518 /* AppDelegate.swift */,
 				4B1026BB1C1067B300202B95 /* Constants.swift */,
-				4B0A999B1C171DE600E1F8E3 /* SettingsTableViewController.swift */,
-				4B0A999D1C1723C700E1F8E3 /* SettingsTableViewCell.swift */,
-				4BE72E8F1C1C0D1700F46779 /* PickerViewTableViewCell.swift */,
-				4B0A999F1C17256B00E1F8E3 /* SettingsCellDescriptors.plist */,
 				4BED77671BD22DD9004DD518 /* Info.plist */,
-				4BED77641BD22DD9004DD518 /* LaunchScreen.storyboard */,
-				4BDBBB281C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift */,
-				4BDBBB2A1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift */,
-				4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */,
-				4B14D34B1C1EB938002FE7D0 /* EditTagTableViewCell.swift */,
-				4B14D34D1C1EB951002FE7D0 /* EditTagTableViewController.swift */,
-				4BED775F1BD22DD9004DD518 /* Main.storyboard */,
-				4BB15C531C2BC7FC00D7BD1C /* DataModel.xcdatamodeld */,
-				4BE20FA11C2D70F600523D70 /* DateSumTableViewCell.swift */,
-				4B12636F1C2E71D900731968 /* RecordSectionHeader.xib */,
-				4B1263711C2E7DF000731968 /* RecordSectionHeader.swift */,
-				4B24D05D1C3527DD00E9264A /* MyDataController.swift */,
+				4B24D05F1C364B1C00E9264A /* Utils.swift */,
 			);
 			path = SwiftAccountBook;
 			sourceTree = "<group>";
@@ -256,10 +311,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BED77661BD22DD9004DD518 /* LaunchScreen.storyboard in Resources */,
+				4BEFE4B11C3BACCA006F5006 /* Separator.xib in Resources */,
 				4B0A99A01C17256B00E1F8E3 /* SettingsCellDescriptors.plist in Resources */,
 				4B1263701C2E71D900731968 /* RecordSectionHeader.xib in Resources */,
 				4B21099D1C155557001ED0C2 /* Assets.xcassets in Resources */,
 				4BED77611BD22DD9004DD518 /* Main.storyboard in Resources */,
+				4BEFE4AF1C3BACAC006F5006 /* RecordView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,12 +335,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B1026BC1C1067B300202B95 /* Constants.swift in Sources */,
-				4B10268C1C0EFC7C00202B95 /* RecordViewControllerHeader.swift in Sources */,
+				4B10268C1C0EFC7C00202B95 /* EditRecordViewControllerHeader.swift in Sources */,
+				4B24D0601C364B1C00E9264A /* Utils.swift in Sources */,
 				4BE72E901C1C0D1700F46779 /* PickerViewTableViewCell.swift in Sources */,
 				4B35F7651BD37E730084F57C /* RecordTableViewController.swift in Sources */,
+				4B24D0641C3659C200E9264A /* DayRecordCollectionTableViewCell.swift in Sources */,
 				4BDBBB291C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift in Sources */,
+				4B24D0621C3652AC00E9264A /* DayRecordCollectionTableViewController.swift in Sources */,
 				4B0A999E1C1723C700E1F8E3 /* SettingsTableViewCell.swift in Sources */,
-				4B10268E1C0EFC9500202B95 /* RecordViewControllerFooter.swift in Sources */,
+				4B10268E1C0EFC9500202B95 /* EditRecordViewControllerFooter.swift in Sources */,
 				4B24D05E1C3527DD00E9264A /* MyDataController.swift in Sources */,
 				4B0A999C1C171DE600E1F8E3 /* SettingsTableViewController.swift in Sources */,
 				4BB199CF1C11ADF900533CA5 /* StatisticsTableViewCell.swift in Sources */,
@@ -292,17 +352,22 @@
 				4BE20FA21C2D70F600523D70 /* DateSumTableViewCell.swift in Sources */,
 				4B14D34E1C1EB951002FE7D0 /* EditTagTableViewController.swift in Sources */,
 				4B1263721C2E7DF000731968 /* RecordSectionHeader.swift in Sources */,
+				4B24D0681C36621E00E9264A /* DayRecordCollection.swift in Sources */,
 				4BB15C4E1C2B859E00D7BD1C /* Tag.swift in Sources */,
+				4B46FCB01C4231140010EB19 /* ViewRecordViewController.swift in Sources */,
 				4BB15C521C2B867C00D7BD1C /* Record.swift in Sources */,
 				4B14D34C1C1EB938002FE7D0 /* EditTagTableViewCell.swift in Sources */,
 				4B1026881C0EF5EF00202B95 /* TagCollectionViewCell.swift in Sources */,
 				4B65AF511C129D8300338DB5 /* StatisticsTableViewController.swift in Sources */,
+				4BEFE4B31C3BAE21006F5006 /* RecordView.swift in Sources */,
 				4B4C9F2A1C195F7100BF2ED4 /* DatePickerViewController.swift in Sources */,
 				4BB15C4D1C2B859E00D7BD1C /* Tag+CoreDataProperties.swift in Sources */,
-				4B1026861C0EECD800202B95 /* RecordViewController.swift in Sources */,
+				4B1026861C0EECD800202B95 /* EditRecordViewController.swift in Sources */,
 				4B35F7671BD37E910084F57C /* RecordTableViewCell.swift in Sources */,
 				4BDBBB2B1C191EC100F8F5A7 /* PresentDatePickerPresentationController.swift in Sources */,
 				4BB15C511C2B867C00D7BD1C /* Record+CoreDataProperties.swift in Sources */,
+				42CA4CEB669B8C471F75306C /* DayRecordCollection+CoreDataProperties.swift in Sources */,
+				4BD1000B1C44E01100CDE826 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,7 +583,8 @@
 				4BB15C541C2BC7FC00D7BD1C /* DataModel.xcdatamodel */,
 			);
 			currentVersion = 4BB15C541C2BC7FC00D7BD1C /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
+			name = DataModel.xcdatamodeld;
+			path = SwiftAccountBook/DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

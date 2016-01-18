@@ -49,13 +49,21 @@ class StatisticsTableViewController: UIViewController, UITableViewDataSource, UI
         tableView.dataSource = self
         tableView.delegate = self
         
-        let nextImage = UIImage(named: "forward_button_image")
-        nextButton.imageEdgeInsets = UIEdgeInsetsMake(0.0, nextButton.frame.width - nextImage!.size.width, 0.0, 0.0)
-        nextButton.titleEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, nextImage!.size.width)
+        let nextImage = UIImage(named: "forward_button_image")!
+        let label = nextButton.titleLabel!
+        label.sizeToFit()
+        
+        let imageLeftInset = nextButton.frame.width - nextButton.imageView!.frame.width
+        nextButton.imageEdgeInsets = UIEdgeInsetsMake(0.0, imageLeftInset, 0.0, 0.0)
+        nextButton.titleEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, nextImage.size.width)
+        nextButton.titleLabel?.sizeToFit()
+        
         
         endingDate = now
         
         initializeFetchedResultsController()
+        
+        self.tableView.tableFooterView = UIView()
     }
     
     func initializeFetchedResultsController() {
@@ -138,10 +146,6 @@ class StatisticsTableViewController: UIViewController, UITableViewDataSource, UI
         updateDateInfo()
     }
     
-    func sumCostOf(records: [Record]) -> Double {
-        return records.reduce(0.0) { cost, record in cost + record.number }
-    }
-    
     // MARK: - Table view data source
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -167,7 +171,7 @@ class StatisticsTableViewController: UIViewController, UITableViewDataSource, UI
                 let startDayInEra = calendar.ordinalityOfUnit(.Day, inUnit: .Era, forDate: startingDate)
                 let endDayInEra = calendar.ordinalityOfUnit(.Day, inUnit: .Era, forDate: endingDate)
                 recordsRequest.predicate = NSPredicate(format: "(ANY tags.name == %@) && (dayInEra >= %d) && (dayInEra <= %d)", tag.name, startDayInEra, endDayInEra)
-                let records = try self.moc.executeFetchRequest(recordsRequest)
+                let records = try self.moc.executeFetchRequest(recordsRequest) as! [Record]
                 let sum = records.reduce(0.0) { sum, record in
                     sum + record.number
                 }
@@ -181,6 +185,7 @@ class StatisticsTableViewController: UIViewController, UITableViewDataSource, UI
     }
     
     // MARK: NSFetchedResultsControllerDelegate
+    
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         self.tableView.beginUpdates()
     }

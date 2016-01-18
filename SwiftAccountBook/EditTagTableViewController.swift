@@ -28,6 +28,8 @@ class EditTagTableViewController: UITableViewController, NSFetchedResultsControl
         navigationItem.rightBarButtonItem = editButtonItem()
         
         initializeFetchedResultsController()
+        
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
     func initializeFetchedResultsController() {

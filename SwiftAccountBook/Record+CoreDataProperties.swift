@@ -13,9 +13,12 @@ import Foundation
 import CoreData
 
 extension Record {
+    @NSManaged var isPayment: Bool
     @NSManaged var date: NSDate
     @NSManaged var number: Double
     @NSManaged var dayInEra: Int
     @NSManaged var detail: String?
-    @NSManaged var tags: NSSet?
+    
+    @NSManaged var belongedCollection: DayRecordCollection
+    @NSManaged var tags: Set<Tag>?
 }
