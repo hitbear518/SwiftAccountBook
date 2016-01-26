@@ -160,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F05-ED-mpF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-811" y="-271"/>
+            <point key="canvasLocation" x="-31" y="-303"/>
         </scene>
         <!--编辑纪录-->
         <scene sceneID="Uyq-tW-un4">
@@ -371,10 +371,10 @@
                         <outlet property="saveButton" destination="u9h-FT-bZc" id="v9D-ev-o5H"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iFQ-MT-o16" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="S1d-pM-vCX" userLabel="Exit" sceneMemberID="exit"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iFQ-MT-o16" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="734" y="-237"/>
+            <point key="canvasLocation" x="1818" y="-93"/>
         </scene>
         <!--Date Picker View Controller-->
         <scene sceneID="w1y-Kb-54y">
@@ -433,7 +433,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T6H-P8-gSF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="hn5-fb-RLq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1521" y="-230"/>
+            <point key="canvasLocation" x="2597" y="-102"/>
         </scene>
         <!--Payment View Controller-->
         <scene sceneID="FY3-KP-dMD">
@@ -562,13 +562,11 @@
                             <outlet property="delegate" destination="2yz-P5-UyM" id="e0z-Mn-KSs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="近期记录" id="dZg-B7-35j">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="m9M-Bc-SVY"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="dZg-B7-35j"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bcj-9W-Wd4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1506" y="-609"/>
+            <point key="canvasLocation" x="-1054" y="-467"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="32Z-5m-Qks">
@@ -586,7 +584,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pKn-Np-KUl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-29" y="-237"/>
+            <point key="canvasLocation" x="1039" y="-117"/>
         </scene>
         <!--My Tab Bar View Controller-->
         <scene sceneID="G40-Rl-ZE2">
@@ -626,7 +624,7 @@
                                 <action selector="switchViewControllerType:" destination="t4u-yW-KEE" id="Ttl-NV-lhv"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="yqY-gT-JMT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="yqY-gT-JMT">
                             <connections>
                                 <segue destination="NEU-ba-SEz" kind="presentation" identifier="AddRecord" id="Vjk-Wm-CzE"/>
                             </connections>
@@ -635,118 +633,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ue3-CD-k4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-794" y="694"/>
-        </scene>
-        <!--统计-->
-        <scene sceneID="1ua-Ol-3kO">
-            <objects>
-                <viewController id="sxO-ui-s5w" customClass="StatisticsTableViewController" customModule="SwiftAccountBook" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JoA-7W-ijo"/>
-                        <viewControllerLayoutGuide type="bottom" id="jG4-uQ-u83"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="h2g-NF-vBa">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vbX-Zc-osK">
-                                <rect key="frame" x="20" y="72" width="560" height="44"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zTZ-b2-EaM">
-                                        <rect key="frame" x="0.0" y="0.0" width="67" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="Mld-MX-jEp"/>
-                                        </constraints>
-                                        <state key="normal" title="上个月" image="back_button_image"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="Mld-MX-jEp"/>
-                                            </mask>
-                                        </variation>
-                                        <connections>
-                                            <action selector="previousButtonDidTap:" destination="sxO-ui-s5w" eventType="touchUpInside" id="O5v-nH-mV9"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEx-uZ-ZHq">
-                                        <rect key="frame" x="259" y="0.0" width="42" height="44"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RD6-bC-xPs">
-                                        <rect key="frame" x="493" y="0.0" width="67" height="44"/>
-                                        <state key="normal" title="下个月" image="forward_button_image"/>
-                                        <connections>
-                                            <action selector="nextButtonDidTap:" destination="sxO-ui-s5w" eventType="touchUpInside" id="wqy-mI-nj5"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="LmX-Mw-Awm"/>
-                                    <constraint firstItem="RD6-bC-xPs" firstAttribute="width" secondItem="zTZ-b2-EaM" secondAttribute="width" id="UOo-bE-M9U"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="UOo-bE-M9U"/>
-                                    </mask>
-                                </variation>
-                            </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SeP-q0-f0c">
-                                <rect key="frame" x="0.0" y="124" width="600" height="427"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatisticsTableViewCell" textLabel="a4c-HT-RZb" detailTextLabel="Hag-fj-CZk" style="IBUITableViewCellStyleValue1" id="BaX-9O-eDU" customClass="StatisticsTableViewCell" customModule="SwiftAccountBook" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BaX-9O-eDU" id="R4G-12-UKL">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a4c-HT-RZb">
-                                                    <rect key="frame" x="15" y="12" width="27" height="19.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Sum" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hag-fj-CZk">
-                                                    <rect key="frame" x="551" y="12" width="34" height="19.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="sumLabel" destination="Hag-fj-CZk" id="ZjR-2w-O7v"/>
-                                            <outlet property="tagLabel" destination="a4c-HT-RZb" id="hD5-p9-elG"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.94509803921568625" green="0.9137254901960784" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="SeP-q0-f0c" secondAttribute="trailing" id="0ln-wK-PJE"/>
-                            <constraint firstItem="vbX-Zc-osK" firstAttribute="leading" secondItem="h2g-NF-vBa" secondAttribute="leadingMargin" id="CfS-37-ZDN"/>
-                            <constraint firstItem="jG4-uQ-u83" firstAttribute="top" secondItem="SeP-q0-f0c" secondAttribute="bottom" id="LCb-Gv-a48"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="vbX-Zc-osK" secondAttribute="trailing" id="R5e-mc-Ux4"/>
-                            <constraint firstItem="SeP-q0-f0c" firstAttribute="leading" secondItem="h2g-NF-vBa" secondAttribute="leading" id="SYu-dj-YGy"/>
-                            <constraint firstItem="SeP-q0-f0c" firstAttribute="top" secondItem="vbX-Zc-osK" secondAttribute="bottom" constant="8" symbolic="YES" id="cdL-Ec-Ozy"/>
-                            <constraint firstItem="vbX-Zc-osK" firstAttribute="top" secondItem="JoA-7W-ijo" secondAttribute="bottom" constant="8" symbolic="YES" id="qGy-ik-mMD"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="统计" id="fcb-uI-LTg"/>
-                    <connections>
-                        <outlet property="intervalLabel" destination="TEx-uZ-ZHq" id="t8j-ou-jQm"/>
-                        <outlet property="nextButton" destination="RD6-bC-xPs" id="758-pe-t7V"/>
-                        <outlet property="tableView" destination="SeP-q0-f0c" id="DM7-kM-bXx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kle-2L-bAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="734" y="673"/>
+            <point key="canvasLocation" x="-458" y="814"/>
         </scene>
         <!--设置-->
         <scene sceneID="fA1-Nd-brZ">
@@ -842,7 +729,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ges-kq-hqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-490" y="1625"/>
+            <point key="canvasLocation" x="-658" y="1745"/>
         </scene>
         <!--Edit Tag Table View Controller-->
         <scene sceneID="GTG-g3-igT">
@@ -900,7 +787,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Mc-vb-hsz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="295" y="1625"/>
+            <point key="canvasLocation" x="129" y="1753"/>
         </scene>
         <!--收入-->
         <scene sceneID="1Px-Wi-vOl">
@@ -919,13 +806,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3h-x1-jF9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1520" y="699"/>
+            <point key="canvasLocation" x="-1472" y="835"/>
         </scene>
-        <!--设置-->
+        <!--设置a-->
         <scene sceneID="SFe-am-Z0O">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GrM-bI-LZo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="设置" image="settings_tab_icon_normal" selectedImage="settings_tab_icon_selected" id="YhR-Dq-Qga"/>
+                    <tabBarItem key="tabBarItem" title="设置a" image="settings_tab_icon_normal" selectedImage="settings_tab_icon_selected" id="YhR-Dq-Qga"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eLu-AR-JUu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -938,7 +825,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHc-wy-bGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1288" y="1625"/>
+            <point key="canvasLocation" x="-1408" y="1729"/>
         </scene>
         <!--支出-->
         <scene sceneID="D00-zl-gWH">
@@ -1056,13 +943,11 @@
                             <outlet property="delegate" destination="ojq-OR-RjC" id="5bQ-xo-ml2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="近期记录" id="wwj-t0-7Zy">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZjJ-cc-SOJ"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="wwj-t0-7Zy"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eqa-Y6-59C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1506" y="38"/>
+            <point key="canvasLocation" x="-1062" y="165"/>
         </scene>
     </scenes>
     <resources>
@@ -1073,18 +958,16 @@
         <image name="CellShapeOpened" width="19" height="30"/>
         <image name="SeparatorCenter" width="23" height="13"/>
         <image name="SeparatorSide" width="11" height="3"/>
-        <image name="TabIncome" width="27" height="27"/>
-        <image name="TabPayment" width="27" height="26"/>
+        <image name="TabIncome" width="29" height="29"/>
+        <image name="TabPayment" width="29" height="28"/>
         <image name="TagClosed" width="17" height="24"/>
         <image name="TagOpenedPayment" width="17" height="25"/>
-        <image name="back_button_image" width="22" height="22"/>
-        <image name="forward_button_image" width="22" height="22"/>
         <image name="settings_tab_icon_normal" width="25" height="25"/>
         <image name="settings_tab_icon_selected" width="25" height="25"/>
         <image name="starting_date_setting_icon" width="25" height="25"/>
         <image name="tag_setting_icon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Vjk-Wm-CzE"/>
+        <segue reference="3Wr-0d-rEh"/>
     </inferredMetricsTieBreakers>
 </document>
