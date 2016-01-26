@@ -25,6 +25,11 @@ class EditTagTableViewCell: UITableViewCell, UITextFieldDelegate {
     func configCell(tag: Tag) {
         textField.text = tag.name
         label.text = String(tag.records.count)
+        if tag.ofPayment {
+            label.textColor = Theme.Payment.mainColor
+        } else {
+            label.textColor = Theme.Income.mainColor
+        }
         self.recordTag = tag
     }
 

@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         registerDefaultPrefences()
         
-        ThemeManager.applyTheme(ThemeManager.currentTheme)
+        ThemeManager.applyTheme(Theme.Payment)
         
         self.dataController = MyDataController()
         return true
@@ -27,36 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func registerDefaultPrefences() {
         var appDefaults = [String : AnyObject]()
-        appDefaults["StartingDay"] = 1
+        appDefaults[Settings.startDayKey] = 1
         appDefaults[SelectedThemeKey] = 0
         NSUserDefaults.standardUserDefaults().registerDefaults(appDefaults)
     }
     
-    func configAppearances() {
-        self.window?.tintColor = Constants.defaultRedColor
-        configButtonAppearence()
-        
-        UITableView.appearance().backgroundColor = Constants.defaultBackgroundColor
-        UICollectionView.appearance().backgroundColor = Constants.defaultBackgroundColor
-        
-        let view = UIView()
-        view.backgroundColor = Constants.defaultHighlightColor
-        UITableViewCell.appearance().selectedBackgroundView = view
-    }
-    
-    private func configButtonAppearence() {
-//        UIButton.appearance().backgroundColor = Constants.defaultRedColor
-        UIButton.appearance().layer.borderWidth = 1
-//        let appearance = UIButton.appearance()
-//        appearance.tintColor = Constants.defaultRedColor
-//        appearance.layer.cornerRadius = 15
-//        appearance.layer.borderColor = Constants.defaultRedColor.CGColor
-//        appearance.layer.borderWidth = 2
-//        appearance.layer.masksToBounds = true
-//        appearance.backgroundColor = Constants.defaultRedColor
-        
-    }
-
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

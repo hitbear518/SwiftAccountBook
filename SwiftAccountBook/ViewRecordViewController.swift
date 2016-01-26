@@ -10,11 +10,13 @@ import UIKit
 
 class ViewRecordViewController: UIViewController {
     
+    @IBOutlet weak var paymentOrIncomeLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!
     @IBOutlet weak var tagsLabel: UILabel!
     @IBOutlet weak var datelabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var tagImageView: UIImageView!
     
     var record: Record!
     
@@ -30,12 +32,27 @@ class ViewRecordViewController: UIViewController {
         self.detailLabel.text = record.detail
         
         self.navigationItem.title = "浏览记录"
+        if record.isPayment {
+            self.paymentOrIncomeLabel.text = "支出："
+            tagImageView.image = UIImage(named: "TagOpenedPayment")
+            deleteButton.setBackgroundImage(UIImage(named: "ButtonBackgroundPayment"), forState: .Normal)
+            deleteButton.setBackgroundImage(UIImage(named: "ButtonHighlightedBackgroundPayment"), forState: .Highlighted)
+        } else {
+            self.paymentOrIncomeLabel.text = "收入："
+            tagImageView.image = UIImage(named: "TagOpenedIncome")
+            deleteButton.setBackgroundImage(UIImage(named: "ButtonBackgroundIncome"), forState: .Normal)
+            deleteButton.setBackgroundImage(UIImage(named: "ButtonHighlightedBackgroundIncome"), forState: .Highlighted)
+        }
+        
+        
     }
 
     func showEditRecordViewController(sender: AnyObject) {
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let vc = storyBoard.instantiateViewControllerWithIdentifier("EditRecordViewController") as! EditRecordViewController
         vc.record = self.record
+        vc.isPayment = record.isPayment
+        
         showViewController(vc, sender: self)
     }
 
@@ -46,7 +63,7 @@ class ViewRecordViewController: UIViewController {
         if belongedCollection.records.isEmpty {
             MyDataController.context.deleteObject(belongedCollection)
         }
-        MyDataController.save()
+        MyDataController.saveContext()
         
         self.navigationController?.popViewControllerAnimated(true)
     }

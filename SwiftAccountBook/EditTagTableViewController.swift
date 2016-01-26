@@ -17,7 +17,6 @@ class EditTagTableViewController: UITableViewController, NSFetchedResultsControl
     }
     var fetchedResultsController: NSFetchedResultsController!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

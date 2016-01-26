@@ -10,16 +10,16 @@ import Foundation
 import CoreData
 
 
-class DayRecordCollection: NSManagedObject {
+class DayRecords: NSManagedObject {
     
     var paymentSum: Double {
-        return self.records.filter({ !$0.isPayment }).reduce(0.0) { sum, record in
+        return self.records.filter({ $0.isPayment }).reduce(0.0) { sum, record in
             sum + record.number
         }
     }
     
     var incomeSum: Double {
-        return self.records.filter({ $0.isPayment }).reduce(0.0) { sum, record in
+        return self.records.filter({ !$0.isPayment }).reduce(0.0) { sum, record in
             sum + record.number
         }
     }

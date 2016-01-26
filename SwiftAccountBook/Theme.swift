@@ -11,26 +11,44 @@ import UIKit
 let SelectedThemeKey = "SelectedTheme"
 
 enum Theme: Int {
-    case Default
+    case Payment, Income, Default
     
     var mainColor: UIColor {
         switch self {
-        case .Default:
+        case .Payment:
             return Utils.colorFromRGBAHex(0xD25C58)
+        case .Income:
+            return Utils.colorFromRGBAHex(0x54954F)
+        case .Default:
+            return Utils.colorFromRGBAHex(0x0077FF)
         }
     }
     
     var backgroundColor: UIColor {
         switch self {
-        case .Default:
+        case .Payment, .Income, .Default:
             return Utils.colorFromRGBAHex(0xF1E9D3)
         }
     }
     
     var hightlightColor: UIColor {
         switch self {
-        case .Default:
+        case .Payment, .Income, .Default:
             return Utils.colorFromRGBAHex(0xF8F5EC)
+        }
+    }
+    
+    var primaryTextColor: UIColor {
+        switch self {
+        default:
+            return UIColor.blackColor()
+        }
+    }
+    
+    var secondaryTextColor: UIColor {
+        switch self {
+        default:
+            return Utils.colorFromRGBAHex(0x7A7872)
         }
     }
 }
@@ -46,5 +64,6 @@ struct ThemeManager {
         UITableView.appearance().backgroundColor = theme.backgroundColor
         UICollectionView.appearance().backgroundColor = theme.backgroundColor
         
+        NSUserDefaults.standardUserDefaults().setInteger(theme.rawValue, forKey: SelectedThemeKey)
     }
 }

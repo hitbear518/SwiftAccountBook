@@ -12,7 +12,7 @@
 import Foundation
 import CoreData
 
-extension DayRecordCollection {
+extension DayRecords {
 
     @NSManaged var date: NSDate
     @NSManaged var dayInEra: Int

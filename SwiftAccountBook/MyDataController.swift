@@ -45,7 +45,7 @@ class MyDataController {
         return appDelegate.managedObjectContext
     }
     
-    static func save() {
+    static func saveContext() {
         appDelegate.saveContext()
     }
 }

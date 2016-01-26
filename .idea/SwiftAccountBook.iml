@@ -5,42 +5,53 @@
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBookTests/SwiftAccountBookTests.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBookTests/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/EditTagTableViewCell.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/DayCost+CoreDataProperties.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/PresentDatePickerPresentationController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/SettingsCellDescriptors.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/PickerViewTableViewCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/RecordView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/DayRecordTableViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Settings.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/RecordView.xib" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Tag.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/DateSumTableViewCell.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/RecordSectionHeader.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/DataModel.xcdatamodeld/DataModel.xcdatamodel" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Record.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Tag+CoreDataProperties.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/RecordViewControllerFooter.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/StatisticsTableViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/RecordSectionHeader.xib" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Tag+CoreDataProperties.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/PageViewControllerDataSource.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/StatisticsTableViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/MyDataController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Theme.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/RecordTableViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Record+CoreDataProperties.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Utils.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/StatisticsTableViewCell.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Tag.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/MyDataController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/EditRecordViewControllerFooter.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Record.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/ViewRecordViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Constants.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/DayRecordsTableViewCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/EditRecordViewControllerHeader.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Resources.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/AppDelegate.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/TagCollectionViewCell.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/RecordTableViewCell.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/DayCost.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/TagRecordTableViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/DatePickerViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/SettingsTableViewController.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/RecordViewController.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Utils.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/DayRecordsTableViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/PaymentViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/DayRecords.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/DayRecordTableViewCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Separator.xib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/SettingsTableViewCell.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/RecordViewControllerHeader.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/DayRecords+CoreDataProperties.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/EditRecordViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/PresentDatePickerPresentationController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/EditTagTableViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Base.lproj/LaunchScreen.storyboard" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Base.lproj/Main.storyboard" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/PresentDatePickerTransitioningDelegate.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/Assets.xcassets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SwiftAccountBook/TagRecordCollectionDataSource.swift" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

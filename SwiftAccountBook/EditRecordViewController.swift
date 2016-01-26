@@ -15,7 +15,7 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
     weak var activeView: UIView?
     
     var record: Record!
-    var isPayment = true
+    var isPayment: Bool!
     
     var currentDate = NSDate() {
         didSet {
@@ -59,6 +59,7 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
     
     func loadTags() {
         let request = NSFetchRequest(entityName: "Tag")
+        request.predicate = NSPredicate(format: "ofPayment = %@", self.isPayment)
         do {
             self.savedTags = try MyDataController.context.executeFetchRequest(request) as! [Tag]
         } catch {
@@ -111,7 +112,7 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
             destinationViewController.transitioningDelegate = presentDatePickerTransitioningDelegate
         }
         
-        if let _ = segue.destinationViewController as? DayRecordCollectionTableViewController {
+        if segue.identifier == "UnwindFromEditRecord" {
             saveData()
         }
     }
@@ -119,13 +120,6 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
     @IBAction func unwindToRecordViewController(segue: UIStoryboardSegue) {
         if let sourceViewController = segue.sourceViewController as? DatePickerViewController {
             currentDate = sourceViewController.datePicker.date
-        }
-    }
-    
-    func saveTags() {
-        let success = NSKeyedArchiver.archiveRootObject(savedTags, toFile: Constants.TagArchiveURL.path!)
-        if !success {
-            print("save tags failed")
         }
     }
     
@@ -146,6 +140,7 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
             } else {
                 let newTag = NSEntityDescription.insertNewObjectForEntityForName("Tag", inManagedObjectContext: MyDataController.context) as! Tag
                 newTag.name = tagName
+                newTag.ofPayment = self.isPayment
                 recordTags.insert(newTag)
             }
         }
@@ -157,7 +152,7 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
         let cost = Double(self.header.costTextField.text!)!
         let detail = self.footer.detailTextView.text
         let date = self.currentDate
-        let dayInEra = Utils.calendar.ordinalityOfUnit(.Day, inUnit: .Era, forDate: date)
+        let dayInEra = NSCalendar.currentCalendar().ordinalityOfUnit(.Day, inUnit: .Era, forDate: date)
         
         // Clear belongedCollection info if needed
         if self.record != nil && self.record.dayInEra != dayInEra {
@@ -170,6 +165,7 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
         
         if self.record == nil {
             self.record = NSEntityDescription.insertNewObjectForEntityForName("Record", inManagedObjectContext: MyDataController.context) as! Record
+            self.record.isPayment = self.isPayment
         }
         // set record info
         self.record.tags = recordTags
@@ -180,17 +176,17 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
             self.record.date = date
             self.record.dayInEra = dayInEra
             // set belongedCollection
-            var belongedCollection: DayRecordCollection!
-            let dayCostRequest = NSFetchRequest(entityName: "DayRecordCollection")
+            var belongedCollection: DayRecords!
+            let dayCostRequest = NSFetchRequest(entityName: "DayRecords")
             dayCostRequest.predicate = NSPredicate(format: "dayInEra == %d", dayInEra)
             do {
-                let matchingDayRecordCollections = try MyDataController.context.executeFetchRequest(dayCostRequest) as! [DayRecordCollection]
+                let matchingDayRecordCollections = try MyDataController.context.executeFetchRequest(dayCostRequest) as! [DayRecords]
                 belongedCollection = matchingDayRecordCollections.first
             } catch {
                 fatalError("Request matching DayRecordCollection of dayInEra \(dayInEra) for record failed: \(error)")
             }
             if belongedCollection == nil {
-                belongedCollection = NSEntityDescription.insertNewObjectForEntityForName("DayRecordCollection", inManagedObjectContext: MyDataController.context) as! DayRecordCollection
+                belongedCollection = NSEntityDescription.insertNewObjectForEntityForName("DayRecords", inManagedObjectContext: MyDataController.context) as! DayRecords
                 belongedCollection.date = date
                 belongedCollection.dayInEra = dayInEra
                 belongedCollection.records = Set<Record>()
@@ -201,7 +197,7 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
             self.record.belongedCollection.dayInEra = self.record.belongedCollection.dayInEra
         }
         
-        MyDataController.save()
+        MyDataController.saveContext()
     }
     
     // MARK: UICollectionViewDataSource
@@ -270,6 +266,15 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
                 footer.dateButton.hidden = false
             }
             footer.dateSegmentedControl.addTarget(self, action: "dateSegmentedValueChanged:", forControlEvents: .ValueChanged)
+            
+            if self.isPayment == true {
+               footer.dateButton.setBackgroundImage(UIImage(named: "ButtonBackgroundPayment"), forState: .Normal)
+                footer.dateButton.setBackgroundImage(UIImage(named: "ButtonHighlightedBackgroundPayment"), forState: .Highlighted)
+            } else {
+                footer.dateButton.setBackgroundImage(UIImage(named: "ButtonBackgroundIncome"), forState: .Normal)
+                footer.dateButton.setBackgroundImage(UIImage(named: "ButtonHighlightedBackgroundIncome"), forState: .Highlighted)
+            }
+            
             return footer
         }
     }
@@ -295,10 +300,10 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
             if inUseTagNames.contains(cellTagName) {
                 collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: .None)
                 cell.tagNameLabel.textColor = UIColor.whiteColor()
-                cell.tagNameLabel.backgroundColor = Constants.defaultRedColor
+                cell.tagNameLabel.backgroundColor = ThemeManager.currentTheme.mainColor
             } else {
                 collectionView.deselectItemAtIndexPath(indexPath, animated: false)
-                cell.tagNameLabel.textColor = Constants.defaultRedColor
+                cell.tagNameLabel.textColor = ThemeManager.currentTheme.mainColor
                 cell.tagNameLabel.backgroundColor = UIColor.clearColor()
             }
         }
@@ -426,7 +431,7 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
         cell.tagNameLabel.textColor = UIColor.whiteColor()
-        cell.tagNameLabel.backgroundColor = Constants.defaultRedColor
+        cell.tagNameLabel.backgroundColor = ThemeManager.currentTheme.mainColor
         
         var tagsText = header.tagTextField.text!
         tagsText = tagsText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -442,7 +447,7 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
     func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
         cell.tagNameLabel.textColor = UIColor.whiteColor()
-        cell.tagNameLabel.backgroundColor = Constants.defaultRedColor
+        cell.tagNameLabel.backgroundColor = ThemeManager.currentTheme.mainColor
         cell.alpha = 0.6
     }
     
@@ -450,15 +455,17 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
         if let selectedIndexPaths = self.collectionView.indexPathsForSelectedItems() where selectedIndexPaths.contains(indexPath) {
             cell.tagNameLabel.textColor = UIColor.whiteColor()
+            cell.tagNameLabel.backgroundColor = ThemeManager.currentTheme.mainColor
         } else {
-            cell.tagNameLabel.textColor = Constants.defaultRedColor
+            cell.tagNameLabel.textColor = ThemeManager.currentTheme.mainColor
+            cell.tagNameLabel.backgroundColor = UIColor.clearColor()
         }
         cell.alpha = 1.0
     }
 
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
-        cell.tagNameLabel.textColor = Constants.defaultRedColor
+        cell.tagNameLabel.textColor = ThemeManager.currentTheme.mainColor
         cell.tagNameLabel.backgroundColor = UIColor.clearColor()
         
         let tagsFromText = getTagNamesFromText()

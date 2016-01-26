@@ -16,7 +16,7 @@
         }
       },
       "idiom" : "universal",
-      "filename" : "ButtonHighlightedBackground.png",
+      "filename" : "ButtonBackgroundIncome.png",
       "scale" : "1x"
     },
     {
@@ -35,7 +35,7 @@
         }
       },
       "idiom" : "universal",
-      "filename" : "ButtonHighlightedBackground@2x.png",
+      "filename" : "ButtonBackgroundIncome@2x.png",
       "scale" : "2x"
     },
     {
@@ -54,7 +54,7 @@
         }
       },
       "idiom" : "universal",
-      "filename" : "ButtonHighlightedBackground@3x.png",
+      "filename" : "ButtonBackgroundIncome@3x.png",
       "scale" : "3x"
     }
   ],

@@ -2,19 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2d8b3df-e463-46b0-b7ac-a436a5eb67b5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SwiftAccountBook/DayCost+CoreDataProperties.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SwiftAccountBook/DayCost.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SwiftAccountBook/DayRecordsTableViewCell.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SwiftAccountBook/DayRecordsTableViewController.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SwiftAccountBook/Utils.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SwiftAccountBook/PageViewControllerDataSource.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SwiftAccountBook/PaymentViewController.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SwiftAccountBook/Resources.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SwiftAccountBook/Settings.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SwiftAccountBook/TagRecordCollectionDataSource.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SwiftAccountBook/TagRecordTableViewController.swift" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/SwiftAccountBook/DayRecordCollection+CoreDataProperties.swift" afterPath="$PROJECT_DIR$/SwiftAccountBook/DayRecords+CoreDataProperties.swift" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/SwiftAccountBook/DayRecordCollection.swift" afterPath="$PROJECT_DIR$/SwiftAccountBook/DayRecords.swift" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/SwiftAccountBook/DayRecordCollectionTableViewCell.swift" afterPath="$PROJECT_DIR$/SwiftAccountBook/DayRecordTableViewCell.swift" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/SwiftAccountBook/DayRecordCollectionTableViewController.swift" afterPath="$PROJECT_DIR$/SwiftAccountBook/DayRecordTableViewController.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/SwiftAccountBook.iml" afterPath="$PROJECT_DIR$/.idea/SwiftAccountBook.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwiftAccountBook.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/SwiftAccountBook.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwiftAccountBook.xcodeproj/project.xcworkspace/xcuserdata/wangsen.xcuserdatad/xcdebugger/Expressions.xcexplist" afterPath="$PROJECT_DIR$/SwiftAccountBook.xcodeproj/project.xcworkspace/xcuserdata/wangsen.xcuserdatad/xcdebugger/Expressions.xcexplist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwiftAccountBook.xcodeproj/xcuserdata/wangsen.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="$PROJECT_DIR$/SwiftAccountBook.xcodeproj/xcuserdata/wangsen.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwiftAccountBook/AppDelegate.swift" afterPath="$PROJECT_DIR$/SwiftAccountBook/AppDelegate.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwiftAccountBook/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/SwiftAccountBook/Base.lproj/Main.storyboard" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwiftAccountBook/DataModel.xcdatamodeld/DataModel.xcdatamodel/contents" afterPath="$PROJECT_DIR$/SwiftAccountBook/DataModel.xcdatamodeld/DataModel.xcdatamodel/contents" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwiftAccountBook/EditRecordViewController.swift" afterPath="$PROJECT_DIR$/SwiftAccountBook/EditRecordViewController.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwiftAccountBook/Record+CoreDataProperties.swift" afterPath="$PROJECT_DIR$/SwiftAccountBook/Record+CoreDataProperties.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwiftAccountBook/RecordSectionHeader.xib" afterPath="$PROJECT_DIR$/SwiftAccountBook/RecordSectionHeader.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwiftAccountBook/RecordTableViewController.swift" afterPath="$PROJECT_DIR$/SwiftAccountBook/RecordTableViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwiftAccountBook/RecordView.xib" afterPath="$PROJECT_DIR$/SwiftAccountBook/RecordView.xib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwiftAccountBook/StatisticsTableViewController.swift" afterPath="$PROJECT_DIR$/SwiftAccountBook/StatisticsTableViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SwiftAccountBook/Utils.swift" afterPath="$PROJECT_DIR$/SwiftAccountBook/Utils.swift" />
     </list>
     <ignored path="SwiftAccountBook.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,27 +59,27 @@
         <entry file="file://$PROJECT_DIR$/SwiftAccountBook/EditTagTableViewController.swift">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DayCost+CoreDataProperties.swift" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SwiftAccountBook/DayCost+CoreDataProperties.swift">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RecordTableViewController.swift" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RecordTableViewController.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SwiftAccountBook/RecordTableViewController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.61082476">
-              <caret line="77" column="30" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="59" column="36" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatisticsTableViewController.swift" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SwiftAccountBook/StatisticsTableViewController.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.21262887">
+              <caret line="175" column="30" selection-start-line="175" selection-start-column="30" selection-end-line="175" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -123,7 +133,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -166,6 +175,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -252,42 +262,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/SettingsTableViewCell.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/SettingsTableViewCell.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SwiftAccountBook/EditTagTableViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/SettingsTableViewCell.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/EditTagTableViewController.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -308,18 +286,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/DayCost+CoreDataProperties.swift">
+    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/RecordTableViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/SettingsTableViewCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/SettingsTableViewCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/SettingsTableViewCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/EditTagTableViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/SettingsTableViewCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/EditTagTableViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/SettingsTableViewCell.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/EditTagTableViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SwiftAccountBook/RecordTableViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61082476">
-          <caret line="77" column="30" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="36" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SwiftAccountBook/StatisticsTableViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21262887">
+          <caret line="175" column="30" selection-start-line="175" selection-start-column="30" selection-end-line="175" selection-end-column="30" />
           <folding />
         </state>
       </provider>

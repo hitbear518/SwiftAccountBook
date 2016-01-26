@@ -23,8 +23,7 @@ class PickerViewTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPicker
         pickerView.dataSource = self
         pickerView.delegate = self
         
-        let startingDay = NSUserDefaults.standardUserDefaults().integerForKey("StartingDay")
-        pickerView.selectRow(startingDay - 1, inComponent: 0, animated: true)
+        pickerView.selectRow(Settings.startDay - 1, inComponent: 0, animated: true)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

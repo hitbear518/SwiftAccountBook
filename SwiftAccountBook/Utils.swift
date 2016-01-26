@@ -9,11 +9,10 @@
 import UIKit
 import CoreData
 
-class Utils {
-    static let calendar = NSCalendar.currentCalendar()
-    
+struct Utils {
     static func getTrancatedTagsText(tags: Set<Tag>?) -> String {
         guard let tags = tags else { return "无标签"}
+        guard !tags.isEmpty else { return "无标签"}
         
         let sortedTagNames = tags.map({ $0.name })
         let prefix = sortedTagNames.prefix(2)
@@ -26,6 +25,8 @@ class Utils {
     
     static func getTagsText(tags: Set<Tag>?) -> String {
         guard let tags = tags else { return "无标签"}
+        guard !tags.isEmpty else { return "无标签"}
+        
         return tags.map({ $0.name }).joinWithSeparator(", ")
     }
     
@@ -44,5 +45,15 @@ class Utils {
         b = CGFloat(hex & 0x0000FF)
         
         return UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: a / 255.0)
+    }
+    
+    static func getDateStr(date: NSDate, dateStyle: NSDateFormatterStyle) -> String {
+        if NSCalendar.currentCalendar().isDateInToday(date) {
+            return "今天"
+        } else if NSCalendar.currentCalendar().isDateInYesterday(date) {
+            return "昨天"
+        } else {
+            return NSDateFormatter.localizedStringFromDate(date, dateStyle: dateStyle, timeStyle: .NoStyle)
+        }
     }
 }

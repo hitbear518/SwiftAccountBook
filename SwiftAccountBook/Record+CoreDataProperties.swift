@@ -19,6 +19,6 @@ extension Record {
     @NSManaged var dayInEra: Int
     @NSManaged var detail: String?
     
-    @NSManaged var belongedCollection: DayRecordCollection
+    @NSManaged var belongedCollection: DayRecords
     @NSManaged var tags: Set<Tag>?
 }

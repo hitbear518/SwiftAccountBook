@@ -68,8 +68,7 @@ class SettingsTableViewController: UITableViewController, PickerViewTableViewCel
         let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath)
         switch cellId {
         case "StartingDaySettingCell":
-            let startingDay = NSUserDefaults.standardUserDefaults().integerForKey("StartingDay")
-            let startingDayString = getStartingDayString(startingDay)
+            let startingDayString = getStartingDayString(Settings.startDay)
             cell.detailTextLabel?.text = startingDayString
         case "PickerViewTableViewCell":
             let pickerViewCell = cell as! PickerViewTableViewCell
@@ -176,7 +175,8 @@ class SettingsTableViewController: UITableViewController, PickerViewTableViewCel
     // MARK SettingsTableViewCellDelegate
     
     func pickerViewDidSelect(day: Int) {
-        NSUserDefaults.standardUserDefaults().setInteger(day, forKey: "StartingDay")
+        Settings.startDay = day
+//        NSUserDefaults.standardUserDefaults().setInteger(day, forKey: Settings.startDayKey)
         tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Fade)
     }
 

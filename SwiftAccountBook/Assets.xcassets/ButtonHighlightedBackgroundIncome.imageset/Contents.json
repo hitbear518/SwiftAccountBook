@@ -16,7 +16,7 @@
         }
       },
       "idiom" : "universal",
-      "filename" : "ButtonNormalBackground.png",
+      "filename" : "ButtonHighlightedBackgroundIncome.png",
       "scale" : "1x"
     },
     {
@@ -35,7 +35,7 @@
         }
       },
       "idiom" : "universal",
-      "filename" : "ButtonNormalBackground@2x.png",
+      "filename" : "ButtonHighlightedBackgroundIncome@2x.png",
       "scale" : "2x"
     },
     {
@@ -49,12 +49,12 @@
         "cap-insets" : {
           "bottom" : 42,
           "top" : 41,
-          "right" : 24,
-          "left" : 24
+          "right" : 23,
+          "left" : 23
         }
       },
       "idiom" : "universal",
-      "filename" : "ButtonNormalBackground@3x.png",
+      "filename" : "ButtonHighlightedBackgroundIncome@3x.png",
       "scale" : "3x"
     }
   ],

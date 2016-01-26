@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
@@ -11,21 +11,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ja5-rx-YnO">
-                    <rect key="frame" x="8" y="0.0" width="554" height="36"/>
+                    <rect key="frame" x="16" y="0.0" width="546" height="36"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSs-xI-7Hq">
-                            <rect key="frame" x="0.0" y="0.0" width="522" height="36"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Left" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSs-xI-7Hq">
+                            <rect key="frame" x="0.0" y="0.0" width="513" height="36"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="b86-bz-wos"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJN-oj-AFb">
-                            <rect key="frame" x="522" y="0.0" width="32" height="36"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <rect key="frame" x="513" y="0.0" width="33" height="36"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                            <color key="textColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -35,13 +35,13 @@
                 <constraint firstAttribute="trailing" secondItem="Ja5-rx-YnO" secondAttribute="trailing" constant="8" id="MJh-HG-6Yk"/>
                 <constraint firstAttribute="bottom" secondItem="Ja5-rx-YnO" secondAttribute="bottom" id="OMm-Ql-adF"/>
                 <constraint firstItem="Ja5-rx-YnO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eC9-IP-eKB"/>
-                <constraint firstItem="Ja5-rx-YnO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="gNB-QF-LOZ"/>
+                <constraint firstItem="Ja5-rx-YnO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="gNB-QF-LOZ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="leftLabel" destination="TSs-xI-7Hq" id="Zu0-MS-SsY"/>
                 <outlet property="numberLabel" destination="oJN-oj-AFb" id="YWi-oG-I7c"/>
-                <outlet property="tagsLabel" destination="TSs-xI-7Hq" id="cNf-Og-Z4i"/>
             </connections>
             <point key="canvasLocation" x="250" y="49"/>
         </view>

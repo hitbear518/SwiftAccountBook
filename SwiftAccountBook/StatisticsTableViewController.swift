@@ -36,7 +36,7 @@ class StatisticsTableViewController: UIViewController, UITableViewDataSource, UI
         return appDelegate.managedObjectContext
     }
     var fetchedResultsController: NSFetchedResultsController!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -66,6 +66,12 @@ class StatisticsTableViewController: UIViewController, UITableViewDataSource, UI
         self.tableView.tableFooterView = UIView()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        print(self.intervalLabel.superview)
+    }
+    
     func initializeFetchedResultsController() {
         let request = NSFetchRequest(entityName: "Tag")
         let tagNameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -88,13 +94,13 @@ class StatisticsTableViewController: UIViewController, UITableViewDataSource, UI
     
     func updateDateInfo() {
         if startingDate == nil {
-            if let match = calendar.nextDateAfterDate(endingDate, matchingUnit: .Day, value: startingDay, options: [.SearchBackwards, .MatchPreviousTimePreservingSmallerUnits]) {
+            if let match = calendar.nextDateAfterDate(endingDate, matchingUnit: .Day, value: Settings.startDay, options: [.SearchBackwards, .MatchPreviousTimePreservingSmallerUnits]) {
                 startingDate = match
             } else {
                 fatalError("find matching startingDate failed")
             }
         } else {
-            if let match = calendar.nextDateAfterDate(startingDate, matchingUnit: .Day, value: startingDay, options: [.MatchPreviousTimePreservingSmallerUnits]) {
+            if let match = calendar.nextDateAfterDate(startingDate, matchingUnit: .Day, value: Settings.startDay, options: [.MatchPreviousTimePreservingSmallerUnits]) {
                 endingDate = calendar.dateByAddingUnit(.Day, value: -1, toDate: match, options: [])
                 if isDateThisMonth(endingDate) {
                     endingDate = now
@@ -123,11 +129,12 @@ class StatisticsTableViewController: UIViewController, UITableViewDataSource, UI
         var start: NSDate?
         var extends: NSTimeInterval = 0
         let success = calendar.rangeOfUnit(.Month, startDate: &start, interval: &extends, forDate: NSDate())
-        if !success { return false }
+        if !success {
+            return false
+        }
         let startDateInSec = start!.timeIntervalSince1970
         let dateInSec = date.timeIntervalSince1970
         if dateInSec > startDateInSec && dateInSec < (startDateInSec + extends) {
-
             return true
         } else {
             return false

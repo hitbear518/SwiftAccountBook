@@ -22,7 +22,7 @@ class TagCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         self.tagNameLabel.layer.borderWidth = 1
-        self.tagNameLabel.layer.borderColor = Constants.defaultRedColor.CGColor
+        self.tagNameLabel.layer.borderColor = ThemeManager.currentTheme.mainColor.CGColor
         self.tagNameLabel.layer.cornerRadius = 8
         self.tagNameLabel.clipsToBounds = true
     }

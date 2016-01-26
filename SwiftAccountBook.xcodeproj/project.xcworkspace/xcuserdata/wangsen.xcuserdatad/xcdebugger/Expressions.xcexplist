@@ -11,16 +11,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RecordViewController2.keyboardWillShow(NSNotification) -&gt; ():RecordViewController2.swift">
+         contextName = "DayRecordTableViewController.recordDidTap(Record) -&gt; ():DayRecordTableViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "visibleRectInCollectionView">
-            </PersistentString>
-            <PersistentString
-               value = "activeViewFrameInCollectionView">
-            </PersistentString>
-            <PersistentString
-               value = "activeViewBottomPoint">
+               value = "vc.record">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -44,6 +38,15 @@
             <PersistentString
                value = "self.record">
             </PersistentString>
+            <PersistentString
+               value = "self.record.number">
+            </PersistentString>
+            <PersistentString
+               value = "tagImageView.image">
+            </PersistentString>
+            <PersistentString
+               value = "UIImage(named: &quot;TagOpenedPayment&quot;)">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -51,6 +54,31 @@
          <PersistentStrings>
             <PersistentString
                value = "header.numberTextField.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DayRecordTableViewCell.configCell(DayRecords, isPayment : Bool, opened : Bool) -&gt; ():DayRecordTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dayRecords.paymentSum">
+            </PersistentString>
+            <PersistentString
+               value = "dayRecords.records.first?.isPayment">
+            </PersistentString>
+            <PersistentString
+               value = "self.isPayment">
+            </PersistentString>
+            <PersistentString
+               value = "self.sortedRecords">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordViewController2.collectionView(UICollectionView, didSelectItemAtIndexPath : NSIndexPath) -&gt; ():RecordViewController2.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "savedTags">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -63,10 +91,16 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RecordViewController2.collectionView(UICollectionView, didSelectItemAtIndexPath : NSIndexPath) -&gt; ():RecordViewController2.swift">
+         contextName = "RecordViewController2.keyboardWillShow(NSNotification) -&gt; ():RecordViewController2.swift">
          <PersistentStrings>
             <PersistentString
-               value = "savedTags">
+               value = "visibleRectInCollectionView">
+            </PersistentString>
+            <PersistentString
+               value = "activeViewFrameInCollectionView">
+            </PersistentString>
+            <PersistentString
+               value = "activeViewBottomPoint">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -141,6 +175,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "TagRecordTableViewCell.(setTexts in _F00C23F35945983C2D08679A4305AA14)() -&gt; ():TagRecordTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "recordTag.name">
+            </PersistentString>
+            <PersistentString
+               value = "sortedRecords">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "TagCollectionViewCell.init(coder : NSCoder) -&gt; TagCollectionViewCell?:TagCollectionViewCell.swift">
          <PersistentStrings>
             <PersistentString
@@ -149,10 +194,29 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "DayRecordTableViewController.controller(NSFetchedResultsController, didChangeObject : AnyObject, atIndexPath : NSIndexPath?, forChangeType : NSFetchedResultsChangeType, newIndexPath : NSIndexPath?) -&gt; ():DayRecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.openedIndexPath!.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DayCostTableViewController.dayCostDidTapAtCell(DayCostTableViewCell) -&gt; ():DayCostTableViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "self.openedIndexPath!.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PageViewControllerDataSource.monthsWithEraFromDate(NSDate, toDate : NSDate) -&gt; Int:PageViewControllerDataSource.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "startDate">
+            </PersistentString>
+            <PersistentString
+               value = "NSDateFormatter.localizedStringFromDate(startDate, dateStyle: .LongStyle, timeStyle: .NoStyle)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -175,6 +239,14 @@
             </PersistentString>
             <PersistentString
                value = "before">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DayRecordTableViewCell.(handleLongPress in _B7401B1AF217D47A29C69A7709C6E71A)(UILongPressGestureRecognizer, handler : () -&gt; ()) -&gt; ():DayRecordTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "recognizer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -263,6 +335,12 @@
             <PersistentString
                value = "self.fetchedResultsController.sections![0].numberOfObjects">
             </PersistentString>
+            <PersistentString
+               value = "startingDay">
+            </PersistentString>
+            <PersistentString
+               value = "endingDate">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -296,6 +374,37 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "DayRecordTableViewCell.configCell(DayRecords, opened : Bool) -&gt; ():DayRecordTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+            <PersistentString
+               value = "dayRecords.records.first?.isPayment">
+            </PersistentString>
+            <PersistentString
+               value = "self.isPayment">
+            </PersistentString>
+            <PersistentString
+               value = "sortedRecords">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DayRecordTableViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:DayRecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.openedIndexPath!.row">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath == self.openedIndexPath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "RecordViewController2.checkValidRecordNumber() -&gt; Bool:RecordViewController2.swift">
          <PersistentStrings>
             <PersistentString
@@ -318,6 +427,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "PaymentViewController.prepareForSegue(UIStoryboardSegue, sender : AnyObject?) -&gt; ():PaymentViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "segue.destinationViewController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "RecordTableViewController.viewDidLoad() -&gt; ():RecordTableViewController.swift">
       </ContextState>
       <ContextState
@@ -331,6 +448,14 @@
             </PersistentString>
             <PersistentString
                value = "nextButton.titleLabel!.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DayRecordTableViewController.viewDidLoad() -&gt; ():DayRecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.fetchedResultsController">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -377,6 +502,22 @@
          <PersistentStrings>
             <PersistentString
                value = "presentingViewController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DayRecordTableViewController.dayRecordsDidTapAtCell(DayRecordTableViewCell) -&gt; ():DayRecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "openedIndexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PaymentViewController.(startDate.getter).(closure #1):PaymentViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.endDate">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -541,6 +682,17 @@
             </PersistentString>
             <PersistentString
                value = "userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TagRecordTableViewController.tableView(UITableView, cellForRowAtIndexPath : NSIndexPath) -&gt; UITableViewCell:TagRecordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "request">
+            </PersistentString>
+            <PersistentString
+               value = "tag.name">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
