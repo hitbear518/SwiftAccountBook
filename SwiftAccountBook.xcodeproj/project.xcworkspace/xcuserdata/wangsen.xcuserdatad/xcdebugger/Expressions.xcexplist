@@ -151,6 +151,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "PageViewControllerWrapper.init(coder : NSCoder) -&gt; PageViewControllerWrapper?:PageViewControllerWrapper.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Settings.startDay">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "EditTagTableViewController.saveTags() -&gt; ():EditTagTableViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -247,6 +255,17 @@
          <PersistentStrings>
             <PersistentString
                value = "recognizer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PageViewControllerWrapper.viewWillAppear(Bool) -&gt; ():PageViewControllerWrapper.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Settings.startDay">
+            </PersistentString>
+            <PersistentString
+               value = "originalStartDay">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -387,6 +406,14 @@
             </PersistentString>
             <PersistentString
                value = "sortedRecords">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EditRecordViewController.keyboardWillShow(NSNotification) -&gt; ():EditRecordViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.activeView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

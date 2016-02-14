@@ -26,7 +26,7 @@ class ViewRecordViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "编辑", style: UIBarButtonItemStyle.Plain, target: self, action: "showEditRecordViewController:")
         
-        self.costLabel.text = String(self.record.number)
+        self.costLabel.text = NSNumberFormatter.localizedStringFromNumber(record.number, numberStyle: .CurrencyStyle)
         self.tagsLabel.text = Utils.getTagsText(record.tags)
         self.datelabel.text = NSDateFormatter.localizedStringFromDate(record.date, dateStyle: .MediumStyle, timeStyle: .NoStyle)
         self.detailLabel.text = record.detail
@@ -43,8 +43,6 @@ class ViewRecordViewController: UIViewController {
             deleteButton.setBackgroundImage(UIImage(named: "ButtonBackgroundIncome"), forState: .Normal)
             deleteButton.setBackgroundImage(UIImage(named: "ButtonHighlightedBackgroundIncome"), forState: .Highlighted)
         }
-        
-        
     }
 
     func showEditRecordViewController(sender: AnyObject) {

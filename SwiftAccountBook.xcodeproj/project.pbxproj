@@ -28,7 +28,10 @@
 		4B24D0641C3659C200E9264A /* DayRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24D0631C3659C200E9264A /* DayRecordTableViewCell.swift */; };
 		4B24D0681C36621E00E9264A /* DayRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24D0661C36621E00E9264A /* DayRecords.swift */; };
 		4B2810411C4F304600724713 /* TagRecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2810401C4F304600724713 /* TagRecordTableViewController.swift */; };
-		4B43B57F1C4E11B2003D0E7C /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43B57E1C4E11B2003D0E7C /* PaymentViewController.swift */; };
+		4B32BC0C1C5A0CF700139842 /* TableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B32BC0B1C5A0CF700139842 /* TableHeader.xib */; };
+		4B32BC0E1C5A0D5A00139842 /* TableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32BC0D1C5A0D5A00139842 /* TableHeader.swift */; };
+		4B33328F1C66AE7E008525FC /* BalanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33328E1C66AE7E008525FC /* BalanceTableViewController.swift */; };
+		4B43B57F1C4E11B2003D0E7C /* PageViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43B57E1C4E11B2003D0E7C /* PageViewControllerWrapper.swift */; };
 		4B43B5831C4E5C71003D0E7C /* MyPageViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43B5821C4E5C71003D0E7C /* MyPageViewControllerDataSource.swift */; };
 		4B46FCB01C4231140010EB19 /* ViewRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B46FCAF1C4231140010EB19 /* ViewRecordViewController.swift */; };
 		4B4C9F2A1C195F7100BF2ED4 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */; };
@@ -50,7 +53,6 @@
 		4BED77711BD22DD9004DD518 /* SwiftAccountBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED77701BD22DD9004DD518 /* SwiftAccountBookTests.swift */; };
 		4BEFE4AF1C3BACAC006F5006 /* RecordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BEFE4AE1C3BACAC006F5006 /* RecordView.xib */; };
 		4BEFE4B31C3BAE21006F5006 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEFE4B21C3BAE21006F5006 /* RecordView.swift */; };
-		4BF0F0431C5276E9007F87BA /* IncomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF0F0421C5276E9007F87BA /* IncomeViewController.swift */; };
 		4BF0F0451C535CB0007F87BA /* MyTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF0F0441C535CB0007F87BA /* MyTabBarViewController.swift */; };
 		4BF0F0471C537F2B007F87BA /* InCellSeparator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BF0F0461C537F2B007F87BA /* InCellSeparator.xib */; };
 		4BFC5D1B1C54C82900F70807 /* TagRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFC5D1A1C54C82900F70807 /* TagRecordTableViewCell.swift */; };
@@ -88,7 +90,10 @@
 		4B24D0631C3659C200E9264A /* DayRecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayRecordTableViewCell.swift; sourceTree = "<group>"; };
 		4B24D0661C36621E00E9264A /* DayRecords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DayRecords.swift; path = SwiftAccountBook/DayRecords.swift; sourceTree = "<group>"; };
 		4B2810401C4F304600724713 /* TagRecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagRecordTableViewController.swift; sourceTree = "<group>"; };
-		4B43B57E1C4E11B2003D0E7C /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		4B32BC0B1C5A0CF700139842 /* TableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableHeader.xib; sourceTree = "<group>"; };
+		4B32BC0D1C5A0D5A00139842 /* TableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableHeader.swift; sourceTree = "<group>"; };
+		4B33328E1C66AE7E008525FC /* BalanceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceTableViewController.swift; sourceTree = "<group>"; };
+		4B43B57E1C4E11B2003D0E7C /* PageViewControllerWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewControllerWrapper.swift; sourceTree = "<group>"; };
 		4B43B5821C4E5C71003D0E7C /* MyPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewControllerDataSource.swift; sourceTree = "<group>"; };
 		4B46FCAF1C4231140010EB19 /* ViewRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRecordViewController.swift; sourceTree = "<group>"; };
 		4B4C9F291C195F7100BF2ED4 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
@@ -114,7 +119,6 @@
 		4BED77721BD22DD9004DD518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BEFE4AE1C3BACAC006F5006 /* RecordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordView.xib; sourceTree = "<group>"; };
 		4BEFE4B21C3BAE21006F5006 /* RecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
-		4BF0F0421C5276E9007F87BA /* IncomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomeViewController.swift; sourceTree = "<group>"; };
 		4BF0F0441C535CB0007F87BA /* MyTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarViewController.swift; sourceTree = "<group>"; };
 		4BF0F0461C537F2B007F87BA /* InCellSeparator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InCellSeparator.xib; sourceTree = "<group>"; };
 		4BFC5D1A1C54C82900F70807 /* TagRecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagRecordTableViewCell.swift; sourceTree = "<group>"; };
@@ -172,11 +176,11 @@
 				4B14D34D1C1EB951002FE7D0 /* EditTagTableViewController.swift */,
 				4BE20FA11C2D70F600523D70 /* DateSumTableViewCell.swift */,
 				4B46FCAF1C4231140010EB19 /* ViewRecordViewController.swift */,
-				4B43B57E1C4E11B2003D0E7C /* PaymentViewController.swift */,
+				4B43B57E1C4E11B2003D0E7C /* PageViewControllerWrapper.swift */,
 				4B43B5821C4E5C71003D0E7C /* MyPageViewControllerDataSource.swift */,
 				4B2810401C4F304600724713 /* TagRecordTableViewController.swift */,
-				4BF0F0421C5276E9007F87BA /* IncomeViewController.swift */,
 				4BF0F0441C535CB0007F87BA /* MyTabBarViewController.swift */,
+				4B33328E1C66AE7E008525FC /* BalanceTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -192,10 +196,12 @@
 				4BEFE4B21C3BAE21006F5006 /* RecordView.swift */,
 				4BD1000A1C44E01100CDE826 /* Theme.swift */,
 				4BF0F0461C537F2B007F87BA /* InCellSeparator.xib */,
+				4B32BC0B1C5A0CF700139842 /* TableHeader.xib */,
 				4B24D0631C3659C200E9264A /* DayRecordTableViewCell.swift */,
 				4B1026871C0EF5EF00202B95 /* TagCollectionViewCell.swift */,
 				4BFC5D1A1C54C82900F70807 /* TagRecordTableViewCell.swift */,
 				4BB340881C575A6900F1D647 /* RecordTableViewCellDelegate.swift */,
+				4B32BC0D1C5A0D5A00139842 /* TableHeader.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -326,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BED77661BD22DD9004DD518 /* LaunchScreen.storyboard in Resources */,
+				4B32BC0C1C5A0CF700139842 /* TableHeader.xib in Resources */,
 				4B0A99A01C17256B00E1F8E3 /* SettingsCellDescriptors.plist in Resources */,
 				4B1263701C2E71D900731968 /* RecordSectionHeader.xib in Resources */,
 				4BF0F0471C537F2B007F87BA /* InCellSeparator.xib in Resources */,
@@ -355,7 +362,7 @@
 				4BE72E901C1C0D1700F46779 /* PickerViewTableViewCell.swift in Sources */,
 				4B24D0641C3659C200E9264A /* DayRecordTableViewCell.swift in Sources */,
 				4BDBBB291C191E4500F8F5A7 /* PresentDatePickerTransitioningDelegate.swift in Sources */,
-				4B43B57F1C4E11B2003D0E7C /* PaymentViewController.swift in Sources */,
+				4B43B57F1C4E11B2003D0E7C /* PageViewControllerWrapper.swift in Sources */,
 				4B24D0621C3652AC00E9264A /* DayRecordTableViewController.swift in Sources */,
 				4B0A999E1C1723C700E1F8E3 /* SettingsTableViewCell.swift in Sources */,
 				4B10268E1C0EFC9500202B95 /* EditRecordViewControllerFooter.swift in Sources */,
@@ -377,7 +384,6 @@
 				4BB15C521C2B867C00D7BD1C /* Record.swift in Sources */,
 				4B14D34C1C1EB938002FE7D0 /* EditTagTableViewCell.swift in Sources */,
 				4BFC5D1B1C54C82900F70807 /* TagRecordTableViewCell.swift in Sources */,
-				4BF0F0431C5276E9007F87BA /* IncomeViewController.swift in Sources */,
 				4B1026881C0EF5EF00202B95 /* TagCollectionViewCell.swift in Sources */,
 				4BEFE4B31C3BAE21006F5006 /* RecordView.swift in Sources */,
 				4B4C9F2A1C195F7100BF2ED4 /* DatePickerViewController.swift in Sources */,
@@ -387,7 +393,9 @@
 				4BB340891C575A6900F1D647 /* RecordTableViewCellDelegate.swift in Sources */,
 				4BB15C511C2B867C00D7BD1C /* Record+CoreDataProperties.swift in Sources */,
 				42CA4CEB669B8C471F75306C /* DayRecords+CoreDataProperties.swift in Sources */,
+				4B33328F1C66AE7E008525FC /* BalanceTableViewController.swift in Sources */,
 				4BD1000B1C44E01100CDE826 /* Theme.swift in Sources */,
+				4B32BC0E1C5A0D5A00139842 /* TableHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

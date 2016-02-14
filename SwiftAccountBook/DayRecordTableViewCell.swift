@@ -101,9 +101,9 @@ class DayRecordTableViewCell: UITableViewCell {
     private func setTexts() {
         dateLabel.text = Utils.getDateStr(dayRecords.date, dateStyle: .MediumStyle)
         if self.isPayment == true {
-            self.sumLabel.text = "\(dayRecords.paymentSum) 元"
+            self.sumLabel.text = NSNumberFormatter.localizedStringFromNumber(dayRecords.paymentSum, numberStyle: .CurrencyStyle)
         } else {
-            self.sumLabel.text = "\(dayRecords.incomeSum) 元"
+            self.sumLabel.text = NSNumberFormatter.localizedStringFromNumber(dayRecords.incomeSum, numberStyle: .CurrencyStyle)
         }
     }
     
@@ -142,7 +142,7 @@ class DayRecordTableViewCell: UITableViewCell {
         let views = NSBundle.mainBundle().loadNibNamed("RecordView", owner: nil, options: nil)
         let recordView = views.first as! RecordView
         recordView.leftLabel.text = Utils.getTrancatedTagsText(record.tags)
-        recordView.numberLabel.text = "\(record.number) 元"
+        recordView.numberLabel.text = NSNumberFormatter.localizedStringFromNumber(record.number, numberStyle: .CurrencyStyle)
         return recordView
     }
 }

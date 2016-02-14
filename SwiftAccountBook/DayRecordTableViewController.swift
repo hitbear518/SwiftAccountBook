@@ -1,5 +1,5 @@
 //
-//  RecordTableViewController2.swift
+//  RecordTableViewController.swift
 //  SwiftAccountBook
 //
 //  Created by 王森 on 16/1/1.
@@ -15,6 +15,7 @@ class DayRecordTableViewController: UITableViewController, NSFetchedResultsContr
     var isPayment: Bool!
     var fetchedResultsController: NSFetchedResultsController!
     var openedCellIndexPath: NSIndexPath?
+    var tableHeader: TableHeader?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,14 +38,31 @@ class DayRecordTableViewController: UITableViewController, NSFetchedResultsContr
         
         self.tableView.estimatedRowHeight = 60
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        tableHeader = NSBundle.mainBundle().loadNibNamed("TableHeader", owner: nil, options: nil).first as? TableHeader
+        tableView.tableHeaderView = tableHeader
+        let startDateStr = Utils.getDateStr(startDate, dateStyle: .MediumStyle)
+        let endDateStr = Utils.getDateStr(endDate, dateStyle: .MediumStyle)
+        tableHeader?.dateRangeLabel.text = "\(startDateStr) - \(endDateStr)"
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        let startDateStr = NSDateFormatter.localizedStringFromDate(self.startDate, dateStyle: .ShortStyle, timeStyle: .NoStyle)
-        let endDateStr = Utils.getDateStr(endDate, dateStyle: .ShortStyle)
-        self.navigationController?.topViewController?.navigationItem.title = "\(startDateStr) - \(endDateStr)"
+        let startDayInEra = NSCalendar.currentCalendar().ordinalityOfUnit(.Day, inUnit: .Era, forDate: self.startDate)
+        let endDayInEra = NSCalendar.currentCalendar().ordinalityOfUnit(.Day, inUnit: .Era, forDate: self.endDate)
+        let request = NSFetchRequest(entityName: "Record")
+        request.predicate = NSPredicate(format: "(dayInEra >= %d) AND (dayInEra <= %d) AND (isPayment == %@)", startDayInEra, endDayInEra, isPayment)
+        
+        do {
+            let records = try MyDataController.context.executeFetchRequest(request) as! [Record]
+            let recordSum = records.reduce(0.0) { sum, record in
+                sum + record.number
+            }
+            let sumStr = NSNumberFormatter.localizedStringFromNumber(recordSum, numberStyle: .CurrencyStyle)
+            self.navigationController?.topViewController?.navigationItem.title = "总计 \(sumStr)"
+        } catch let error as NSError {
+            fatalError("Fetch records failed: \(error.localizedDescription)")
+        }
     }
     
     func initializeFetchedResultsController() {

@@ -347,7 +347,7 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        activeView = textField
+        activeView = nil
     }
     
     func checkValidRecordTag() -> Bool {
@@ -402,7 +402,7 @@ class EditRecordViewController: UIViewController, UICollectionViewDataSource, UI
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         var size = CGSizeZero
         size.width = view.frame.width
-        size.height = 140
+        size.height = 160
         return size
     }
     

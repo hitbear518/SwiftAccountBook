@@ -14,13 +14,13 @@
                     <rect key="frame" x="8" y="0.0" width="594" height="64"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" image="SeparatorSide" translatesAutoresizingMaskIntoConstraints="NO" id="fFQ-Q9-dhT">
-                            <rect key="frame" x="0.0" y="30.5" width="269.5" height="3"/>
+                            <rect key="frame" x="0.0" y="17" width="270" height="30"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" image="SeparatorCenter" translatesAutoresizingMaskIntoConstraints="NO" id="n9C-yz-7Eh">
-                            <rect key="frame" x="285.5" y="25.5" width="23" height="13"/>
+                            <rect key="frame" x="286" y="26" width="23" height="13"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="251" image="SeparatorSide" translatesAutoresizingMaskIntoConstraints="NO" id="Oc0-Ck-A7B">
-                            <rect key="frame" x="324.5" y="30.5" width="269.5" height="3"/>
+                            <rect key="frame" x="325" y="17" width="270" height="30"/>
                         </imageView>
                     </subviews>
                     <constraints>

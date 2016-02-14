@@ -1,42 +1,43 @@
 //
-//  IncomeViewController.swift
+//  PaymentViewController.swift
 //  SwiftAccountBook
 //
-//  Created by 王森 on 16/1/22.
+//  Created by 王森 on 16/1/19.
 //  Copyright © 2016年 王森. All rights reserved.
 //
 
 import UIKit
 
-class IncomeViewController: UIViewController {
+class PageViewControllerWrapper: UIViewController {
     
-    private lazy var dataSource: MyPageViewControllerDataSource = {
-        let dataSource = MyPageViewControllerDataSource()
-        dataSource.isPayment = self.isPayment
-        return dataSource
-    }()
-    private lazy var pageViewController: UIPageViewController = {
+    lazy var pageViewController: UIPageViewController = {
         let pageVC = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
         pageVC.dataSource = self.dataSource
         return pageVC
     }()
     
-    var originalStartDay = Settings.startDay
-    var isPayment = false
-
+    lazy var dataSource: MyPageViewControllerDataSource = {
+        let dataSource = MyPageViewControllerDataSource()
+        dataSource.isPayment = self.isPayment
+        return dataSource
+    }()
+    var originalStartDay: Int!
+    var isPayment: Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        let startViewController = Resources.mainStoryBoard.instantiateViewControllerWithIdentifier("DayRecordTableViewController") as! DayRecordTableViewController
-        startViewController.endDate = NSDate()
-        startViewController.isPayment = isPayment
         
-        self.pageViewController.setViewControllers([startViewController], direction: .Forward, animated: false, completion: nil)
+        originalStartDay = Settings.startDay
         
         self.addChildViewController(self.pageViewController)
         self.view.addSubview(self.pageViewController.view)
+        
         self.pageViewController.didMoveToParentViewController(self)
+        
+        let startViewController = Resources.mainStoryBoard.instantiateViewControllerWithIdentifier("DayRecordTableViewController") as! DayRecordTableViewController
+        startViewController.endDate = NSDate()
+        startViewController.isPayment = isPayment
+        self.pageViewController.setViewControllers([startViewController], direction: .Forward, animated: false, completion: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -46,13 +47,13 @@ class IncomeViewController: UIViewController {
             originalStartDay = Settings.startDay
             
             if let _ = pageViewController.viewControllers?.first as? DayRecordTableViewController {
-                let startViewController = Resources.mainStoryBoard.instantiateViewControllerWithIdentifier("TagRecordTableViewController") as! TagRecordTableViewController
+                let startViewController = Resources.mainStoryBoard.instantiateViewControllerWithIdentifier("DayRecordTableViewController") as! DayRecordTableViewController
                 startViewController.endDate = NSDate()
                 startViewController.isPayment = isPayment
                 pageViewController.setViewControllers([startViewController], direction: .Forward, animated: false, completion: nil)
                 navigationItem.leftBarButtonItem?.image = UIImage(named: "BarButtonCalendar")
             } else if let _ = pageViewController.viewControllers?.first as? TagRecordTableViewController {
-                let startViewController = Resources.mainStoryBoard.instantiateViewControllerWithIdentifier("DayRecordTableViewController") as! DayRecordTableViewController
+                let startViewController = Resources.mainStoryBoard.instantiateViewControllerWithIdentifier("TagRecordTableViewController") as! TagRecordTableViewController
                 startViewController.endDate = NSDate()
                 startViewController.isPayment = isPayment
                 pageViewController.setViewControllers([startViewController], direction: .Forward, animated: false, completion: nil)
@@ -82,7 +83,6 @@ class IncomeViewController: UIViewController {
             fatalError()
         }
     }
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -94,4 +94,5 @@ class IncomeViewController: UIViewController {
             viewController.isPayment = isPayment
         }
     }
+
 }

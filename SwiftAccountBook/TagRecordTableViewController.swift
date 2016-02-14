@@ -15,6 +15,7 @@ class TagRecordTableViewController: UITableViewController {
     var fetchedResultsController: NSFetchedResultsController!
     var isPayment: Bool!
     var openedCellIndexPath: NSIndexPath?
+    var tableHeader: TableHeader?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,22 +31,31 @@ class TagRecordTableViewController: UITableViewController {
         
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableHeader = NSBundle.mainBundle().loadNibNamed("TableHeader", owner: nil, options: nil).first as? TableHeader
+        tableView.tableHeaderView = tableHeader
+        let startDateStr = Utils.getDateStr(startDate, dateStyle: .MediumStyle)
+        let endDateStr = Utils.getDateStr(endDate, dateStyle: .MediumStyle)
+        tableHeader?.dateRangeLabel.text = "\(startDateStr) - \(endDateStr)"
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        let startDateStr = NSDateFormatter.localizedStringFromDate(startDate, dateStyle: .ShortStyle, timeStyle: .NoStyle)
-        let endDateStr: String
-        if NSCalendar.currentCalendar().isDateInToday(endDate) {
-            endDateStr = "今天"
-        } else if NSCalendar.currentCalendar().isDateInYesterday(endDate) {
-            endDateStr = "昨天"
-        } else {
-            endDateStr = NSDateFormatter.localizedStringFromDate(endDate, dateStyle: .ShortStyle, timeStyle: .NoStyle)
-        }
+        let startDayInEra = NSCalendar.currentCalendar().ordinalityOfUnit(.Day, inUnit: .Era, forDate: self.startDate)
+        let endDayInEra = NSCalendar.currentCalendar().ordinalityOfUnit(.Day, inUnit: .Era, forDate: self.endDate)
+        let request = NSFetchRequest(entityName: "Record")
+        request.predicate = NSPredicate(format: "(dayInEra >= %d) AND (dayInEra <= %d) AND (isPayment == %@)", startDayInEra, endDayInEra, isPayment)
         
-        self.navigationController?.topViewController?.navigationItem.title = "\(startDateStr) - \(endDateStr)"
+        do {
+            let records = try MyDataController.context.executeFetchRequest(request) as! [Record]
+            let recordSum = records.reduce(0.0) { sum, record in
+                sum + record.number
+            }
+            let sumStr = NSNumberFormatter.localizedStringFromNumber(recordSum, numberStyle: .CurrencyStyle)
+            self.navigationController?.topViewController?.navigationItem.title = "总计 \(sumStr)"
+        } catch let error as NSError {
+            fatalError("Fetch records failed: \(error.localizedDescription)")
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -60,7 +70,11 @@ class TagRecordTableViewController: UITableViewController {
         let request = NSFetchRequest(entityName: "Tag")
         let nameSort = NSSortDescriptor(key: "name", ascending: true)
         request.sortDescriptors = [nameSort]
-        request.predicate = NSPredicate(format: "(ofPayment == %@)", isPayment)
+        let startDayInEra = NSCalendar.currentCalendar().ordinalityOfUnit(.Day, inUnit: .Era, forDate: startDate)
+        let endDayInEra = NSCalendar.currentCalendar().ordinalityOfUnit(.Day, inUnit: .Era, forDate: endDate)
+        
+        let startToEndArr = [Int](startDayInEra...endDayInEra)
+        request.predicate = NSPredicate(format: "(ofPayment == %@) AND (ANY records.dayInEra IN %@)", isPayment, startToEndArr)
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: MyDataController.context, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
         do {
@@ -90,10 +104,10 @@ class TagRecordTableViewController: UITableViewController {
         let request = NSFetchRequest(entityName: "Record")
         let startDayInEra = NSCalendar.currentCalendar().ordinalityOfUnit(.Day, inUnit: .Era, forDate: startDate)
         let endDayInEra = NSCalendar.currentCalendar().ordinalityOfUnit(.Day, inUnit: .Era, forDate: endDate)
-        request.predicate = NSPredicate(format: "(ANY tags.name == %@) && (dayInEra >= %d) && (dayInEra <= %d)" , tag.name, startDayInEra, endDayInEra)
+        let startToEndArray = [Int](startDayInEra...endDayInEra)
+        request.predicate = NSPredicate(format: "(ANY tags.name == %@) && (dayInEra IN %@)" , tag.name, startToEndArray)
         do {
-            var records = try MyDataController.context.executeFetchRequest(request) as! [Record]
-            records = records.filter({ $0.isPayment == tag.ofPayment })
+            let records = try MyDataController.context.executeFetchRequest(request) as! [Record]
             cell.configCell(tag, records: records, opened: openedCellIndexPath == indexPath)
             cell.delegate = self
         } catch let error as NSError {

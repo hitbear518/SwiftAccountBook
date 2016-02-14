@@ -15,25 +15,29 @@ class MyTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self
 
         // Do any additional setup after loading the view.
+        let firstNavController = viewControllers!.first as! UINavigationController
+        let firstPageControllerWrapper = firstNavController.topViewController as! PageViewControllerWrapper
+        firstPageControllerWrapper.isPayment = true
+        
+        let secondNavController = viewControllers![1] as! UINavigationController
+        let secondPageControllerWrapper = secondNavController.topViewController as! PageViewControllerWrapper
+        secondPageControllerWrapper.isPayment = false
     }
     
     
     // MARK: - UITabBarControllerDelegate
     
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        if let navigationController = viewController as? UINavigationController {
-            let rootViewController = navigationController.childViewControllers.first!
-            if rootViewController is PaymentViewController {
-                ThemeManager.applyTheme(Theme.Payment)
-            } else if rootViewController is IncomeViewController {
-                ThemeManager.applyTheme(Theme.Income)
-            } else {
-                ThemeManager.applyTheme(Theme.Default)
-            }
+        switch tabBar.selectedItem! {
+        case tabBar.items![0]:
+            ThemeManager.applyTheme(Theme.Payment)
+        case tabBar.items![1]:
+             ThemeManager.applyTheme(Theme.Income)
+        default:
+            ThemeManager.applyTheme(Theme.Default)
         }
     }
     
-
 
     /*
     // MARK: - Navigation

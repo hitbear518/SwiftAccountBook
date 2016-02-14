@@ -99,7 +99,7 @@ class TagRecordTableViewCell: UITableViewCell {
         let recordsSum = self.sortedRecords.reduce(0.0) { sum, record in
             sum + record.number
         }
-        self.sumLabel.text = "\(recordsSum) 元"
+        self.sumLabel.text = NSNumberFormatter.localizedStringFromNumber(recordsSum, numberStyle: .CurrencyStyle)
     }
     
     private func setAppearances() {
@@ -130,7 +130,7 @@ class TagRecordTableViewCell: UITableViewCell {
         let views = NSBundle.mainBundle().loadNibNamed("RecordView", owner: nil, options: nil)
         let recordView = views.first as! RecordView
         recordView.leftLabel.text = Utils.getDateStr(record.date, dateStyle: .MediumStyle)
-        recordView.numberLabel.text = "\(record.number) 元"
+        recordView.numberLabel.text = NSNumberFormatter.localizedStringFromNumber(record.number, numberStyle: .CurrencyStyle)
         return recordView
     }
     
