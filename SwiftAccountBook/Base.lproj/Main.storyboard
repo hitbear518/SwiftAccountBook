@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QEL-Qa-rEC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QEL-Qa-rEC">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -1095,7 +1095,7 @@
         <scene sceneID="Riw-Xt-fnb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PTj-TJ-2y1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="余额" id="Lqv-DC-ey7"/>
+                    <tabBarItem key="tabBarItem" title="余额" image="BalanceTabIcon" id="Lqv-DC-ey7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LLw-iT-Uhf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1112,6 +1112,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BalanceTabIcon" width="25" height="25"/>
         <image name="BarButtonTag" width="22" height="22"/>
         <image name="ButtonBackgroundPayment" width="17" height="28"/>
         <image name="ButtonHighlightedBackgroundPayment" width="17" height="28"/>
