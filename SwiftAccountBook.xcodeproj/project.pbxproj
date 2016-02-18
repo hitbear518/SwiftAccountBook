@@ -28,6 +28,14 @@
 		4B24D0641C3659C200E9264A /* DayRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24D0631C3659C200E9264A /* DayRecordTableViewCell.swift */; };
 		4B24D0681C36621E00E9264A /* DayRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24D0661C36621E00E9264A /* DayRecords.swift */; };
 		4B2810411C4F304600724713 /* TagRecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2810401C4F304600724713 /* TagRecordTableViewController.swift */; };
+		4B32AC201C7596CD00F898BD /* Bitmap1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B32AC181C7596CD00F898BD /* Bitmap1.png */; };
+		4B32AC211C7596CD00F898BD /* Bitmap2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B32AC191C7596CD00F898BD /* Bitmap2.png */; };
+		4B32AC221C7596CD00F898BD /* Bitmap3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B32AC1A1C7596CD00F898BD /* Bitmap3.png */; };
+		4B32AC231C7596CD00F898BD /* Bitmap4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B32AC1B1C7596CD00F898BD /* Bitmap4.png */; };
+		4B32AC241C7596CD00F898BD /* Bitmap5.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B32AC1C1C7596CD00F898BD /* Bitmap5.png */; };
+		4B32AC251C7596CD00F898BD /* Bitmap6.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B32AC1D1C7596CD00F898BD /* Bitmap6.png */; };
+		4B32AC261C7596CD00F898BD /* Bitmap7.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B32AC1E1C7596CD00F898BD /* Bitmap7.png */; };
+		4B32AC271C7596CD00F898BD /* Bitmap8.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B32AC1F1C7596CD00F898BD /* Bitmap8.png */; };
 		4B32BC0C1C5A0CF700139842 /* TableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B32BC0B1C5A0CF700139842 /* TableHeader.xib */; };
 		4B32BC0E1C5A0D5A00139842 /* TableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32BC0D1C5A0D5A00139842 /* TableHeader.swift */; };
 		4B33328F1C66AE7E008525FC /* BalanceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B33328E1C66AE7E008525FC /* BalanceTableViewController.swift */; };
@@ -90,6 +98,14 @@
 		4B24D0631C3659C200E9264A /* DayRecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayRecordTableViewCell.swift; sourceTree = "<group>"; };
 		4B24D0661C36621E00E9264A /* DayRecords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DayRecords.swift; path = SwiftAccountBook/DayRecords.swift; sourceTree = "<group>"; };
 		4B2810401C4F304600724713 /* TagRecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagRecordTableViewController.swift; sourceTree = "<group>"; };
+		4B32AC181C7596CD00F898BD /* Bitmap1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bitmap1.png; sourceTree = "<group>"; };
+		4B32AC191C7596CD00F898BD /* Bitmap2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bitmap2.png; sourceTree = "<group>"; };
+		4B32AC1A1C7596CD00F898BD /* Bitmap3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bitmap3.png; sourceTree = "<group>"; };
+		4B32AC1B1C7596CD00F898BD /* Bitmap4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bitmap4.png; sourceTree = "<group>"; };
+		4B32AC1C1C7596CD00F898BD /* Bitmap5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bitmap5.png; sourceTree = "<group>"; };
+		4B32AC1D1C7596CD00F898BD /* Bitmap6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bitmap6.png; sourceTree = "<group>"; };
+		4B32AC1E1C7596CD00F898BD /* Bitmap7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bitmap7.png; sourceTree = "<group>"; };
+		4B32AC1F1C7596CD00F898BD /* Bitmap8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bitmap8.png; sourceTree = "<group>"; };
 		4B32BC0B1C5A0CF700139842 /* TableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableHeader.xib; sourceTree = "<group>"; };
 		4B32BC0D1C5A0D5A00139842 /* TableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableHeader.swift; sourceTree = "<group>"; };
 		4B33328E1C66AE7E008525FC /* BalanceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceTableViewController.swift; sourceTree = "<group>"; };
@@ -206,9 +222,25 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		4B32AC171C7596A400F898BD /* ScreeanShots */ = {
+			isa = PBXGroup;
+			children = (
+				4B32AC181C7596CD00F898BD /* Bitmap1.png */,
+				4B32AC191C7596CD00F898BD /* Bitmap2.png */,
+				4B32AC1A1C7596CD00F898BD /* Bitmap3.png */,
+				4B32AC1B1C7596CD00F898BD /* Bitmap4.png */,
+				4B32AC1C1C7596CD00F898BD /* Bitmap5.png */,
+				4B32AC1D1C7596CD00F898BD /* Bitmap6.png */,
+				4B32AC1E1C7596CD00F898BD /* Bitmap7.png */,
+				4B32AC1F1C7596CD00F898BD /* Bitmap8.png */,
+			);
+			name = ScreeanShots;
+			sourceTree = "<group>";
+		};
 		4BED774F1BD22DD9004DD518 = {
 			isa = PBXGroup;
 			children = (
+				4B32AC171C7596A400F898BD /* ScreeanShots */,
 				4BED775A1BD22DD9004DD518 /* SwiftAccountBook */,
 				4BED776F1BD22DD9004DD518 /* SwiftAccountBookTests */,
 				4BED77591BD22DD9004DD518 /* Products */,
@@ -332,13 +364,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BED77661BD22DD9004DD518 /* LaunchScreen.storyboard in Resources */,
+				4B32AC251C7596CD00F898BD /* Bitmap6.png in Resources */,
 				4B32BC0C1C5A0CF700139842 /* TableHeader.xib in Resources */,
+				4B32AC271C7596CD00F898BD /* Bitmap8.png in Resources */,
+				4B32AC221C7596CD00F898BD /* Bitmap3.png in Resources */,
 				4B0A99A01C17256B00E1F8E3 /* SettingsCellDescriptors.plist in Resources */,
+				4B32AC211C7596CD00F898BD /* Bitmap2.png in Resources */,
 				4B1263701C2E71D900731968 /* RecordSectionHeader.xib in Resources */,
 				4BF0F0471C537F2B007F87BA /* InCellSeparator.xib in Resources */,
+				4B32AC261C7596CD00F898BD /* Bitmap7.png in Resources */,
+				4B32AC201C7596CD00F898BD /* Bitmap1.png in Resources */,
 				4B21099D1C155557001ED0C2 /* Assets.xcassets in Resources */,
+				4B32AC241C7596CD00F898BD /* Bitmap5.png in Resources */,
 				4BED77611BD22DD9004DD518 /* Main.storyboard in Resources */,
 				4BEFE4AF1C3BACAC006F5006 /* RecordView.xib in Resources */,
+				4B32AC231C7596CD00F898BD /* Bitmap4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
